@@ -90,11 +90,39 @@ int m_zeros_01() {
     return 0;
 }
 
+int m_prod_01() {
+    int f = 3;
+    int c = 4;
+	
+	Matrix A(f, c);
+	A(1,1) = 0; A(1,2) = 2; A(1,3) = 8; A(1,4) = 0;
+	A(2,1) = 1; A(2,2) = -1; A(2,3) = 0; A(2,4) = 0;
+	A(3,1) = 0; A(3,2) = 1; A(3,3) = 0; A(3,4) = 5;
+	
+	Matrix B(c, f);
+	B(1,1) = 2; B(1,2) = 7; B(1,3) = 0;
+	B(2,1) = 0; B(2,2) = -2; B(2,3) = -3;
+	B(3,1) = 0; B(3,2) = 1; B(3,3) = 0;
+	B(4,1) = 0; B(4,2) = 0; B(4,3) = 2;
+	
+	Matrix C(f, f);
+	C(1,1) = 0; C(1,2) = 4; C(1,3) = -6;
+	C(2,1) = 2; C(2,2) = 9; C(2,3) = 3;
+	C(3,1) = 0; C(3,2) = -2; C(3,3) = 7;
+	
+	Matrix R = A * B;
+    
+    _assert(m_equals(C, R, 1e-10));
+    
+    return 0;
+}
+
 int all_tests()
 {
     _verify(m_sum_01);
     _verify(m_sub_01);
     _verify(m_zeros_01);
+	_verify(m_prod_01);
 
     return 0;
 }

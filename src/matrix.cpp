@@ -1,5 +1,7 @@
 #include "..\include\matrix.h"
 
+
+//constructores
 Matrix::Matrix(const int v_size) {
     if (v_size <= 0) {
 		cout << "Matrix create: error in v_size\n";
@@ -38,6 +40,8 @@ Matrix::Matrix(const int n_row, const int n_column) {
 	}
 }
 
+
+//operartor
 double& Matrix::operator () (const int n) {
 	if (n <= 0 || n > this->n_row*this->n_column) {
 		cout << "Matrix get: error in row/column\n";
@@ -110,4 +114,25 @@ Matrix& zeros(const int n_row, const int n_column) {
 	}
 	
 	return (*m_aux);
+}
+
+Matrix& Matrix::operator * (Matrix &m) {
+	if (this->n_column != m.n_row) {
+		cout << "Matrix sub: error in n_row/n_column\n";
+        exit(EXIT_FAILURE);
+	}
+	
+	Matrix *m_aux = new Matrix(this->n_row, m.n_column);
+	
+    for(int i = 1; i <= this->n_row; i++) {
+        for(int j = 1; j <= m.n_column; j++) {
+			int suma = 0;
+			for(int s = 1; s <= this->n_column; s++){
+				suma += (*this)(i,s)*m(s,j);
+			}
+			(*m_aux)(i,j) = suma;
+		}
+	}
+	
+	return *m_aux;
 }

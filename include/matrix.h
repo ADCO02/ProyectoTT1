@@ -22,6 +22,7 @@ public:
 	double& operator () (const int row, const int column);
 	Matrix& operator + (Matrix &m);
 	Matrix& operator - (Matrix &m);
+	Matrix& operator * (Matrix &m);
 	
 	// Non-member operators
 	friend ostream& operator << (ostream &o, Matrix &m);
