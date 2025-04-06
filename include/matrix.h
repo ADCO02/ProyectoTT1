@@ -24,6 +24,9 @@ public:
 	Matrix& operator - (Matrix &m);
 	Matrix& operator * (Matrix &m);
 	Matrix& operator = (Matrix &m);
+
+	// Methods
+    Matrix& transpose();
 	
 	// Non-member operators
 	friend ostream& operator << (ostream &o, Matrix &m);

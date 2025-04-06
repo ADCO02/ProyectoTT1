@@ -135,6 +135,29 @@ int m_asign_01(){
     return 0;
 }
 
+int m_transpose_01() {
+    int f = 3;
+    int c = 4;
+    
+    Matrix A(f, c);
+    A(1,1) = 1; A(1,2) = 2; A(1,3) = 3; A(1,4) = 4;
+    A(2,1) = 5; A(2,2) = 6; A(2,3) = 7; A(2,4) = 8;
+    A(3,1) = 9; A(3,2) = 10; A(3,3) = 11; A(3,4) = 12;
+
+    Matrix T(c, f);
+    T(1,1) = 1; T(1,2) = 5; T(1,3) = 9;
+    T(2,1) = 2; T(2,2) = 6; T(2,3) = 10;
+    T(3,1) = 3; T(3,2) = 7; T(3,3) = 11;
+    T(4,1) = 4; T(4,2) = 8; T(4,3) = 12;
+
+    Matrix R = A.transpose();
+
+    _assert(m_equals(T, R, 1e-10));
+
+    return 0;
+}
+
+
 int all_tests()
 {
     _verify(m_sum_01);
@@ -142,6 +165,7 @@ int all_tests()
     _verify(m_zeros_01);
 	_verify(m_prod_01);
 	_verify(m_asign_01);
+	_verify(m_transpose_01);
 
     return 0;
 }

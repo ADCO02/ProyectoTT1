@@ -171,3 +171,16 @@ Matrix& Matrix::operator = (Matrix& m) {
 
     return *this;
 }
+
+
+Matrix& Matrix::transpose() {
+    Matrix *m_aux = new Matrix(this->n_column, this->n_row);
+    
+    for (int i = 1; i <= this->n_row; i++) {
+        for (int j = 1; j <= this->n_column; j++) {
+            (*m_aux)(j, i) = (*this)(i, j);
+        }
+    }
+    
+    return *m_aux;
+}
