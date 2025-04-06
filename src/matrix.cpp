@@ -2,6 +2,8 @@
 
 
 //constructores
+
+//vector
 Matrix::Matrix(const int v_size) {
     if (v_size <= 0) {
 		cout << "Matrix create: error in v_size\n";
@@ -20,6 +22,7 @@ Matrix::Matrix(const int v_size) {
 	this->data[0] = (double *) calloc(v_size,sizeof(double));
 }
 
+//matriz
 Matrix::Matrix(const int n_row, const int n_column) {
     if (n_row <= 0 || n_column <= 0) {
 		cout << "Matrix create: error in n_row/n_column\n";
@@ -135,4 +138,36 @@ Matrix& Matrix::operator * (Matrix &m) {
 	}
 	
 	return *m_aux;
+}
+
+Matrix& Matrix::operator = (Matrix& m) {
+	if (this == &m) {
+        return *this;
+    }
+
+	for (int i = 0; i < this->n_row; ++i) {
+        free(this->data[i]);
+    }
+    free(this->data);
+
+    this->n_row = m.n_row;
+	this->n_column = m.n_column;
+	this->data = (double **) malloc(n_row*sizeof(double *));
+	
+    if (this->data == NULL) {
+		cout << "Matrix create: error in data\n";
+        exit(EXIT_FAILURE);
+	}
+	
+	for(int i = 0; i < n_row; i++) {
+		this->data[i] = (double *) malloc(n_column*sizeof(double));
+	}
+
+    for (int i = 0; i < n_row; ++i) {
+        for (int j = 0; j < n_column; ++j) {
+            this->data[i][j] = m.data[i][j];
+        }
+    }
+
+    return *this;
 }

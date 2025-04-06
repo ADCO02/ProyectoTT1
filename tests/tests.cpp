@@ -117,12 +117,31 @@ int m_prod_01() {
     return 0;
 }
 
+int m_asign_01(){
+	Matrix A(2, 2);
+    A(1,1) = 1; A(1,2) = 2;
+    A(2,1) = 3; A(2,2) = 4;
+
+    Matrix B(2, 2);
+
+    B = A;
+
+	_assert(m_equals(A, B, 1e-10));
+
+    A(1,1) = 99;
+
+    _assert(B(1,1) == 1 && A(1,1) == 99);
+
+    return 0;
+}
+
 int all_tests()
 {
     _verify(m_sum_01);
     _verify(m_sub_01);
     _verify(m_zeros_01);
 	_verify(m_prod_01);
+	_verify(m_asign_01);
 
     return 0;
 }
