@@ -370,6 +370,19 @@ int m_eye_01() {
     return 0;
 }
 
+int m_norm_01() {		
+	Matrix A(3);
+	A(1) = 12; A(2) = 3; A(3) = 4;
+	
+	double result = norm(A);
+
+	double expected_norm = 13;
+    
+    _assert(fabs(result - expected_norm) < 1e-10);
+    
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -391,6 +404,7 @@ int all_tests()
     _verify(m_zeros_01);
 	_verify(m_zeros_02);
 	_verify(m_eye_01);
+	_verify(m_norm_01);
 
     return 0;
 }

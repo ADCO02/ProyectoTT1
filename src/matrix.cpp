@@ -325,7 +325,7 @@ Matrix &Matrix::transpose()
 
 Matrix& Matrix::extract_vector(const int from, const int to) {
 	if (this->n_row != 1) {
-        cout << "Matrix extract_vector: first matrix must be a vector (row or column)\n";
+        cout << "Matrix extract_vector: matrix must be a vector\n";
         exit(EXIT_FAILURE);
     }
 
@@ -347,11 +347,11 @@ Matrix& Matrix::extract_vector(const int from, const int to) {
 
 Matrix& Matrix::union_vector(Matrix &v) {
     if (this->n_row != 1) {
-        cout << "Matrix union_vector: first matrix must be a vector (row or column)\n";
+        cout << "Matrix union_vector: first matrix must be a vector\n";
         exit(EXIT_FAILURE);
     }
     if (v.n_row != 1) {
-        cout << "Matrix union_vector: second matrix must be a vector (row or column)\n";
+        cout << "Matrix union_vector: second matrix must be a vector\n";
         exit(EXIT_FAILURE);
     }
 
@@ -488,4 +488,20 @@ Matrix& eye(const int n)
 	}
 
 	return (*m_aux);
+}
+
+double norm(Matrix &v){
+	if (v.n_row != 1) {
+        cout << "Matrix norm: matrix must be a vector\n";
+        exit(EXIT_FAILURE);
+    }
+
+	double result = 0;
+	for (int i = 1; i <= v.n_row; i++)
+	{
+		result += v(i)*v(i);
+	}
+
+	return sqrt(result);
+	
 }
