@@ -27,10 +27,10 @@ public:
 	Matrix &operator=(Matrix &m);
 	// Matrix& operator / (Matrix &m); //multiplicar por la inversa de la matriz
 
-	// Matrix& operator + (const double k); //suma escalar de cada elemento
-	// Matrix& operator - (const double k); //resta escalar de cada elemento
-	// Matrix& operator * (const double k); //producto escalar de cada elemento
-	// Matrix& operator / (const double k); //división escalar de cada elemento
+	Matrix& operator + (const double k); //suma escalar de cada elemento
+	Matrix& operator - (const double k); //resta escalar de cada elemento
+	Matrix& operator * (const double k); //producto escalar de cada elemento
+	Matrix& operator / (const double k); //división escalar de cada elemento
 
 	// Methods
 	Matrix &transpose();

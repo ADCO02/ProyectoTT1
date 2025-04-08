@@ -74,22 +74,6 @@ int m_sub_01() {
     return 0;
 }
 
-int m_zeros_01() {
-    int f = 3;
-    int c = 4;
-	
-	Matrix A(f, c);
-	A(1,1) = 0; A(1,2) = 0; A(1,3) = 0; A(1,4) = 0;
-	A(2,1) = 0; A(2,2) = 0; A(2,3) = 0; A(2,4) = 0;
-	A(3,1) = 0; A(3,2) = 0; A(3,3) = 0; A(3,4) = 0;
-	
-	Matrix B = zeros(3, 4);
-    
-    _assert(m_equals(A, B, 1e-10));
-    
-    return 0;
-}
-
 int m_prod_01() {
     int f = 3;
     int c = 4;
@@ -132,6 +116,90 @@ int m_asign_01(){
 
     _assert(B(1,1) == 1 && A(1,1) == 99);
 
+    return 0;
+}
+
+int m_sum_02() {
+    int f = 3;
+    int c = 4;
+	
+	Matrix A(f, c);
+	A(1,1) = 0; A(1,2) = 2; A(1,3) = 8; A(1,4) = 0;
+	A(2,1) = 1; A(2,2) = -1; A(2,3) = 0; A(2,4) = 0;
+	A(3,1) = 0; A(3,2) = 1; A(3,3) = 0; A(3,4) = 5;
+	
+	Matrix B(f, c);
+	B(1,1) = 3; B(1,2) = 5; B(1,3) = 11; B(1,4) = 3;
+	B(2,1) = 4; B(2,2) = 2; B(2,3) = 3; B(2,4) = 3;
+	B(3,1) = 3; B(3,2) = 4; B(3,3) = 3; B(3,4) = 8;
+	
+	Matrix R = A + 3;
+    
+    _assert(m_equals(B, R, 1e-10));
+    
+    return 0;
+}
+
+int m_sub_02() {
+    int f = 3;
+    int c = 4;
+	
+	Matrix A(f, c);
+	A(1,1) = 0; A(1,2) = 2; A(1,3) = 8; A(1,4) = 0;
+	A(2,1) = 1; A(2,2) = -1; A(2,3) = 0; A(2,4) = 0;
+	A(3,1) = 0; A(3,2) = 1; A(3,3) = 0; A(3,4) = 5;
+	
+	Matrix B(f, c);
+	B(1,1) = -2; B(1,2) = 0; B(1,3) = 6; B(1,4) = -2;
+	B(2,1) = -1; B(2,2) = -3; B(2,3) = -2; B(2,4) = -2;
+	B(3,1) = -2; B(3,2) = -1; B(3,3) = -2; B(3,4) = 3;
+	
+	Matrix R = A - 2;
+    
+    _assert(m_equals(B, R, 1e-10));
+    
+    return 0;
+}
+
+int m_prod_02() {
+    int f = 3;
+    int c = 4;
+	
+	Matrix A(f, c);
+	A(1,1) = 0; A(1,2) = 2; A(1,3) = 8; A(1,4) = 0;
+	A(2,1) = 1; A(2,2) = -1; A(2,3) = 0; A(2,4) = 0;
+	A(3,1) = 0; A(3,2) = 1; A(3,3) = 0; A(3,4) = 5;
+	
+	Matrix B(f, c);
+	B(1,1) = 0; B(1,2) = 4; B(1,3) = 16; B(1,4) = 0;
+	B(2,1) = 2; B(2,2) = -2; B(2,3) = 0; B(2,4) = 0;
+	B(3,1) = 0; B(3,2) = 2; B(3,3) = 0; B(3,4) = 10;
+	
+	Matrix R = A * 2;
+    
+    _assert(m_equals(B, R, 1e-10));
+    
+    return 0;
+}
+
+int m_div_02() {
+    int f = 3;
+    int c = 4;
+	
+	Matrix A(f, c);
+	A(1,1) = 0; A(1,2) = 2; A(1,3) = 8; A(1,4) = 0;
+	A(2,1) = 1; A(2,2) = -1; A(2,3) = 0; A(2,4) = 0;
+	A(3,1) = 0; A(3,2) = 1; A(3,3) = 0; A(3,4) = 5;
+	
+	Matrix B(f, c);
+	B(1,1) = 0; B(1,2) = 4; B(1,3) = 16; B(1,4) = 0;
+	B(2,1) = 2; B(2,2) = -2; B(2,3) = 0; B(2,4) = 0;
+	B(3,1) = 0; B(3,2) = 2; B(3,3) = 0; B(3,4) = 10;
+	
+	Matrix R = B / 2;
+    
+    _assert(m_equals(A, R, 1e-10));
+    
     return 0;
 }
 
@@ -227,19 +295,39 @@ int m_assign_column_01() {
     return 0;
 }
 
+int m_zeros_01() {
+    int f = 3;
+    int c = 4;
+	
+	Matrix A(f, c);
+	A(1,1) = 0; A(1,2) = 0; A(1,3) = 0; A(1,4) = 0;
+	A(2,1) = 0; A(2,2) = 0; A(2,3) = 0; A(2,4) = 0;
+	A(3,1) = 0; A(3,2) = 0; A(3,3) = 0; A(3,4) = 0;
+	
+	Matrix B = zeros(3, 4);
+    
+    _assert(m_equals(A, B, 1e-10));
+    
+    return 0;
+}
+
 
 int all_tests()
 {
     _verify(m_sum_01);
     _verify(m_sub_01);
-    _verify(m_zeros_01);
 	_verify(m_prod_01);
 	_verify(m_asign_01);
+    _verify(m_sum_02);
+	_verify(m_sub_02);
+	_verify(m_prod_02);
+	_verify(m_div_02);
 	_verify(m_transpose_01);
     _verify(m_assign_row_01);
     _verify(m_assign_column_01);
     _verify(m_extract_row_01);
     _verify(m_extract_column_01);
+    _verify(m_zeros_01);
 
     return 0;
 }

@@ -114,33 +114,6 @@ Matrix &Matrix::operator-(Matrix &m)
 	return *m_aux;
 }
 
-ostream &operator<<(ostream &o, Matrix &m)
-{
-	for (int i = 1; i <= m.n_row; i++)
-	{
-		for (int j = 1; j <= m.n_column; j++)
-			printf("%5.20lf ", m(i, j));
-		o << "\n";
-	}
-
-	return o;
-}
-
-Matrix &zeros(const int n_row, const int n_column)
-{
-	Matrix *m_aux = new Matrix(n_row, n_column);
-
-	for (int i = 1; i <= n_row; i++)
-	{
-		for (int j = 1; j <= n_column; j++)
-		{
-			(*m_aux)(i, j) = 0;
-		}
-	}
-
-	return (*m_aux);
-}
-
 Matrix &Matrix::operator*(Matrix &m)
 {
 	if (this->n_column != m.n_row)
@@ -202,6 +175,66 @@ Matrix &Matrix::operator=(Matrix &m)
 	}
 
 	return *this;
+}
+
+Matrix &Matrix::operator+(const double k)
+{
+	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+
+	for (int i = 1; i <= this->n_row; i++)
+	{
+		for (int j = 1; j <= this->n_column; j++)
+		{
+			(*m_aux)(i, j) = (*this)(i, j) + k;
+		}
+	}
+
+	return *m_aux;
+}
+
+Matrix &Matrix::operator-(const double k)
+{
+	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+
+	for (int i = 1; i <= this->n_row; i++)
+	{
+		for (int j = 1; j <= this->n_column; j++)
+		{
+			(*m_aux)(i, j) = (*this)(i, j) - k;
+		}
+	}
+
+	return *m_aux;
+}
+
+Matrix &Matrix::operator*(const double k)
+{
+	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+
+	for (int i = 1; i <= this->n_row; i++)
+	{
+		for (int j = 1; j <= this->n_column; j++)
+		{
+			(*m_aux)(i, j) = (*this)(i, j) * k;
+		}
+	}
+
+	return *m_aux;
+}
+
+Matrix &Matrix::operator/(const double k)
+{
+	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+
+	for (int i = 1; i <= this->n_row; i++)
+	{
+		for (int j = 1; j <= this->n_column; j++)
+		{
+			(*m_aux)(i, j) = (*this)(i, j) / k;
+		}
+	}
+
+	return *m_aux;
 }
 
 Matrix &Matrix::transpose()
@@ -355,3 +388,30 @@ Matrix& Matrix::assign_column(const int col, Matrix& v) {
 
     return *inverse;
 }*/
+
+ostream &operator<<(ostream &o, Matrix &m)
+{
+	for (int i = 1; i <= m.n_row; i++)
+	{
+		for (int j = 1; j <= m.n_column; j++)
+			printf("%5.20lf ", m(i, j));
+		o << "\n";
+	}
+
+	return o;
+}
+
+Matrix &zeros(const int n_row, const int n_column)
+{
+	Matrix *m_aux = new Matrix(n_row, n_column);
+
+	for (int i = 1; i <= n_row; i++)
+	{
+		for (int j = 1; j <= n_column; j++)
+		{
+			(*m_aux)(i, j) = 0;
+		}
+	}
+
+	return (*m_aux);
+}
