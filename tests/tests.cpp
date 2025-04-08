@@ -157,6 +157,76 @@ int m_transpose_01() {
     return 0;
 }
 
+int m_extract_row_01() {
+    Matrix A(3, 3);
+    A(1,1) = 1; A(1,2) = 2; A(1,3) = 3;
+    A(2,1) = 4; A(2,2) = 5; A(2,3) = 6;
+    A(3,1) = 7; A(3,2) = 8; A(3,3) = 9;
+
+    Matrix row = A.extract_row(2);
+
+    Matrix expected(1, 3);
+    expected(1,1) = 4; expected(1,2) = 5; expected(1,3) = 6;
+
+    _assert(m_equals(row, expected, 1e-10));
+    return 0;
+}
+
+int m_extract_column_01() {
+    Matrix A(3, 3);
+    A(1,1) = 1; A(1,2) = 2; A(1,3) = 3;
+    A(2,1) = 4; A(2,2) = 5; A(2,3) = 6;
+    A(3,1) = 7; A(3,2) = 8; A(3,3) = 9;
+
+    Matrix col = A.extract_column(3);
+
+    Matrix expected(3);
+    expected(1) = 3; expected(2) = 6; expected(3) = 9;
+
+    _assert(m_equals(col, expected, 1e-10));
+    return 0;
+}
+
+int m_assign_row_01() {
+    Matrix A(3, 3);
+    A(1,1) = 1; A(1,2) = 2; A(1,3) = 3;
+    A(2,1) = 4; A(2,2) = 5; A(2,3) = 6;
+    A(3,1) = 7; A(3,2) = 8; A(3,3) = 9;
+
+    Matrix row(1, 3);
+    row(1,1) = -1; row(1,2) = -2; row(1,3) = -3;
+
+    A.assign_row(2, row); // asignar a la fila 2
+
+    Matrix expected(3, 3);
+    expected(1,1) = 1; expected(1,2) = 2;  expected(1,3) = 3;
+    expected(2,1) = -1; expected(2,2) = -2; expected(2,3) = -3;
+    expected(3,1) = 7; expected(3,2) = 8;  expected(3,3) = 9;
+
+    _assert(m_equals(A, expected, 1e-10));
+    return 0;
+}
+
+int m_assign_column_01() {
+    Matrix A(3, 3);
+    A(1,1) = 1; A(1,2) = 2; A(1,3) = 3;
+    A(2,1) = 4; A(2,2) = 5; A(2,3) = 6;
+    A(3,1) = 7; A(3,2) = 8; A(3,3) = 9;
+
+    Matrix col(3);
+    col(1) = -1; col(2) = -2; col(3) = -3;
+
+    A.assign_column(2, col); // asignar a la columna 2
+
+    Matrix expected(3, 3);
+    expected(1,1) = 1; expected(1,2) = -1; expected(1,3) = 3;
+    expected(2,1) = 4; expected(2,2) = -2; expected(2,3) = 6;
+    expected(3,1) = 7; expected(3,2) = -3; expected(3,3) = 9;
+
+    _assert(m_equals(A, expected, 1e-10));
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -166,6 +236,10 @@ int all_tests()
 	_verify(m_prod_01);
 	_verify(m_asign_01);
 	_verify(m_transpose_01);
+    _verify(m_assign_row_01);
+    _verify(m_assign_column_01);
+    _verify(m_extract_row_01);
+    _verify(m_extract_column_01);
 
     return 0;
 }

@@ -38,9 +38,9 @@ public:
 	// Matrix& extract_vector(const int from, const int to); //devuelve el subvector desde el elemento 'from' hasta 'to'
 	// Matrix& union_vector(Matrix &v); //une el vector, lo concatena
 	Matrix& extract_row(const int row); //devuelve la fila indicada (forma de vector)
-	// Matrix& extract_column(const int col); //devuelve la columna indicada (en forma de vector?)
+	Matrix& extract_column(const int col); //devuelve la columna indicada (en forma de vector?)
 	Matrix& assign_row(const int row, Matrix &v); //asigna el vector a la fila indicada (deben coincidir las longitudes)
-	// Matrix& assign_column(const int col, Matrix &v); //asigna el vector a la columna indicada (deben coincidir las longitudes, el vector debe estar en forma vector o vertical?)
+	Matrix& assign_column(const int col, Matrix &v); //asigna el vector a la columna indicada (deben coincidir las longitudes, el vector debe estar en forma vector o vertical?)
 
 	// Non-member operators
 	friend ostream &operator<<(ostream &o, Matrix &m);
