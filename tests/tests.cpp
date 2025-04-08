@@ -225,6 +225,41 @@ int m_transpose_01() {
     return 0;
 }
 
+int m_extract_vector_01() {
+    Matrix A(5);
+    A(1) = 1; A(2) = 2; A(3) = 3; A(4) = 4; A(5) = 5;
+
+    Matrix sub_vector = A.extract_vector(2,4);
+
+    Matrix expected(3);
+    expected(1) = 2; expected(2) = 3; expected(3) = 4;
+
+    _assert(m_equals(sub_vector, expected, 1e-10));
+    return 0;
+}
+
+int m_union_vector_01(){
+	Matrix m1(3);
+    Matrix m2(4);
+
+    for (int i = 1; i <= 3; i++) {
+        m1(i) = i;
+    }
+    for (int i = 1; i <= 4; i++) {
+        m2(i) = i + 3;
+    }
+
+    Matrix result = m1.union_vector(m2);
+
+	Matrix expected(7);
+	for (int i = 1; i <= 7; i++) {
+        expected(i) = i;
+    }
+	
+	_assert(m_equals(result, expected, 1e-10));
+    return 0;
+}
+
 int m_extract_row_01() {
     Matrix A(3, 3);
     A(1,1) = 1; A(1,2) = 2; A(1,3) = 3;
@@ -233,8 +268,8 @@ int m_extract_row_01() {
 
     Matrix row = A.extract_row(2);
 
-    Matrix expected(1, 3);
-    expected(1,1) = 4; expected(1,2) = 5; expected(1,3) = 6;
+    Matrix expected(3);
+    expected(1) = 4; expected(2) = 5; expected(3) = 6;
 
     _assert(m_equals(row, expected, 1e-10));
     return 0;
@@ -261,10 +296,10 @@ int m_assign_row_01() {
     A(2,1) = 4; A(2,2) = 5; A(2,3) = 6;
     A(3,1) = 7; A(3,2) = 8; A(3,3) = 9;
 
-    Matrix row(1, 3);
-    row(1,1) = -1; row(1,2) = -2; row(1,3) = -3;
+    Matrix row(3);
+    row(1) = -1; row(2) = -2; row(3) = -3;
 
-    A.assign_row(2, row); // asignar a la fila 2
+    A.assign_row(2, row);
 
     Matrix expected(3, 3);
     expected(1,1) = 1; expected(1,2) = 2;  expected(1,3) = 3;
@@ -284,7 +319,7 @@ int m_assign_column_01() {
     Matrix col(3);
     col(1) = -1; col(2) = -2; col(3) = -3;
 
-    A.assign_column(2, col); // asignar a la columna 2
+    A.assign_column(2, col);
 
     Matrix expected(3, 3);
     expected(1,1) = 1; expected(1,2) = -1; expected(1,3) = 3;
@@ -323,6 +358,8 @@ int all_tests()
 	_verify(m_prod_02);
 	_verify(m_div_02);
 	_verify(m_transpose_01);
+	_verify(m_extract_vector_01);
+	_verify(m_union_vector_01);
     _verify(m_assign_row_01);
     _verify(m_assign_column_01);
     _verify(m_extract_row_01);

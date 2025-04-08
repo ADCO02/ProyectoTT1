@@ -34,9 +34,9 @@ public:
 
 	// Methods
 	Matrix &transpose();
-	Matrix &inv(); // devuelve la matriz inversa (si es cuadrada y con det!=0)
-	// Matrix& extract_vector(const int from, const int to); //devuelve el subvector desde el elemento 'from' hasta 'to'
-	// Matrix& union_vector(Matrix &v); //une el vector, lo concatena
+	//Matrix &inv(); // devuelve la matriz inversa (si es cuadrada y con det!=0)
+	Matrix& extract_vector(const int from, const int to); //devuelve el subvector desde el elemento 'from' hasta 'to'
+	Matrix& union_vector(Matrix &v); //une el vector, lo concatena
 	Matrix& extract_row(const int row); //devuelve la fila indicada (forma de vector)
 	Matrix& extract_column(const int col); //devuelve la columna indicada (en forma de vector?)
 	Matrix& assign_row(const int row, Matrix &v); //asigna el vector a la fila indicada (deben coincidir las longitudes)

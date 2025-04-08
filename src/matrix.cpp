@@ -252,72 +252,6 @@ Matrix &Matrix::transpose()
 	return *m_aux;
 }
 
-Matrix& Matrix::extract_row(const int row) {
-    if (row < 1 || row > this->n_row) {
-        cout << "Matrix extract_row: row out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
-
-    Matrix* v = new Matrix(this->n_column);
-
-    for (int j = 1; j <= this->n_column; ++j) {
-        (*v)(j) = (*this)(row, j);
-    }
-
-    return *v;
-}
-
-Matrix& Matrix::extract_column(const int col) {
-    if (col < 1 || col > this->n_column) {
-        cout << "Matrix extract_column: column out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
-
-    Matrix* v = new Matrix(this->n_row);
-
-    for (int i = 1; i <= this->n_row; ++i) {
-        (*v)(i) = (*this)(i, col);
-    }
-
-    return *v;
-}
-
-Matrix& Matrix::assign_row(const int row, Matrix& v) {
-    if (row < 1 || row > this->n_row) {
-        cout << "Matrix assign_row: row out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
-
-    if (v.n_row != 1 || v.n_column != this->n_column) {
-        cout << "Matrix assign_row: vector size mismatch\n";
-        exit(EXIT_FAILURE);
-    }
-
-    for (int j = 1; j <= this->n_column; ++j) {
-        (*this)(row, j) = v(j);
-    }
-
-    return *this;
-}
-
-Matrix& Matrix::assign_column(const int col, Matrix& v) {
-    if (col < 1 || col > this->n_column) {
-        cout << "Matrix assign_column: column out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
-
-    if (v.n_row != 1 || v.n_column != this->n_row) {
-        cout << "Matrix assign_column: vector size mismatch\n";
-        exit(EXIT_FAILURE);
-    }
-
-    for (int i = 1; i <= this->n_row; ++i) {
-        (*this)(i, col) = v(i);
-    }
-
-    return *this;
-}
-
 
 /*Matrix& Matrix::inv() {
     if (this->n_row != this->n_column) {
@@ -388,6 +322,119 @@ Matrix& Matrix::assign_column(const int col, Matrix& v) {
 
     return *inverse;
 }*/
+
+Matrix& Matrix::extract_vector(const int from, const int to) {
+	if (this->n_row != 1) {
+        cout << "Matrix extract_vector: first matrix must be a vector (row or column)\n";
+        exit(EXIT_FAILURE);
+    }
+
+    if (from <= 0 || to > this->n_row * this->n_column || from > to) {
+        cout << "Matrix extract_vector: invalid from/to indices\n";
+        exit(EXIT_FAILURE);
+    }
+
+    int sub_size = to - from + 1;
+    Matrix* subvector = new Matrix(sub_size);
+
+    int index = 0;
+    for (int i = from; i <= to; ++i) {
+        (*subvector)(++index) = (*this)(i);
+    }
+
+    return *subvector;
+}
+
+Matrix& Matrix::union_vector(Matrix &v) {
+    if (this->n_row != 1) {
+        cout << "Matrix union_vector: first matrix must be a vector (row or column)\n";
+        exit(EXIT_FAILURE);
+    }
+    if (v.n_row != 1) {
+        cout << "Matrix union_vector: second matrix must be a vector (row or column)\n";
+        exit(EXIT_FAILURE);
+    }
+
+    int total_size = this->n_column + v.n_column;
+    Matrix* result = new Matrix(total_size);
+
+    int index = 0;
+    for (int i = 1; i <= this->n_row * this->n_column; ++i) {
+        (*result)(++index) = (*this)(i);
+    }
+    for (int i = 1; i <= v.n_row * v.n_column; ++i) {
+        (*result)(++index) = v(i);
+    }
+
+    return *result;
+}
+
+
+Matrix& Matrix::extract_row(const int row) {
+    if (row < 1 || row > this->n_row) {
+        cout << "Matrix extract_row: row out of bounds\n";
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix* v = new Matrix(this->n_column);
+
+    for (int j = 1; j <= this->n_column; ++j) {
+        (*v)(j) = (*this)(row, j);
+    }
+
+    return *v;
+}
+
+Matrix& Matrix::extract_column(const int col) {
+    if (col < 1 || col > this->n_column) {
+        cout << "Matrix extract_column: column out of bounds\n";
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix* v = new Matrix(this->n_row);
+
+    for (int i = 1; i <= this->n_row; ++i) {
+        (*v)(i) = (*this)(i, col);
+    }
+
+    return *v;
+}
+
+Matrix& Matrix::assign_row(const int row, Matrix& v) {
+    if (row < 1 || row > this->n_row) {
+        cout << "Matrix assign_row: row out of bounds\n";
+        exit(EXIT_FAILURE);
+    }
+
+    if (v.n_row != 1 || v.n_column != this->n_column) {
+        cout << "Matrix assign_row: vector size mismatch\n";
+        exit(EXIT_FAILURE);
+    }
+
+    for (int j = 1; j <= this->n_column; ++j) {
+        (*this)(row, j) = v(j);
+    }
+
+    return *this;
+}
+
+Matrix& Matrix::assign_column(const int col, Matrix& v) {
+    if (col < 1 || col > this->n_column) {
+        cout << "Matrix assign_column: column out of bounds\n";
+        exit(EXIT_FAILURE);
+    }
+
+    if (v.n_row != 1 || v.n_column != this->n_row) {
+        cout << "Matrix assign_column: vector size mismatch\n";
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 1; i <= this->n_row; ++i) {
+        (*this)(i, col) = v(i);
+    }
+
+    return *this;
+}
 
 ostream &operator<<(ostream &o, Matrix &m)
 {
