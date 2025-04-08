@@ -51,7 +51,7 @@ ostream &operator<<(ostream &o, Matrix &m);
 
 // Methods
 Matrix &zeros(const int n_row, const int n_column);
-// Matrix& zeros(const int v_size) //vector de ceros
+Matrix& zeros(const int v_size); //vector de ceros
 // Matrix& eye(const int n) //matriz identidad de tamaño n
 // double norm(Matrix &v) //norma euclidiana del vector
 // double dot(Matrix &v1, Matrix &v2) //producto escalar de vectores

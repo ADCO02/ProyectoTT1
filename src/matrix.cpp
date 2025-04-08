@@ -462,3 +462,15 @@ Matrix &zeros(const int n_row, const int n_column)
 
 	return (*m_aux);
 }
+
+Matrix &zeros(const int v_size)
+{
+	Matrix *m_aux = new Matrix(v_size);
+
+	for (int i = 1; i <= v_size; i++)
+	{
+		(*m_aux)(i) = 0;
+	}
+
+	return (*m_aux);
+}

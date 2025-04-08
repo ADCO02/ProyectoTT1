@@ -346,6 +346,17 @@ int m_zeros_01() {
     return 0;
 }
 
+int m_zeros_02() {	
+	Matrix A(4);
+	A(1,1) = 0; A(2) = 0; A(3) = 0; A(4) = 0;
+	
+	Matrix B = zeros(4);
+    
+    _assert(m_equals(A, B, 1e-10));
+    
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -365,6 +376,7 @@ int all_tests()
     _verify(m_extract_row_01);
     _verify(m_extract_column_01);
     _verify(m_zeros_01);
+	_verify(m_zeros_02);
 
     return 0;
 }
