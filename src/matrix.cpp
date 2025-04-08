@@ -474,3 +474,18 @@ Matrix &zeros(const int v_size)
 
 	return (*m_aux);
 }
+
+Matrix& eye(const int n)
+{
+	Matrix *m_aux = new Matrix(n, n);
+
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= n; j++)
+		{
+			(*m_aux)(i, j) = (i==j) ? 1 : 0;
+		}
+	}
+
+	return (*m_aux);
+}

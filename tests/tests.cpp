@@ -357,6 +357,19 @@ int m_zeros_02() {
     return 0;
 }
 
+int m_eye_01() {		
+	Matrix A(3,3);
+	A(1,1) = 1; A(1,2) = 0; A(1,3) = 0;
+	A(2,1) = 0; A(2,2) = 1; A(2,3) = 0;
+	A(3,1) = 0; A(3,2) = 0; A(3,3) = 1;
+	
+	Matrix B = eye(3);
+    
+    _assert(m_equals(A, B, 1e-10));
+    
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -377,6 +390,7 @@ int all_tests()
     _verify(m_extract_column_01);
     _verify(m_zeros_01);
 	_verify(m_zeros_02);
+	_verify(m_eye_01);
 
     return 0;
 }
