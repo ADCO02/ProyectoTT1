@@ -25,7 +25,7 @@ public:
 	Matrix &operator-(Matrix &m);
 	Matrix &operator*(Matrix &m);
 	Matrix &operator=(Matrix &m);
-	// Matrix& operator / (Matrix &m); //multiplicar por la inversa de la matriz
+	Matrix& operator / (Matrix &m); //multiplicar por la inversa de la matriz
 
 	Matrix& operator + (const double k); //suma escalar de cada elemento
 	Matrix& operator - (const double k); //resta escalar de cada elemento
@@ -55,6 +55,6 @@ Matrix& eye(const int n); //matriz identidad de tamaño n
 double norm(Matrix &v); //norma euclidiana del vector
 double dot(Matrix &v1, Matrix &v2); //producto escalar de vectores
 Matrix& cross(Matrix &v1, Matrix &v2); //producto vectorial de vectores de longitud 3
-// Matrix &inv(); // devuelve la matriz inversa (si es cuadrada y con det!=0)
+Matrix &inv(Matrix &m); // devuelve la matriz inversa (si es cuadrada y con det!=0)
 
 #endif

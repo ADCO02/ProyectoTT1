@@ -178,6 +178,24 @@ Matrix &Matrix::operator=(Matrix &m)
 	return *this;
 }
 
+Matrix &Matrix::operator / (Matrix &m){
+	if (m.n_row != m.n_column)
+	{
+		cout << "Matrix div: divisor must be square\n";
+		exit(EXIT_FAILURE);
+	}
+
+	if (this->n_column != m.n_row)
+	{
+		cout << "Matrix div: incompatible dimensions for division\n";
+		exit(EXIT_FAILURE);
+	}
+
+	Matrix *result = new Matrix((*this) * inv(m));
+
+	return *result;
+}
+
 Matrix &Matrix::operator+(const double k)
 {
 	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
@@ -252,76 +270,6 @@ Matrix &Matrix::transpose()
 
 	return *m_aux;
 }
-
-/*Matrix& Matrix::inv() {
-	if (this->n_row != this->n_column) {
-		cout << "Matrix inv: not a square matrix\n";
-		exit(EXIT_FAILURE);
-	}
-
-	int n = this->n_row;
-	Matrix* A = new Matrix(n, 2 * n);
-
-	// Construir [A | I]
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++) {
-			(*A)(i, j) = (*this)(i, j);
-			(*A)(i, n + j) = (i == j) ? 1.0 : 0.0;
-		}
-	}
-
-	// Gauss-Jordan
-	for (int i = 1; i <= n; i++) {
-		//elegimos el pivote de mayor valor
-		int pivote = i;
-
-		for(int j=i;j<=n;j++){
-			if(abs((*A)(j,i))>abs((*A)(pivote,i))){
-				pivote=j;
-			}
-		}
-		double diag = (*A)(pivote, i);
-		if (fabs(diag) < 1e-10) {
-			cout << "Matrix inv: singular matrix (det = 0)\n";
-			exit(EXIT_FAILURE);
-		}
-
-		//intercambiar la fila pivote si es necesario
-		if(pivote!=i){
-			Matrix& vaux = (*A).extract_row(pivote);
-			(*A).assign_row(pivote,(*A).extract_row(i));
-			(*A).assign_row(i,vaux);
-			//liberar vaux??
-		}
-
-		// Normalizar fila i
-		(*A).assign_row(i,(*A).extract_row(i)/diag);
-		for (int j = i; j <= 2 * n; j++) {
-			(*A)(i, j) /= diag;
-		}
-
-		// Eliminar otras filas
-		for (int k = 1; k <= n; k++) {
-			if (k == i) continue;
-			double factor = (*A)(k, i);
-			for (int j = 1; j <= 2 * n; j++) {
-				(*A)(k, j) -= factor * (*A)(i, j);
-			}
-		}
-	}
-
-	// Extraer parte derecha (inversa)
-	Matrix* inverse = new Matrix(n, n);
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++) {
-			(*inverse)(i, j) = (*A)(i, n + j);
-		}
-	}
-
-	delete A; // liberamos memoria auxiliar
-
-	return *inverse;
-}*/
 
 Matrix &Matrix::extract_vector(const int from, const int to)
 {
@@ -564,4 +512,72 @@ Matrix& cross(Matrix &v1, Matrix &v2){
 	(*r)(2)=v1(3)*v2(1)-v1(1)*v2(3);
 	(*r)(3)=v1(1)*v2(2)-v1(2)*v2(1);
 	return (*r);
+}
+
+Matrix& inv(Matrix &m) {
+	if (m.n_row != m.n_column) {
+		cout << "Matrix inv: not a square matrix\n";
+		exit(EXIT_FAILURE);
+	}
+
+	int n = m.n_row;
+	Matrix* A = new Matrix(n, 2 * n);
+
+	// Construir A = [M | I]
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			(*A)(i, j) = m(i, j);
+			(*A)(i, n + j) = (i == j) ? 1.0 : 0.0;
+		}
+	}
+
+	// Gauss-Jordan
+	for (int i = 1; i <= n; i++) {
+		//elegimos el pivote de mayor valor
+		int pivote = i;
+
+		for(int j=i;j<=n;j++){
+			if(abs((*A)(j,i))>abs((*A)(pivote,i))){
+				pivote=j;
+			}
+		}
+		double diag = (*A)(pivote, i);
+		if (fabs(diag) < 1e-10) {
+			cout << "Matrix inv: singular matrix (det = 0)\n";
+			exit(EXIT_FAILURE);
+		}
+
+		//intercambiar la fila pivote si es necesario
+		if(pivote!=i){
+			Matrix& vaux = (*A).extract_row(pivote);
+			(*A).assign_row(pivote,(*A).extract_row(i));
+			(*A).assign_row(i,vaux);
+		}
+
+		// Normalizar fila i
+		(*A).assign_row(i,(*A).extract_row(i)/diag);
+
+		// Eliminar otras filas
+		for (int k = i+1; k <= n; k++) {
+			double factor = (*A)(k, i);
+			(*A).assign_row(k,(*A).extract_row(k)-((*A).extract_row(i)*factor));
+		}
+	}
+	//hago ceros en el triangulo superior
+	for(int i=n; i>=1; i--){
+		for(int k=i-1; k>=1; k--){
+			double factor = (*A)(k, i);
+			(*A).assign_row(k,(*A).extract_row(k)-((*A).extract_row(i)*factor));
+		}
+	}
+
+	// Extraer parte derecha (inversa)
+	Matrix* inverse = new Matrix(n, n);
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			(*inverse)(i, j) = (*A)(i, n + j);
+		}
+	}
+
+	return *inverse;
 }

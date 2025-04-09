@@ -119,6 +119,25 @@ int m_asign_01(){
     return 0;
 }
 
+int m_div_01(){
+    Matrix A(2,2);
+	A(1,1) = 1; A(1,2) = 2;
+	A(2,1) = 3; A(2,2) = 4;
+
+    Matrix B(2,2);
+	B(1,1) = 5; B(1,2) = 6;
+	B(2,1) = 7; B(2,2) = 8;
+
+    Matrix R = A / B;
+
+    Matrix C(2,2);
+	C(1,1) = 3; C(1,2) = -2;
+	C(2,1) = 2; C(2,2) = -1;
+
+    _assert(m_equals(C, R, 1e-10));
+    return 0;
+}
+
 int m_sum_02() {
     int f = 3;
     int c = 4;
@@ -410,6 +429,23 @@ int m_cross_01(){
     return 0;
 }
 
+int m_inv_01(){
+    Matrix A(3,3);
+	A(1,1) = 2; A(1,2) = 1; A(1,3) = 1;
+    A(2,1) = 1; A(2,2) = 1; A(2,3) = 1;
+    A(3,1) = 1; A(3,2) = 1; A(3,3) = 2;
+
+    Matrix R = inv(A);
+
+    Matrix B(3,3);
+	B(1,1) = 1; B(1,2) = -1; B(1,3) = 0;
+    B(2,1) = -1; B(2,2) = 3; B(2,3) = -1;
+    B(3,1) = 0; B(3,2) = -1; B(3,3) = 1;
+    
+    _assert(m_equals(B, R, 1e-10));
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -417,6 +453,7 @@ int all_tests()
     _verify(m_sub_01);
 	_verify(m_prod_01);
 	_verify(m_asign_01);
+    _verify(m_div_01);
     _verify(m_sum_02);
 	_verify(m_sub_02);
 	_verify(m_prod_02);
@@ -434,6 +471,7 @@ int all_tests()
 	_verify(m_norm_01);
     _verify(m_dot_01);
     _verify(m_cross_01);
+    _verify(m_inv_01);
 
     return 0;
 }
