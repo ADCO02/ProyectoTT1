@@ -1,4 +1,4 @@
-#include "..\include\matrix.h"
+#include "..\include\matrix.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -383,6 +383,33 @@ int m_norm_01() {
     return 0;
 }
 
+int m_dot_01(){
+    Matrix A(3);
+	A(1) = 1; A(2) = 2; A(3) = 3;
+
+    Matrix B(3);
+	B(1) = 4; B(2) = 5; B(3) = 6;
+	
+	_assert(fabs(dot(A,B)-32.0)<1e-10);
+    return 0;
+}
+
+int m_cross_01(){
+    Matrix A(3);
+	A(1) = 1; A(2) = 2; A(3) = 3;
+
+    Matrix B(3);
+	B(1) = 4; B(2) = 5; B(3) = 6;
+
+    Matrix expected(3);
+	expected(1) = -3; expected(2) = 6; expected(3) = -3;
+
+    Matrix R = cross(A,B);
+	
+	_assert(m_equals(expected, R, 1e-10));
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -405,6 +432,8 @@ int all_tests()
 	_verify(m_zeros_02);
 	_verify(m_eye_01);
 	_verify(m_norm_01);
+    _verify(m_dot_01);
+    _verify(m_cross_01);
 
     return 0;
 }

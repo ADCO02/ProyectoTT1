@@ -1,4 +1,5 @@
-#include "..\include\matrix.h"
+#include "..\include\matrix.hpp"
+#include <cmath>
 
 // constructores
 
@@ -252,26 +253,25 @@ Matrix &Matrix::transpose()
 	return *m_aux;
 }
 
-
 /*Matrix& Matrix::inv() {
-    if (this->n_row != this->n_column) {
-        cout << "Matrix inv: not a square matrix\n";
-        exit(EXIT_FAILURE);
-    }
+	if (this->n_row != this->n_column) {
+		cout << "Matrix inv: not a square matrix\n";
+		exit(EXIT_FAILURE);
+	}
 
-    int n = this->n_row;
-    Matrix* A = new Matrix(n, 2 * n);
+	int n = this->n_row;
+	Matrix* A = new Matrix(n, 2 * n);
 
-    // Construir [A | I]
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
-            (*A)(i, j) = (*this)(i, j);
+	// Construir [A | I]
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			(*A)(i, j) = (*this)(i, j);
 			(*A)(i, n + j) = (i == j) ? 1.0 : 0.0;
-        }
-    }
+		}
+	}
 
-    // Gauss-Jordan
-    for (int i = 1; i <= n; i++) {
+	// Gauss-Jordan
+	for (int i = 1; i <= n; i++) {
 		//elegimos el pivote de mayor valor
 		int pivote = i;
 
@@ -280,11 +280,11 @@ Matrix &Matrix::transpose()
 				pivote=j;
 			}
 		}
-        double diag = (*A)(pivote, i);
-        if (fabs(diag) < 1e-10) {
-            cout << "Matrix inv: singular matrix (det = 0)\n";
-            exit(EXIT_FAILURE);
-        }
+		double diag = (*A)(pivote, i);
+		if (fabs(diag) < 1e-10) {
+			cout << "Matrix inv: singular matrix (det = 0)\n";
+			exit(EXIT_FAILURE);
+		}
 
 		//intercambiar la fila pivote si es necesario
 		if(pivote!=i){
@@ -294,146 +294,168 @@ Matrix &Matrix::transpose()
 			//liberar vaux??
 		}
 
-        // Normalizar fila i
+		// Normalizar fila i
 		(*A).assign_row(i,(*A).extract_row(i)/diag);
-        for (int j = i; j <= 2 * n; j++) {
-            (*A)(i, j) /= diag;
-        }
+		for (int j = i; j <= 2 * n; j++) {
+			(*A)(i, j) /= diag;
+		}
 
-        // Eliminar otras filas
-        for (int k = 1; k <= n; k++) {
-            if (k == i) continue;
-            double factor = (*A)(k, i);
-            for (int j = 1; j <= 2 * n; j++) {
-                (*A)(k, j) -= factor * (*A)(i, j);
-            }
-        }
-    }
+		// Eliminar otras filas
+		for (int k = 1; k <= n; k++) {
+			if (k == i) continue;
+			double factor = (*A)(k, i);
+			for (int j = 1; j <= 2 * n; j++) {
+				(*A)(k, j) -= factor * (*A)(i, j);
+			}
+		}
+	}
 
-    // Extraer parte derecha (inversa)
-    Matrix* inverse = new Matrix(n, n);
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
-            (*inverse)(i, j) = (*A)(i, n + j);
-        }
-    }
+	// Extraer parte derecha (inversa)
+	Matrix* inverse = new Matrix(n, n);
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			(*inverse)(i, j) = (*A)(i, n + j);
+		}
+	}
 
-    delete A; // liberamos memoria auxiliar
+	delete A; // liberamos memoria auxiliar
 
-    return *inverse;
+	return *inverse;
 }*/
 
-Matrix& Matrix::extract_vector(const int from, const int to) {
-	if (this->n_row != 1) {
-        cout << "Matrix extract_vector: matrix must be a vector\n";
-        exit(EXIT_FAILURE);
-    }
+Matrix &Matrix::extract_vector(const int from, const int to)
+{
+	if (this->n_row != 1)
+	{
+		cout << "Matrix extract_vector: matrix must be a vector\n";
+		exit(EXIT_FAILURE);
+	}
 
-    if (from <= 0 || to > this->n_row * this->n_column || from > to) {
-        cout << "Matrix extract_vector: invalid from/to indices\n";
-        exit(EXIT_FAILURE);
-    }
+	if (from <= 0 || to > this->n_row * this->n_column || from > to)
+	{
+		cout << "Matrix extract_vector: invalid from/to indices\n";
+		exit(EXIT_FAILURE);
+	}
 
-    int sub_size = to - from + 1;
-    Matrix* subvector = new Matrix(sub_size);
+	int sub_size = to - from + 1;
+	Matrix *subvector = new Matrix(sub_size);
 
-    int index = 0;
-    for (int i = from; i <= to; ++i) {
-        (*subvector)(++index) = (*this)(i);
-    }
+	int index = 0;
+	for (int i = from; i <= to; ++i)
+	{
+		(*subvector)(++index) = (*this)(i);
+	}
 
-    return *subvector;
+	return *subvector;
 }
 
-Matrix& Matrix::union_vector(Matrix &v) {
-    if (this->n_row != 1) {
-        cout << "Matrix union_vector: first matrix must be a vector\n";
-        exit(EXIT_FAILURE);
-    }
-    if (v.n_row != 1) {
-        cout << "Matrix union_vector: second matrix must be a vector\n";
-        exit(EXIT_FAILURE);
-    }
+Matrix &Matrix::union_vector(Matrix &v)
+{
+	if (this->n_row != 1)
+	{
+		cout << "Matrix union_vector: first matrix must be a vector\n";
+		exit(EXIT_FAILURE);
+	}
+	if (v.n_row != 1)
+	{
+		cout << "Matrix union_vector: second matrix must be a vector\n";
+		exit(EXIT_FAILURE);
+	}
 
-    int total_size = this->n_column + v.n_column;
-    Matrix* result = new Matrix(total_size);
+	int total_size = this->n_column + v.n_column;
+	Matrix *result = new Matrix(total_size);
 
-    int index = 0;
-    for (int i = 1; i <= this->n_row * this->n_column; ++i) {
-        (*result)(++index) = (*this)(i);
-    }
-    for (int i = 1; i <= v.n_row * v.n_column; ++i) {
-        (*result)(++index) = v(i);
-    }
+	int index = 0;
+	for (int i = 1; i <= this->n_row * this->n_column; ++i)
+	{
+		(*result)(++index) = (*this)(i);
+	}
+	for (int i = 1; i <= v.n_row * v.n_column; ++i)
+	{
+		(*result)(++index) = v(i);
+	}
 
-    return *result;
+	return *result;
 }
 
+Matrix &Matrix::extract_row(const int row)
+{
+	if (row < 1 || row > this->n_row)
+	{
+		cout << "Matrix extract_row: row out of bounds\n";
+		exit(EXIT_FAILURE);
+	}
 
-Matrix& Matrix::extract_row(const int row) {
-    if (row < 1 || row > this->n_row) {
-        cout << "Matrix extract_row: row out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
+	Matrix *v = new Matrix(this->n_column);
 
-    Matrix* v = new Matrix(this->n_column);
+	for (int j = 1; j <= this->n_column; ++j)
+	{
+		(*v)(j) = (*this)(row, j);
+	}
 
-    for (int j = 1; j <= this->n_column; ++j) {
-        (*v)(j) = (*this)(row, j);
-    }
-
-    return *v;
+	return *v;
 }
 
-Matrix& Matrix::extract_column(const int col) {
-    if (col < 1 || col > this->n_column) {
-        cout << "Matrix extract_column: column out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
+Matrix &Matrix::extract_column(const int col)
+{
+	if (col < 1 || col > this->n_column)
+	{
+		cout << "Matrix extract_column: column out of bounds\n";
+		exit(EXIT_FAILURE);
+	}
 
-    Matrix* v = new Matrix(this->n_row);
+	Matrix *v = new Matrix(this->n_row);
 
-    for (int i = 1; i <= this->n_row; ++i) {
-        (*v)(i) = (*this)(i, col);
-    }
+	for (int i = 1; i <= this->n_row; ++i)
+	{
+		(*v)(i) = (*this)(i, col);
+	}
 
-    return *v;
+	return *v;
 }
 
-Matrix& Matrix::assign_row(const int row, Matrix& v) {
-    if (row < 1 || row > this->n_row) {
-        cout << "Matrix assign_row: row out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
+Matrix &Matrix::assign_row(const int row, Matrix &v)
+{
+	if (row < 1 || row > this->n_row)
+	{
+		cout << "Matrix assign_row: row out of bounds\n";
+		exit(EXIT_FAILURE);
+	}
 
-    if (v.n_row != 1 || v.n_column != this->n_column) {
-        cout << "Matrix assign_row: vector size mismatch\n";
-        exit(EXIT_FAILURE);
-    }
+	if (v.n_row != 1 || v.n_column != this->n_column)
+	{
+		cout << "Matrix assign_row: vector size mismatch\n";
+		exit(EXIT_FAILURE);
+	}
 
-    for (int j = 1; j <= this->n_column; ++j) {
-        (*this)(row, j) = v(j);
-    }
+	for (int j = 1; j <= this->n_column; ++j)
+	{
+		(*this)(row, j) = v(j);
+	}
 
-    return *this;
+	return *this;
 }
 
-Matrix& Matrix::assign_column(const int col, Matrix& v) {
-    if (col < 1 || col > this->n_column) {
-        cout << "Matrix assign_column: column out of bounds\n";
-        exit(EXIT_FAILURE);
-    }
+Matrix &Matrix::assign_column(const int col, Matrix &v)
+{
+	if (col < 1 || col > this->n_column)
+	{
+		cout << "Matrix assign_column: column out of bounds\n";
+		exit(EXIT_FAILURE);
+	}
 
-    if (v.n_row != 1 || v.n_column != this->n_row) {
-        cout << "Matrix assign_column: vector size mismatch\n";
-        exit(EXIT_FAILURE);
-    }
+	if (v.n_row != 1 || v.n_column != this->n_row)
+	{
+		cout << "Matrix assign_column: vector size mismatch\n";
+		exit(EXIT_FAILURE);
+	}
 
-    for (int i = 1; i <= this->n_row; ++i) {
-        (*this)(i, col) = v(i);
-    }
+	for (int i = 1; i <= this->n_row; ++i)
+	{
+		(*this)(i, col) = v(i);
+	}
 
-    return *this;
+	return *this;
 }
 
 ostream &operator<<(ostream &o, Matrix &m)
@@ -475,7 +497,7 @@ Matrix &zeros(const int v_size)
 	return (*m_aux);
 }
 
-Matrix& eye(const int n)
+Matrix &eye(const int n)
 {
 	Matrix *m_aux = new Matrix(n, n);
 
@@ -483,25 +505,63 @@ Matrix& eye(const int n)
 	{
 		for (int j = 1; j <= n; j++)
 		{
-			(*m_aux)(i, j) = (i==j) ? 1 : 0;
+			(*m_aux)(i, j) = (i == j) ? 1 : 0;
 		}
 	}
 
 	return (*m_aux);
 }
 
-double norm(Matrix &v){
-	if (v.n_row != 1) {
-        cout << "Matrix norm: matrix must be a vector\n";
-        exit(EXIT_FAILURE);
-    }
+double norm(Matrix &v)
+{
+	if (v.n_row != 1)
+	{
+		cout << "Matrix norm: matrix must be a vector\n";
+		exit(EXIT_FAILURE);
+	}
 
 	double result = 0;
-	for (int i = 1; i <= v.n_row; i++)
+	for (int i = 1; i <= v.n_column; i++)
 	{
-		result += v(i)*v(i);
+		result += pow(v(i),2);
 	}
 
 	return sqrt(result);
-	
+}
+
+double dot(Matrix &v1, Matrix &v2)
+{
+	if (v1.n_row != 1 || v2.n_row!=1)
+	{
+		cout << "Matrix dot: bothmatrix must be vectors\n";
+		exit(EXIT_FAILURE);
+	}
+	if (v1.n_column != v2.n_column)
+	{
+		cout << "Matrix dot: vectors must have same size\n";
+		exit(EXIT_FAILURE);
+	}
+	double r = 0;
+	for (int i = 1; i <= v1.n_column; i++)
+	{
+		r += v1(i) * v2(i);
+	}
+	return r;
+}
+
+Matrix& cross(Matrix &v1, Matrix &v2){
+	if (v1.n_row != 1 || v2.n_row!=1)
+	{
+		cout << "Matrix dot: bothmatrix must be vectors\n";
+		exit(EXIT_FAILURE);
+	}
+	if(v1.n_column!=3||v2.n_column!=3){
+		cout << "Matrix cross: vectors must have size 3\n";
+		exit(EXIT_FAILURE);
+	}
+	Matrix *r = new Matrix(3);
+	(*r)(1)=v1(2)*v2(3)-v1(3)*v2(2);
+	(*r)(2)=v1(3)*v2(1)-v1(1)*v2(3);
+	(*r)(3)=v1(1)*v2(2)-v1(2)*v2(1);
+	return (*r);
 }
