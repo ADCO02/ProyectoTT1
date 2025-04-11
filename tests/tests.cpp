@@ -1,4 +1,8 @@
 #include "..\include\matrix.hpp"
+#include "..\include\R_x.hpp"
+#include "..\include\R_y.hpp"
+#include "..\include\R_z.hpp"
+#include "..\include\AccelPointMass.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -447,8 +451,62 @@ int m_inv_01(){
 }
 
 
+int i1_R_x_01(){
+    Matrix R = R_x(3);
+    
+    Matrix A(3,3);
+    A(1,1) = 1; A(1,2) = 0; A(1,3) = 0;
+    A(2,1) = 0; A(2,2) = -0.989992496600445; A(2,3) = 0.141120008059867;
+    A(3,1) = 0; A(3,2) = -0.141120008059867; A(3,3) = -0.989992496600445;
+
+    _assert(m_equals(A, R, 1e-10));
+    return 0;
+}
+
+int i1_R_y_01(){
+    Matrix R = R_y(3);
+    
+    Matrix A(3,3);
+    A(1,1) = -0.989992496600445; A(1,2) = 0; A(1,3) = -0.141120008059867;
+    A(2,1) = 0; A(2,2) = 1; A(2,3) = 0;
+    A(3,1) = 0.141120008059867; A(3,2) = 0; A(3,3) = -0.989992496600445;
+
+    _assert(m_equals(A, R, 1e-10));
+    return 0;
+}
+
+int i1_R_z_01(){
+    Matrix R = R_z(3);
+    
+    Matrix A(3,3);
+    A(1,1) = -0.989992496600445; A(1,2) = 0.141120008059867; A(1,3) = 0;
+    A(2,1) = -0.141120008059867; A(2,2) = -0.989992496600445; A(2,3) = 0;
+    A(3,1) = 0; A(3,2) = 0; A(3,3) = 1;
+
+    _assert(m_equals(A, R, 1e-10));
+    return 0;
+}
+
+int i1_AccelPointMass_01(){
+    Matrix r(3);
+    r(1)=1; r(2)=2; r(3)=3;
+
+    Matrix s(3);
+    s(1)=4; s(2)=5; s(3)=6;
+
+    Matrix R = AccelPointMass(r,s,5);
+
+    Matrix expected(3);
+    expected(1)=0.0773165667868213; expected(2)=0.0699165293543773; expected(3)=0.0625164919219332;
+
+    _assert(m_equals(expected, R, 1e-10));
+    return 0;
+}
+
+
 int all_tests()
 {
+    //Matrix
     _verify(m_sum_01);
     _verify(m_sub_01);
 	_verify(m_prod_01);
@@ -472,6 +530,12 @@ int all_tests()
     _verify(m_dot_01);
     _verify(m_cross_01);
     _verify(m_inv_01);
+
+    //Iteration 1
+    _verify(i1_R_x_01);
+    _verify(i1_R_y_01);
+    _verify(i1_R_z_01);
+    _verify(i1_AccelPointMass_01);
 
     return 0;
 }
