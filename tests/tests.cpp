@@ -3,6 +3,7 @@
 #include "..\include\R_y.hpp"
 #include "..\include\R_z.hpp"
 #include "..\include\AccelPointMass.hpp"
+#include "..\include\Cheb3D.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -503,6 +504,28 @@ int i1_AccelPointMass_01(){
     return 0;
 }
 
+int i1_Cheb3D_01(){
+    int N = 4;
+    double Ta = 0;
+    double Tb = 1;
+    double t = 0.5;
+
+    Matrix Cx(N);
+    Cx(1) = 1; Cx(2) = -0.5; Cx(3) = 0.3; Cx(4) = 0.1;
+    Matrix Cy(N);
+    Cy(1) = 0; Cy(2) = 0.7; Cy(3) = -0.2; Cy(4) = 0.05;
+    Matrix Cz(N);
+    Cz(1) = 0.5; Cz(2) = -0.1; Cz(3) = 0.2; Cz(4) = -0.05;
+
+    Matrix R = Cheb3D(t, N, Ta, Tb, Cx, Cy, Cz);
+
+    Matrix expected(3);
+    expected(1) = 0.7; expected(2) = 0.2; expected(3) = 0.3;
+
+    _assert(m_equals(expected, R, 1e-10));
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -536,6 +559,7 @@ int all_tests()
     _verify(i1_R_y_01);
     _verify(i1_R_z_01);
     _verify(i1_AccelPointMass_01);
+    _verify(i1_Cheb3D_01);
 
     return 0;
 }
