@@ -12,16 +12,18 @@ Matrix Cheb3D(double t, int N, double Ta, double Tb, Matrix Cx, Matrix Cy, Matri
 
     Matrix f1 = zeros(3);
     Matrix f2 = zeros(3);
+    Matrix *old_f1 = new Matrix(3);
 
     Matrix vaux(3);
     for (int i = N; i >= 2; i--) {
-        Matrix old_f1 = f1;
+        *old_f1 = f1;
         vaux(1)=Cx(i); vaux(2)=Cy(i); vaux(3)=Cz(i);
-        f1 = f1*2*tau-f2+vaux;
-        f2 = old_f1;
+        f1 = ((f1*(2*tau))-f2)+vaux;
+        f2 = *old_f1;
     }
 
+
     vaux(1)=Cx(1); vaux(2)=Cy(1); vaux(3)=Cz(1);
-    Matrix ChebApp = f1*tau-f2+vaux;
+    Matrix ChebApp = (((f1*tau)-f2)+vaux);
     return ChebApp;
 }

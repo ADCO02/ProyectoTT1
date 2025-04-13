@@ -4,6 +4,10 @@
 #include "..\include\R_z.hpp"
 #include "..\include\AccelPointMass.hpp"
 #include "..\include\Cheb3D.hpp"
+#include "..\include\EccAnom.hpp"
+#include "..\include\Frac.hpp"
+#include "..\include\MeanObliquity.hpp"
+#include "..\include\Mjday.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -526,6 +530,42 @@ int i1_Cheb3D_01(){
     return 0;
 }
 
+int i1_EccAnom_01(){
+    double R = EccAnom(3,4);
+    
+    double expected = 3.11327109405639;
+
+    _assert(fabs(expected-R) < 1e-10);
+    return 0;
+}
+
+int i1_Frac_01(){
+    double R = Frac(1.2);
+    
+    double expected = 0.2;
+
+    _assert(fabs(expected-R) < 1e-10);
+    return 0;
+}
+
+int i1_MeanObliquity_01(){
+    double R = MeanObliquity(3);
+    
+    double expected = 0.409413051544358;
+
+    _assert(fabs(expected-R) < 1e-10);
+    return 0;
+}
+
+int i1_Mjday_01(){
+    double R = Mjday(1,2,3,4,5,6);
+    
+    double expected = -678556.829791667;
+
+    _assert(fabs(expected-R) < 1e-9);
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -560,6 +600,10 @@ int all_tests()
     _verify(i1_R_z_01);
     _verify(i1_AccelPointMass_01);
     _verify(i1_Cheb3D_01);
+    _verify(i1_EccAnom_01);
+    _verify(i1_Frac_01);
+    _verify(i1_MeanObliquity_01);
+    _verify(i1_Mjday_01);
 
     return 0;
 }
