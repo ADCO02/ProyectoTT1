@@ -1,7 +1,7 @@
 #ifndef _MEANOBLIQUITY_
 #define _MEANOBLIQUITY_
 
-#include "..\include\Constants.hpp"
+#include "SAT_Const.hpp"
 
 double MeanObliquity(double Mjd_TT);
 

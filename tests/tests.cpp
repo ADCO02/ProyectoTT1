@@ -8,6 +8,12 @@
 #include "..\include\Frac.hpp"
 #include "..\include\MeanObliquity.hpp"
 #include "..\include\Mjday.hpp"
+#include "..\include\Mjday_TDB.hpp"
+#include "..\include\Position.hpp"
+#include "..\include\sign_.hpp"
+#include "..\include\timediff.hpp"
+#include "..\include\AzElPa.hpp"
+#include "..\include\IERS.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -566,6 +572,133 @@ int i1_Mjday_01(){
     return 0;
 }
 
+int i1_Mjday_TDB_01(){
+    double R = Mjday_TDB(3.3);
+    
+    double expected = 3.2999999871282;
+
+    _assert(fabs(expected-R) < 1e-10);
+    return 0;
+}
+
+int i1_Position_01(){
+
+    Matrix R = Position(1.1, 2.2, 3.3);
+
+    Matrix expected(3);
+    expected(1) = -1706329.66806146; expected(2) = -3352527.69377365; expected(3) = 5133425.98442718;
+
+    _assert(m_equals(expected, R, 1e-8));
+    return 0;
+}
+
+int i1_sign__01(){
+
+    double R = sign_(-3.3,4.3);
+
+    double expected = 3.3;
+
+    _assert(fabs(expected - R)< 1e-10);
+    return 0;
+}
+
+int i1_timediff_01(){
+
+    double UT1_UTC = 1;
+    double TAI_UTC = 2;
+    double UT1_TAI, UTC_GPS, UT1_GPS, TT_UTC, GPS_UTC;
+
+    timediff(UT1_UTC, TAI_UTC,
+        &UT1_TAI, &UTC_GPS, &UT1_GPS,
+        &TT_UTC, &GPS_UTC);
+
+    double expected_UT1_TAI = -1;
+    double expected_UTC_GPS = 17;
+    double expected_UT1_GPS = 18;
+    double expected_TT_UTC = 34.184;
+    double expected_GPS_UTC = -17;
+
+    _assert(fabs(expected_UT1_TAI - UT1_TAI)< 1e-10);
+    _assert(fabs(expected_UTC_GPS - UTC_GPS)< 1e-10);
+    _assert(fabs(expected_UT1_GPS - UT1_GPS)< 1e-10);
+    _assert(fabs(expected_TT_UTC - TT_UTC)< 1e-10);
+    _assert(fabs(expected_GPS_UTC - GPS_UTC)< 1e-10);
+    return 0;
+}
+
+int i1_AzElPa_01(){
+
+    Matrix s(3);
+    s(1) = 1; s(2) = 2; s(3) = 3;
+    double Az, El;
+
+    Matrix dAds(3);
+    Matrix dEds(3);
+
+    AzElPa(s, &Az, &El, dAds, dEds);
+
+    double expected_Az = 0.463647609000806;
+    double expected_El = 0.930274014115472;
+    Matrix expected_dAds(3);
+    expected_dAds(1) = 0.4; expected_dAds(2) = -0.2; expected_dAds(3) = 0;
+    Matrix expected_dEds(3);
+    expected_dEds(1) = -0.095831484749991; expected_dEds(2) = -0.191662969499982; expected_dEds(3) = 0.159719141249985;
+
+    _assert(fabs(expected_Az - Az)< 1e-10);
+    _assert(fabs(expected_El - El)< 1e-10);
+    _assert(m_equals(expected_dAds, dAds, 1e-10));
+    _assert(m_equals(expected_dEds, dEds, 1e-10));
+    return 0;
+}
+
+int i1_IERS_01(){
+
+    Matrix eop(13,2);
+
+    eop(1,1)=0;         eop(1,2)=0;
+    eop(2,1)=0;         eop(2,2)=0;
+    eop(3,1)=0;         eop(3,2)=0;
+    eop(4,1)=58000;     eop(4,2)=58001;
+    eop(5,1)=0.055;     eop(5,2)=0.056;
+    eop(6,1)=0.325;     eop(6,2)=0.326;
+    eop(7,1)=-0.1;      eop(7,2)=-0.09;
+    eop(8,1)=0.00015;   eop(8,2)=0.00014;
+    eop(9,1)=-0.054;    eop(9,2)=-0.053;
+    eop(10,1)=0.004;    eop(10,2)=0.005;
+    eop(11,1)=0.003;    eop(11,2)=0.0031;
+    eop(12,1)=-0.001;   eop(12,2)=-0.0011;
+    eop(13,1)=37;       eop(13,2)=37;
+    
+    double Mjd_UTC = 58000.5;
+    char interp = 'l';
+    double x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC;
+
+    IERS(eop, Mjd_UTC, interp, &x_pole, &y_pole, 
+        &UT1_UTC, &LOD, &dpsi, &deps, &dx_pole, 
+        &dy_pole, &TAI_UTC);
+
+    double expected_x_pole = 2.69071593015792e-07;
+    double expected_y_pole = 1.57806853201154e-06;
+    double expected_UT1_UTC = -0.095;
+    double expected_LOD = 0.000145;
+    double expected_dpsi = -2.59375319393602e-07;
+    double expected_deps = 2.18166156499291e-08;
+    double expected_dx_pole = 1.47868172738408e-08;
+    double expected_dy_pole = -5.09054365165013e-09;
+    double expected_TAI_UTC = 37;
+
+    _assert(fabs(expected_x_pole - x_pole)< 1e-10);
+    _assert(fabs(expected_y_pole - y_pole)< 1e-10);
+    _assert(fabs(expected_UT1_UTC - UT1_UTC)< 1e-10);
+    _assert(fabs(expected_LOD - LOD)< 1e-10);
+    _assert(fabs(expected_dpsi - dpsi)< 1e-10);
+    _assert(fabs(expected_deps - deps)< 1e-10);
+    _assert(fabs(expected_dx_pole - dx_pole)< 1e-10);
+    _assert(fabs(expected_dy_pole - dy_pole)< 1e-10);
+    _assert(fabs(expected_TAI_UTC - TAI_UTC)< 1e-10);
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -604,6 +737,12 @@ int all_tests()
     _verify(i1_Frac_01);
     _verify(i1_MeanObliquity_01);
     _verify(i1_Mjday_01);
+    _verify(i1_Mjday_TDB_01);
+    _verify(i1_Position_01);
+    _verify(i1_sign__01);
+    _verify(i1_timediff_01);
+    _verify(i1_AzElPa_01);
+    _verify(i1_IERS_01);
 
     return 0;
 }
