@@ -1,9 +1,11 @@
 #include "..\include\matrix.hpp"
+#include "..\include\global.hpp"
 #include <iostream>
 
 using namespace std;
 
 int main() {
+    eop19620101(4);
 	Matrix v(3);
 	v(2)=5;
 	cout<<v;

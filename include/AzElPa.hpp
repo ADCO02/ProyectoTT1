@@ -4,8 +4,8 @@
 
 #include "matrix.hpp"
 #include <math.h>
+#include<tuple>
 
-//dads y deds deben inicializarse en 3 antes de pasarlos
-void AzElPa(Matrix &s, double* Az, double* El, Matrix &dAds, Matrix &dEds);
+tuple<double, double, Matrix, Matrix> AzElPa(Matrix &s);
 
 #endif

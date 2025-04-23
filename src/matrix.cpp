@@ -3,6 +3,13 @@
 
 // constructores
 
+Matrix::Matrix()
+{
+	this->n_row = 0;
+	this->n_column = 0;
+	this->data = nullptr;
+}
+
 // vector
 Matrix::Matrix(const int v_size)
 {
@@ -481,7 +488,7 @@ double dot(Matrix &v1, Matrix &v2)
 {
 	if (v1.n_row != 1 || v2.n_row!=1)
 	{
-		cout << "Matrix dot: bothmatrix must be vectors\n";
+		cout << "Matrix dot: both matrix must be vectors\n";
 		exit(EXIT_FAILURE);
 	}
 	if (v1.n_column != v2.n_column)

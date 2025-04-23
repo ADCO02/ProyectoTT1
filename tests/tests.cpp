@@ -14,6 +14,9 @@
 #include "..\include\timediff.hpp"
 #include "..\include\AzElPa.hpp"
 #include "..\include\IERS.hpp"
+#include "..\include\Legendre.hpp"
+#include "..\include\NutAngles.hpp"
+#include "..\include\TimeUpdate.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -606,11 +609,8 @@ int i1_timediff_01(){
 
     double UT1_UTC = 1;
     double TAI_UTC = 2;
-    double UT1_TAI, UTC_GPS, UT1_GPS, TT_UTC, GPS_UTC;
 
-    timediff(UT1_UTC, TAI_UTC,
-        &UT1_TAI, &UTC_GPS, &UT1_GPS,
-        &TT_UTC, &GPS_UTC);
+    auto [UT1_TAI, UTC_GPS, UT1_GPS, TT_UTC, GPS_UTC] = timediff(UT1_UTC, TAI_UTC);
 
     double expected_UT1_TAI = -1;
     double expected_UTC_GPS = 17;
@@ -630,12 +630,8 @@ int i1_AzElPa_01(){
 
     Matrix s(3);
     s(1) = 1; s(2) = 2; s(3) = 3;
-    double Az, El;
 
-    Matrix dAds(3);
-    Matrix dEds(3);
-
-    AzElPa(s, &Az, &El, dAds, dEds);
+    auto [Az, El, dAds, dEds] = AzElPa(s);
 
     double expected_Az = 0.463647609000806;
     double expected_El = 0.930274014115472;
@@ -671,11 +667,8 @@ int i1_IERS_01(){
     
     double Mjd_UTC = 58000.5;
     char interp = 'l';
-    double x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC;
 
-    IERS(eop, Mjd_UTC, interp, &x_pole, &y_pole, 
-        &UT1_UTC, &LOD, &dpsi, &deps, &dx_pole, 
-        &dy_pole, &TAI_UTC);
+    auto [x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC] = IERS(eop, Mjd_UTC, interp);
 
     double expected_x_pole = 2.69071593015792e-07;
     double expected_y_pole = 1.57806853201154e-06;
@@ -696,6 +689,64 @@ int i1_IERS_01(){
     _assert(fabs(expected_dx_pole - dx_pole)< 1e-10);
     _assert(fabs(expected_dy_pole - dy_pole)< 1e-10);
     _assert(fabs(expected_TAI_UTC - TAI_UTC)< 1e-10);
+    return 0;
+}
+
+int i1_Legendre_01(){
+    int n = 2;
+    int m = 3;
+    double fi = 1.5;
+
+    auto [pnm, dpnm] = Legendre(n, m, fi);
+
+    Matrix expected_pnm(n+1,m+1);
+    expected_pnm(1,1) = 1; expected_pnm(1,2) = 0; expected_pnm(1,3) = 0; expected_pnm(1,4) = 0;
+    expected_pnm(2,1) = 1.72771199709346; expected_pnm(2,2) = 0.122520427273707; expected_pnm(2,3) = 0; expected_pnm(2,4) = 0;
+    expected_pnm(3,1) = 2.21928488408494; expected_pnm(3,2) = 0.273277720516261; expected_pnm(3,3) = 0.00968972350089721; expected_pnm(3,4) = 0;
+    Matrix expected_dpnm(n+1,m+1);
+    expected_dpnm(1,1) = 0; expected_dpnm(1,2) = 0; expected_dpnm(1,3) = 0; expected_dpnm(1,4) = 0;
+    expected_dpnm(2,1) = 0.122520427273707; expected_dpnm(2,2) = -1.72771199709346; expected_dpnm(2,3) = 0; expected_dpnm(2,4) = 0;
+    expected_dpnm(3,1) = 0.473330896510772; expected_dpnm(3,2) = -3.83422445220383; expected_dpnm(3,3) = -0.273277720516261; expected_dpnm(3,4) = 0;
+
+    _assert(m_equals(expected_pnm, pnm, 1e-10));
+    _assert(m_equals(expected_dpnm, dpnm, 1e-10));
+    return 0;
+}
+
+int i1_NutAngles_01(){
+    double Mjd_TT = 1.5;
+
+    auto [dpsi, deps] = NutAngles(Mjd_TT);
+
+    double expected_dpsi = 2.72726579299296e-05;
+    double expected_deps = 3.93565910019266e-05;
+
+    _assert(fabs(expected_dpsi - dpsi)< 1e-10);
+    _assert(fabs(expected_deps - deps)< 1e-10);
+    return 0;
+}
+
+int i1_TimeUpdate_01(){
+    Matrix P(2,2);
+    P(1,1) = 1; P(1,2) = 2;
+    P(2,1) = 3; P(2,2) = 4;
+
+    Matrix Phi(2,2);
+    Phi(1,1) = 5; Phi(1,2) = 6;
+    Phi(2,1) = 7; Phi(2,2) = 8;
+
+    Matrix Qdt(2,2);
+    Qdt(1,1) = 9; Qdt(1,2) = 10;
+    Qdt(2,1) = 11; Qdt(2,2) = 12;
+    
+    Matrix R = TimeUpdate(P, Phi, Qdt);
+
+    Matrix expected(2,2);
+    expected(1,1) = 328; expected(1,2) = 443;
+    expected(2,1) = 442; expected(2,2) = 597;
+
+
+    _assert(m_equals(expected, R, 1e-10));
     return 0;
 }
 
@@ -743,6 +794,9 @@ int all_tests()
     _verify(i1_timediff_01);
     _verify(i1_AzElPa_01);
     _verify(i1_IERS_01);
+    _verify(i1_Legendre_01);
+    _verify(i1_NutAngles_01);
+    _verify(i1_TimeUpdate_01);
 
     return 0;
 }
