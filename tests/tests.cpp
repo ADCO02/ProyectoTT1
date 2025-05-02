@@ -19,6 +19,12 @@
 #include "..\include\TimeUpdate.hpp"
 #include "..\include\global.hpp"
 #include "..\include\AccelHarmonic.hpp"
+#include "..\include\EqnEquinox.hpp"
+#include "..\include\LTC.hpp"
+#include "..\include\NutMatrix.hpp"
+#include "..\include\PoleMatrix.hpp"
+#include "..\include\PrecMatrix.hpp"
+#include "..\include\gmst.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -788,6 +794,87 @@ int i2_AccelHarmonic_01(){
     return 0;
 }
 
+int i2_EqnEquinox_01(){
+    double Mjd_TT=1.5;
+    
+    double R = EqnEquinox(Mjd_TT);
+
+    double expected = 2.50186988674803e-05;
+
+    _assert(fabs(R - expected) < 1e-10);
+    return 0;
+}
+
+int i2_LTC_01(){
+    double lon=1.5;
+    double lat=1;
+    
+    Matrix R = LTC(lon,lat);
+
+    Matrix expected(3,3);
+    expected(1,1)= -0.997494986604054; expected(1,2)= 0.0707372016677029; expected(1,3)= 0;
+    expected(2,1)= -0.0595233027498767; expected(2,2)= -0.839363088718653; expected(2,3)= 0.54030230586814; 
+    expected(3,1)= 0.0382194731717195; expected(3,2)= 0.53894884135408; expected(3,3)= 0.841470984807897; 
+
+    _assert(m_equals(R, expected, 1e-10));
+    return 0;
+}
+
+int i2_NutMatrix_01(){
+    double Mjd_TT=1.5;
+    
+    Matrix R = NutMatrix(Mjd_TT);
+
+    Matrix expected(3,3);
+    expected(1,1)= 0.999999999628101; expected(1,2)= -2.50186988643789e-05; expected(1,3)= -1.08564532657801e-05;
+    expected(2,1)= 2.50182715720118e-05; expected(2,2)= 0.999999998912567; expected(2,3)= -3.93567267966133e-05; 
+    expected(3,1)= 1.08574379080704e-05; expected(3,2)= 3.93564551722236e-05; expected(3,3)= 0.999999999166593; 
+
+    _assert(m_equals(R, expected, 1e-10));
+    return 0;
+}
+
+int i2_PoleMatrix_01(){
+    double xp=2;
+    double yp=3;
+    
+    Matrix R = PoleMatrix(xp, yp);
+
+    Matrix expected(3,3);
+    expected(1,1)= -0.416146836547142; expected(1,2)= 0.128320060202457; expected(1,3)= -0.900197629735517;
+    expected(2,1)= 0; expected(2,2)= -0.989992496600445; expected(2,3)= -0.141120008059867; 
+    expected(3,1)= -0.909297426825682; expected(3,2)= -0.058726644927621; expected(3,3)= 0.411982245665683; 
+
+    _assert(m_equals(R, expected, 1e-10));
+    return 0;
+}
+
+int i2_PrecMatrix_01(){
+    double Mjd_1=2;
+    double Mjd_2=3;
+    
+    Matrix R = PrecMatrix(Mjd_1, Mjd_2);
+
+    Matrix expected(3,3);
+    expected(1,1)= 0.999999999999778; expected(1,2)= -6.11707327974946e-07; expected(1,3)= -2.66201482252295e-07;
+    expected(2,1)= 6.11707327974946e-07; expected(2,2)= 0.999999999999813; expected(2,3)= -8.14186990889656e-14; 
+    expected(3,1)= 2.66201482252295e-07; expected(3,2)= -8.1418698322574e-14; expected(3,3)= 0.999999999999965; 
+
+    _assert(m_equals(R, expected, 1e-10));
+    return 0;
+}
+
+int i2_gmst_01(){
+    double Mjd_UT1=0.5;
+    
+    double R = gmst(Mjd_UT1);
+
+    double expected = 4.12340219740033;
+
+    _assert(fabs(R - expected) < 1e-10);
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -838,6 +925,12 @@ int all_tests()
 
     //Iteration 2
     _verify(i2_AccelHarmonic_01);
+    _verify(i2_EqnEquinox_01);
+    _verify(i2_LTC_01);
+    _verify(i2_NutMatrix_01);
+    _verify(i2_PoleMatrix_01);
+    _verify(i2_PrecMatrix_01);
+    _verify(i2_gmst_01);
 
     return 0;
 }

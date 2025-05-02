@@ -49,7 +49,3 @@ Matrix AccelHarmonic(Matrix &r, Matrix &E, int n_max, int m_max){
     Matrix a = (E.transpose())*a_bf;
     return a;
 }
-
-/*
-solo depende de legendre pero usa variables cnm y snm que dependen del fichero ggmo3s.txt
-*/
