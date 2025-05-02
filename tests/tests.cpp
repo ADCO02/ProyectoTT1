@@ -17,6 +17,8 @@
 #include "..\include\Legendre.hpp"
 #include "..\include\NutAngles.hpp"
 #include "..\include\TimeUpdate.hpp"
+#include "..\include\global.hpp"
+#include "..\include\AccelHarmonic.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -113,6 +115,20 @@ int m_prod_01() {
 	C(3,1) = 0; C(3,2) = -2; C(3,3) = 7;
 	
 	Matrix R = A * B;
+
+    A = zeros(2, 2);
+	A(1,1) = 0.0; A(1,2) = 0.2;
+	A(2,1) = 0.1; A(2,2) = -0.1;
+	
+	B = zeros(2, 2);
+	B(1,1) = 2; B(1,2) = 7;
+	B(2,1) = 0; B(2,2) = -2;
+	
+	C = zeros(2,2);
+	C(1,1) = 0; C(1,2) = -0.4;
+	C(2,1) = 0.2; C(2,2) = 0.9;
+	
+	R = A * B;
     
     _assert(m_equals(C, R, 1e-10));
     
@@ -750,6 +766,28 @@ int i1_TimeUpdate_01(){
     return 0;
 }
 
+int i2_AccelHarmonic_01(){
+    Matrix r(3,1);
+    r(1,1)=7000e3;
+    r(2,1)=0;
+    r(3,1)=0;
+
+    Matrix E = eye(3);
+
+    int n_max=2;
+    int m_max=2;
+    
+    Matrix R = AccelHarmonic(r,E,n_max,m_max);
+
+    Matrix expected(3,1);
+    expected(1,1) = -8.14576607065686;
+    expected(2,1) = -3.66267894892037e-05;
+    expected(3,1) = -5.84508413583961e-09;
+
+    _assert(m_equals(expected, R, 1e-10));
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -798,12 +836,18 @@ int all_tests()
     _verify(i1_NutAngles_01);
     _verify(i1_TimeUpdate_01);
 
+    //Iteration 2
+    _verify(i2_AccelHarmonic_01);
+
     return 0;
 }
 
 
 int main()
 {
+    eop19620101(4);
+    GGM03S(181);
+
     int result = all_tests();
 
     if (result == 0)

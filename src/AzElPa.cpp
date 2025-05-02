@@ -1,8 +1,8 @@
 #include "..\include\AzElPa.hpp"
 
-tuple<double, double, Matrix, Matrix> AzElPa(Matrix &s){ 
-    Matrix dAds(3);
-    Matrix dEds(3);
+tuple<double, double, Matrix&, Matrix&> AzElPa(Matrix &s){ 
+    Matrix &dAds = zeros(3);
+    Matrix &dEds = zeros(3);
 
     double pi2 = 2.0*M_PI;
 
@@ -27,5 +27,5 @@ tuple<double, double, Matrix, Matrix> AzElPa(Matrix &s){
     dEds(3) = rho;
     dEds = dEds/dot(s,s);
 
-    return make_tuple(Az, El, dAds, dEds);
+    return tie(Az, El, dAds, dEds);
 }

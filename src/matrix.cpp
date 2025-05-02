@@ -136,10 +136,10 @@ Matrix &Matrix::operator*(Matrix &m)
 	{
 		for (int j = 1; j <= m.n_column; j++)
 		{
-			int suma = 0;
+			double suma = 0.0;
 			for (int s = 1; s <= this->n_column; s++)
 			{
-				suma += (*this)(i, s) * m(s, j);
+				suma +=(*this)(i, s) * m(s, j);
 			}
 			(*m_aux)(i, j) = suma;
 		}
@@ -460,7 +460,7 @@ Matrix &eye(const int n)
 	{
 		for (int j = 1; j <= n; j++)
 		{
-			(*m_aux)(i, j) = (i == j) ? 1 : 0;
+			(*m_aux)(i, j) = (i == j) ? 1.0 : 0.0;
 		}
 	}
 
