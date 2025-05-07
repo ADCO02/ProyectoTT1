@@ -1,8 +1,7 @@
 #ifndef _GMST_
 #define _GMST_
-#define _USE_MATH_DEFINES
 
-#include <cmath>
+#include "SAT_Const.hpp"
 #include "Frac.hpp"
 
 using namespace std;

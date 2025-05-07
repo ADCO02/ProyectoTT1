@@ -2,6 +2,7 @@
 #define _ACCELPOINTMASS_
 
 #include "matrix.hpp"
+#include <cmath>
 
 Matrix AccelPointMass(Matrix &r, Matrix &s, double GM);
 

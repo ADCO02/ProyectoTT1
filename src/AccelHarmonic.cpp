@@ -6,7 +6,7 @@ Matrix AccelHarmonic(Matrix &r, Matrix &E, int n_max, int m_max){
     double gm    = 398600.4415e9; // [m^3/s^2]; GGM03S
 
     // Body-fixed position 
-    Matrix r_bf = E * r;
+    Matrix& r_bf = E * r;
 
     // Auxiliary quantities
     double d = norm(r_bf.transpose());                     // distance
@@ -41,11 +41,11 @@ Matrix AccelHarmonic(Matrix &r, Matrix &E, int n_max, int m_max){
     double ay = (1.0/d*dUdr-r_bf(3)/(pow(d,2)*sqrt(r2xy))*dUdlatgc)*r_bf(2)+(1.0/r2xy*dUdlon)*r_bf(1);
     double az =  1.0/d*dUdr*r_bf(3)+sqrt(r2xy)/pow(d,2)*dUdlatgc;
 
-    Matrix aux(3);
+    Matrix& aux = zeros(3);
     aux(1)=ax; aux(2)=ay; aux(3)=az;
-    Matrix a_bf = aux.transpose();
+    Matrix& a_bf = aux.transpose();
 
     // Inertial acceleration 
-    Matrix a = (E.transpose())*a_bf;
+    Matrix& a = (E.transpose())*a_bf;
     return a;
 }

@@ -1,8 +1,6 @@
 #include "..\include\global.hpp"
 
 Matrix eopdata;
-Matrix Cnm;
-Matrix Snm;
 
 void eop19620101(int c){
     eopdata = zeros(13, c);
@@ -21,6 +19,8 @@ void eop19620101(int c){
     fclose(fid);
 }
 
+Matrix Cnm;
+Matrix Snm;
 void GGM03S(int n){    
     Cnm = zeros(n,n);
     Snm = zeros(n,n);
@@ -34,6 +34,25 @@ void GGM03S(int n){
     for(int i=1; i<=n; i++){
         for(int j=1; j<=i; j++){
             fscanf(fid,"%lf %lf %lf %lf %lf %lf",&aux,&aux,&(Cnm(i,j)),&(Snm(i,j)),&aux,&aux);
+        }
+    }
+
+    fclose(fid);
+}
+
+Matrix PC;
+void DE430Coeff(int f, int c){
+    PC = zeros(f,c);
+
+    FILE *fid = fopen("../data/DE430Coeff.txt","r");
+    if(fid == NULL){
+        printf("Fail open DE430Coeff.txt file\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for(int i=1; i<=f; i++){
+        for(int j=1; j<=c; j++){
+            fscanf(fid,"%lf",&(PC(i,j)));
         }
     }
 

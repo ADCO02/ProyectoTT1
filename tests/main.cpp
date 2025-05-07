@@ -6,6 +6,8 @@ using namespace std;
 
 int main() {
     eop19620101(4);
+    GGM03S(181);
+    DE430Coeff(2285, 1020);
 	Matrix v(3);
 	v(2)=5;
 	cout<<v;

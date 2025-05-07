@@ -2,6 +2,7 @@
 #define _JPL_EPH_DE430_
 
 #include <tuple>
+#include "global.hpp"
 #include "matrix.hpp"
 #include "Cheb3D.hpp"
 

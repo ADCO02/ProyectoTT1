@@ -1,7 +1,7 @@
 #ifndef _ECCANOM_
 #define _ECCANOM_
-#define _USE_MATH_DEFINES
 
+#include "SAT_Const.hpp"
 #include <cfloat>
 #include <cmath>
 #include <iostream>

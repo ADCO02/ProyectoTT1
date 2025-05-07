@@ -25,6 +25,7 @@
 #include "..\include\PoleMatrix.hpp"
 #include "..\include\PrecMatrix.hpp"
 #include "..\include\gmst.hpp"
+#include "..\include\JPL_Eph_DE430.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -658,7 +659,7 @@ int i1_AzElPa_01(){
     double expected_Az = 0.463647609000806;
     double expected_El = 0.930274014115472;
     Matrix expected_dAds(3);
-    expected_dAds(1) = 0.4; expected_dAds(2) = -0.2; expected_dAds(3) = 0;
+    expected_dAds(1) = 0.4; expected_dAds(2) = -0.2; expected_dAds(3) = 0.0;
     Matrix expected_dEds(3);
     expected_dEds(1) = -0.095831484749991; expected_dEds(2) = -0.191662969499982; expected_dEds(3) = 0.159719141249985;
 
@@ -757,15 +758,13 @@ int i1_TimeUpdate_01(){
     Phi(1,1) = 5; Phi(1,2) = 6;
     Phi(2,1) = 7; Phi(2,2) = 8;
 
-    Matrix Qdt(2,2);
-    Qdt(1,1) = 9; Qdt(1,2) = 10;
-    Qdt(2,1) = 11; Qdt(2,2) = 12;
+    double Qdt = 0.5;
     
     Matrix R = TimeUpdate(P, Phi, Qdt);
 
     Matrix expected(2,2);
-    expected(1,1) = 328; expected(1,2) = 443;
-    expected(2,1) = 442; expected(2,2) = 597;
+    expected(1,1) = 319.5; expected(1,2) = 433.5;
+    expected(2,1) = 431.5; expected(2,2) = 585.5;
 
 
     _assert(m_equals(expected, R, 1e-10));
@@ -875,6 +874,92 @@ int i2_gmst_01(){
     return 0;
 }
 
+int i2_JPL_Eph_DE430_01(){
+    double Mjd_TDB = 60348;
+    
+    auto [r_Mercury,r_Venus,r_Earth,r_Mars,r_Jupiter,r_Saturn,r_Uranus, 
+        r_Neptune,r_Pluto,r_Moon,r_Sun] = JPL_Eph_DE430(Mjd_TDB);
+
+    Matrix expected_r_Mercury(3);
+    expected_r_Mercury(1)=112623958311.779;
+    expected_r_Mercury(2)=-150868623524.381;
+    expected_r_Mercury(3)=-71779751443.9542;
+
+    _assert(m_equals(r_Mercury, expected_r_Mercury,10e-4));
+
+    Matrix expected_r_Venus(3);
+    expected_r_Venus(1)=67979665801.0159;
+    expected_r_Venus(2)=-182040469650.972;
+    expected_r_Venus(3)=-77754531631.0774;
+
+    _assert(m_equals(r_Venus, expected_r_Venus,10e-4));
+
+    Matrix expected_r_Earth(3);
+    expected_r_Earth(1)=-111448106096.032;
+    expected_r_Earth(2)=89490608943.6678;
+    expected_r_Earth(3)=38828100871.8833;
+
+    _assert(m_equals(r_Earth, expected_r_Earth,10e-4));
+
+    Matrix expected_r_Mars(3);
+    expected_r_Mars(1)=148466860011.68;
+    expected_r_Mars(2)=-281603620116.961;
+    expected_r_Mars(3)=-127931017643.326;
+
+    _assert(m_equals(r_Mars, expected_r_Mars,10e-4));
+
+    Matrix expected_r_Jupiter(3);
+    expected_r_Jupiter(1)=600849652579.016;
+    expected_r_Jupiter(2)=431907465367.823;
+    expected_r_Jupiter(3)=172747882009.303;
+
+    _assert(m_equals(r_Jupiter, expected_r_Jupiter,10e-3));
+
+    Matrix expected_r_Saturn(3);
+    expected_r_Saturn(1)=1466091955279.12;
+    expected_r_Saturn(2)=-555189637093.051;
+    expected_r_Saturn(3)=-289531886725.713;
+
+    _assert(m_equals(r_Saturn, expected_r_Saturn,10e-4));
+
+    Matrix expected_r_Uranus(3);
+    expected_r_Uranus(1)=1928309175333.92;
+    expected_r_Uranus(2)=2027905259796.94;
+    expected_r_Uranus(3)=862836636210.81;
+
+    _assert(m_equals(r_Uranus, expected_r_Uranus,10e-3));
+
+    Matrix expected_r_Neptune(3);
+    expected_r_Neptune(1)=4575619355154.4;
+    expected_r_Neptune(2)=-280382588638.193;
+    expected_r_Neptune(3)=-228103255917.356;
+
+    _assert(m_equals(r_Neptune, expected_r_Neptune,10e-3));
+
+    Matrix expected_r_Pluto(3);
+    expected_r_Pluto(1)=2700803532076.77;
+    expected_r_Pluto(2)=-4144525986799.46;
+    expected_r_Pluto(3)=-2084446068792.87;
+
+    _assert(m_equals(r_Pluto, expected_r_Pluto,10e-2));
+
+    Matrix expected_r_Moon(3);
+    expected_r_Moon(1)=130639413.73261;
+    expected_r_Moon(2)=-298652884.800457;
+    expected_r_Moon(3)=-164607636.963072;
+
+    _assert(m_equals(r_Moon, expected_r_Moon,10e-5));
+
+    Matrix expected_r_Sun(3);
+    expected_r_Sun(1)=110284675128.512;
+    expected_r_Sun(2)=-89937859346.5398;
+    expected_r_Sun(3)=-38988031316.0913;
+
+    _assert(m_equals(r_Sun, expected_r_Sun,10e-4));
+
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -931,6 +1016,7 @@ int all_tests()
     _verify(i2_PoleMatrix_01);
     _verify(i2_PrecMatrix_01);
     _verify(i2_gmst_01);
+    _verify(i2_JPL_Eph_DE430_01);
 
     return 0;
 }
@@ -940,6 +1026,7 @@ int main()
 {
     eop19620101(4);
     GGM03S(181);
+    DE430Coeff(2285, 1020);
 
     int result = all_tests();
 

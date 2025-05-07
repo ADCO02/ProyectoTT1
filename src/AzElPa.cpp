@@ -1,8 +1,8 @@
 #include "..\include\AzElPa.hpp"
 
 tuple<double, double, Matrix&, Matrix&> AzElPa(Matrix &s){ 
-    Matrix &dAds = zeros(3);
-    Matrix &dEds = zeros(3);
+    Matrix& dAds = zeros(3);
+    Matrix& dEds = zeros(3);
 
     double pi2 = 2.0*M_PI;
 
