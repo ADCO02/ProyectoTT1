@@ -6,6 +6,6 @@
 #include "global.hpp"
 #include <cmath>
 
-Matrix AccelHarmonic(Matrix &r, Matrix &E, int n_max, int m_max);
+Matrix& AccelHarmonic(Matrix& r, Matrix& E, int n_max, int m_max);
 
 #endif

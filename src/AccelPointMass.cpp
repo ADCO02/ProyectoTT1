@@ -1,6 +1,6 @@
 #include "..\include\AccelPointMass.hpp"
 
-Matrix AccelPointMass(Matrix &r, Matrix &s, double GM){
+Matrix& AccelPointMass(Matrix& r, Matrix& s, double GM){
     // Relative position vector of satellite w.r.t. point mass 
     Matrix& d = r - s;
 

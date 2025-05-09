@@ -1,12 +1,12 @@
 #include "..\include\AccelHarmonic.hpp"
 
-Matrix AccelHarmonic(Matrix &r, Matrix &E, int n_max, int m_max){
+Matrix& AccelHarmonic(Matrix& r, Matrix& E, int n_max, int m_max){
 
     double r_ref = 6378.1363e3;   // Earth's radius [m]; GGM03S
     double gm    = 398600.4415e9; // [m^3/s^2]; GGM03S
 
     // Body-fixed position 
-    Matrix& r_bf = E * r;
+    Matrix& r_bf = E * r.transpose();
 
     // Auxiliary quantities
     double d = norm(r_bf.transpose());                     // distance
@@ -47,5 +47,5 @@ Matrix AccelHarmonic(Matrix &r, Matrix &E, int n_max, int m_max){
 
     // Inertial acceleration 
     Matrix& a = (E.transpose())*a_bf;
-    return a;
+    return a.transpose();
 }

@@ -58,7 +58,7 @@ Matrix::Matrix(const int n_row, const int n_column)
 }
 
 // operartor
-double &Matrix::operator()(const int n)
+double& Matrix::operator()(const int n)
 {
 	if (n <= 0 || n > this->n_row * this->n_column)
 	{
@@ -69,7 +69,7 @@ double &Matrix::operator()(const int n)
 	return this->data[(n - 1) / this->n_column][(n - 1) % this->n_column];
 }
 
-double &Matrix::operator()(const int row, const int column)
+double& Matrix::operator()(const int row, const int column)
 {
 	if (row <= 0 || row > this->n_row || column <= 0 || column > this->n_column)
 	{
@@ -80,7 +80,7 @@ double &Matrix::operator()(const int row, const int column)
 	return this->data[row - 1][column - 1];
 }
 
-Matrix &Matrix::operator+(Matrix &m)
+Matrix& Matrix::operator+(Matrix& m)
 {
 	if (this->n_row != m.n_row || this->n_column != m.n_column)
 	{
@@ -88,7 +88,7 @@ Matrix &Matrix::operator+(Matrix &m)
 		exit(EXIT_FAILURE);
 	}
 
-	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+	Matrix* m_aux = new Matrix(this->n_row, this->n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -101,7 +101,7 @@ Matrix &Matrix::operator+(Matrix &m)
 	return *m_aux;
 }
 
-Matrix &Matrix::operator-(Matrix &m)
+Matrix& Matrix::operator-(Matrix& m)
 {
 	if (this->n_row != m.n_row || this->n_column != m.n_column)
 	{
@@ -109,7 +109,7 @@ Matrix &Matrix::operator-(Matrix &m)
 		exit(EXIT_FAILURE);
 	}
 
-	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+	Matrix* m_aux = new Matrix(this->n_row, this->n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -122,7 +122,7 @@ Matrix &Matrix::operator-(Matrix &m)
 	return *m_aux;
 }
 
-Matrix &Matrix::operator*(Matrix &m)
+Matrix& Matrix::operator*(Matrix& m)
 {
 	if (this->n_column != m.n_row)
 	{
@@ -130,7 +130,7 @@ Matrix &Matrix::operator*(Matrix &m)
 		exit(EXIT_FAILURE);
 	}
 
-	Matrix *m_aux = new Matrix(this->n_row, m.n_column);
+	Matrix* m_aux = new Matrix(this->n_row, m.n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -148,7 +148,7 @@ Matrix &Matrix::operator*(Matrix &m)
 	return *m_aux;
 }
 
-Matrix &Matrix::operator=(Matrix &m)
+Matrix& Matrix::operator=(Matrix& m)
 {
 	if (this == &m)
 		return *this;
@@ -185,7 +185,7 @@ Matrix &Matrix::operator=(Matrix &m)
 	return *this;
 }
 
-Matrix &Matrix::operator / (Matrix &m){
+Matrix& Matrix::operator / (Matrix& m){
 	if (m.n_row != m.n_column)
 	{
 		cout << "Matrix div: divisor must be square\n";
@@ -198,14 +198,14 @@ Matrix &Matrix::operator / (Matrix &m){
 		exit(EXIT_FAILURE);
 	}
 
-	Matrix *result = new Matrix((*this) * inv(m));
+	Matrix* result = new Matrix((*this) * inv(m));
 
 	return *result;
 }
 
-Matrix &Matrix::operator+(const double k)
+Matrix& Matrix::operator+(const double k)
 {
-	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+	Matrix* m_aux = new Matrix(this->n_row, this->n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -218,9 +218,9 @@ Matrix &Matrix::operator+(const double k)
 	return *m_aux;
 }
 
-Matrix &Matrix::operator-(const double k)
+Matrix& Matrix::operator-(const double k)
 {
-	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+	Matrix* m_aux = new Matrix(this->n_row, this->n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -233,9 +233,9 @@ Matrix &Matrix::operator-(const double k)
 	return *m_aux;
 }
 
-Matrix &Matrix::operator*(const double k)
+Matrix& Matrix::operator*(const double k)
 {
-	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+	Matrix* m_aux = new Matrix(this->n_row, this->n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -248,9 +248,9 @@ Matrix &Matrix::operator*(const double k)
 	return *m_aux;
 }
 
-Matrix &Matrix::operator/(const double k)
+Matrix& Matrix::operator/(const double k)
 {
-	Matrix *m_aux = new Matrix(this->n_row, this->n_column);
+	Matrix* m_aux = new Matrix(this->n_row, this->n_column);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -263,9 +263,9 @@ Matrix &Matrix::operator/(const double k)
 	return *m_aux;
 }
 
-Matrix &Matrix::transpose()
+Matrix& Matrix::transpose()
 {
-	Matrix *m_aux = new Matrix(this->n_column, this->n_row);
+	Matrix* m_aux = new Matrix(this->n_column, this->n_row);
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
@@ -278,7 +278,7 @@ Matrix &Matrix::transpose()
 	return *m_aux;
 }
 
-Matrix &Matrix::extract_vector(const int from, const int to)
+Matrix& Matrix::extract_vector(const int from, const int to)
 {
 	if (this->n_row != 1)
 	{
@@ -293,7 +293,7 @@ Matrix &Matrix::extract_vector(const int from, const int to)
 	}
 
 	int sub_size = to - from + 1;
-	Matrix *subvector = new Matrix(sub_size);
+	Matrix* subvector = new Matrix(sub_size);
 
 	int index = 0;
 	for (int i = from; i <= to; ++i)
@@ -304,7 +304,7 @@ Matrix &Matrix::extract_vector(const int from, const int to)
 	return *subvector;
 }
 
-Matrix &Matrix::union_vector(Matrix &v)
+Matrix& Matrix::union_vector(Matrix& v)
 {
 	if (this->n_row != 1)
 	{
@@ -318,7 +318,7 @@ Matrix &Matrix::union_vector(Matrix &v)
 	}
 
 	int total_size = this->n_column + v.n_column;
-	Matrix *result = new Matrix(total_size);
+	Matrix* result = new Matrix(total_size);
 
 	int index = 0;
 	for (int i = 1; i <= this->n_row * this->n_column; ++i)
@@ -333,7 +333,7 @@ Matrix &Matrix::union_vector(Matrix &v)
 	return *result;
 }
 
-Matrix &Matrix::extract_row(const int row)
+Matrix& Matrix::extract_row(const int row)
 {
 	if (row < 1 || row > this->n_row)
 	{
@@ -341,7 +341,7 @@ Matrix &Matrix::extract_row(const int row)
 		exit(EXIT_FAILURE);
 	}
 
-	Matrix *v = new Matrix(this->n_column);
+	Matrix* v = new Matrix(this->n_column);
 
 	for (int j = 1; j <= this->n_column; ++j)
 	{
@@ -351,7 +351,7 @@ Matrix &Matrix::extract_row(const int row)
 	return *v;
 }
 
-Matrix &Matrix::extract_column(const int col)
+Matrix& Matrix::extract_column(const int col)
 {
 	if (col < 1 || col > this->n_column)
 	{
@@ -359,7 +359,7 @@ Matrix &Matrix::extract_column(const int col)
 		exit(EXIT_FAILURE);
 	}
 
-	Matrix *v = new Matrix(this->n_row);
+	Matrix* v = new Matrix(this->n_row);
 
 	for (int i = 1; i <= this->n_row; ++i)
 	{
@@ -369,7 +369,7 @@ Matrix &Matrix::extract_column(const int col)
 	return *v;
 }
 
-Matrix &Matrix::assign_row(const int row, Matrix &v)
+Matrix& Matrix::assign_row(const int row, Matrix& v)
 {
 	if (row < 1 || row > this->n_row)
 	{
@@ -391,7 +391,7 @@ Matrix &Matrix::assign_row(const int row, Matrix &v)
 	return *this;
 }
 
-Matrix &Matrix::assign_column(const int col, Matrix &v)
+Matrix& Matrix::assign_column(const int col, Matrix& v)
 {
 	if (col < 1 || col > this->n_column)
 	{
@@ -413,7 +413,7 @@ Matrix &Matrix::assign_column(const int col, Matrix &v)
 	return *this;
 }
 
-ostream &operator<<(ostream &o, Matrix &m)
+ostream& operator<<(ostream& o, Matrix& m)
 {
 	for (int i = 1; i <= m.n_row; i++)
 	{
@@ -425,9 +425,9 @@ ostream &operator<<(ostream &o, Matrix &m)
 	return o;
 }
 
-Matrix &zeros(const int n_row, const int n_column)
+Matrix& zeros(const int n_row, const int n_column)
 {
-	Matrix *m_aux = new Matrix(n_row, n_column);
+	Matrix* m_aux = new Matrix(n_row, n_column);
 
 	for (int i = 1; i <= n_row; i++)
 	{
@@ -440,9 +440,9 @@ Matrix &zeros(const int n_row, const int n_column)
 	return (*m_aux);
 }
 
-Matrix &zeros(const int v_size)
+Matrix& zeros(const int v_size)
 {
-	Matrix *m_aux = new Matrix(v_size);
+	Matrix* m_aux = new Matrix(v_size);
 
 	for (int i = 1; i <= v_size; i++)
 	{
@@ -452,9 +452,9 @@ Matrix &zeros(const int v_size)
 	return (*m_aux);
 }
 
-Matrix &eye(const int n)
+Matrix& eye(const int n)
 {
-	Matrix *m_aux = new Matrix(n, n);
+	Matrix* m_aux = new Matrix(n, n);
 
 	for (int i = 1; i <= n; i++)
 	{
@@ -467,7 +467,7 @@ Matrix &eye(const int n)
 	return (*m_aux);
 }
 
-double norm(Matrix &v)
+double norm(Matrix& v)
 {
 	if (v.n_row != 1)
 	{
@@ -484,7 +484,7 @@ double norm(Matrix &v)
 	return sqrt(result);
 }
 
-double dot(Matrix &v1, Matrix &v2)
+double dot(Matrix& v1, Matrix& v2)
 {
 	if (v1.n_row != 1 || v2.n_row!=1)
 	{
@@ -504,7 +504,7 @@ double dot(Matrix &v1, Matrix &v2)
 	return r;
 }
 
-Matrix& cross(Matrix &v1, Matrix &v2){
+Matrix& cross(Matrix& v1, Matrix& v2){
 	if (v1.n_row != 1 || v2.n_row!=1)
 	{
 		cout << "Matrix dot: bothmatrix must be vectors\n";
@@ -514,14 +514,14 @@ Matrix& cross(Matrix &v1, Matrix &v2){
 		cout << "Matrix cross: vectors must have size 3\n";
 		exit(EXIT_FAILURE);
 	}
-	Matrix *r = new Matrix(3);
+	Matrix* r = new Matrix(3);
 	(*r)(1)=v1(2)*v2(3)-v1(3)*v2(2);
 	(*r)(2)=v1(3)*v2(1)-v1(1)*v2(3);
 	(*r)(3)=v1(1)*v2(2)-v1(2)*v2(1);
 	return (*r);
 }
 
-Matrix& inv(Matrix &m) {
+Matrix& inv(Matrix& m) {
 	if (m.n_row != m.n_column) {
 		cout << "Matrix inv: not a square matrix\n";
 		exit(EXIT_FAILURE);

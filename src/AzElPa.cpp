@@ -1,6 +1,6 @@
 #include "..\include\AzElPa.hpp"
 
-tuple<double, double, Matrix&, Matrix&> AzElPa(Matrix &s){ 
+tuple<double, double, Matrix&, Matrix&> AzElPa(Matrix& s){ 
     Matrix& dAds = zeros(3);
     Matrix& dEds = zeros(3);
 
