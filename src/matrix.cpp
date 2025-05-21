@@ -1,5 +1,4 @@
 #include "..\include\matrix.hpp"
-#include <cmath>
 
 // constructores
 
@@ -131,12 +130,14 @@ Matrix& Matrix::operator*(Matrix& m)
 	}
 
 	Matrix* m_aux = new Matrix(this->n_row, m.n_column);
+	
+	double suma;
 
 	for (int i = 1; i <= this->n_row; i++)
 	{
 		for (int j = 1; j <= m.n_column; j++)
 		{
-			double suma = 0.0;
+			suma = 0.0;
 			for (int s = 1; s <= this->n_column; s++)
 			{
 				suma +=(*this)(i, s) * m(s, j);

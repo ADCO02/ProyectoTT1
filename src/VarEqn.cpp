@@ -6,8 +6,8 @@ Matrix& VarEqn(double x, Matrix& yPhi){
     double Mjd_UT1 = AuxParam.Mjd_TT + (UT1_UTC-TT_UTC)/86400;
 
     // Transformation matrix
-    Matrix& P = PrecMatrix(MJD_J2000,AuxParam.Mjd_TT + x/86400);
-    Matrix& N = NutMatrix(AuxParam.Mjd_TT + x/86400);
+    Matrix& P = PrecMatrix(MJD_J2000,AuxParam.Mjd_TT + x/86400.0);
+    Matrix& N = NutMatrix(AuxParam.Mjd_TT + x/86400.0);
     Matrix& T = N * P;
     Matrix& E = PoleMatrix(x_pole,y_pole) * GHAMatrix(Mjd_UT1) * T;
 
@@ -34,9 +34,9 @@ Matrix& VarEqn(double x, Matrix& yPhi){
             dfdy(i,j) = 0.0;                 // dv/dr(i,j)
             dfdy(i+3,j) = G(i,j);            // da/dr(i,j)
             if ( i==j ){
-                dfdy(i,j+3) = 1;
+                dfdy(i,j+3) = 1.0;
             }else{
-                dfdy(i,j+3) = 0;             // dv/dv(i,j)
+                dfdy(i,j+3) = 0.0;             // dv/dv(i,j)
             }
             dfdy(i+3,j+3) = 0.0;             // da/dv(i,j)
         }

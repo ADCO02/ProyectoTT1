@@ -32,6 +32,14 @@
 #include "..\include\MeasUpdate.hpp"
 #include "..\include\Accel.hpp"
 #include "..\include\VarEqn.hpp"
+#include "..\include\DEInteg.hpp"
+#include "..\include\Geodetic.hpp"
+#include "..\include\angl.hpp"
+#include "..\include\elements.hpp"
+#include "..\include\unit.hpp"
+#include "..\include\hgibbs.hpp"
+#include "..\include\gibbs.hpp"
+#include "..\include\anglesg.hpp"
 #include <cstdio>
 #include <cmath>
 
@@ -1056,47 +1064,233 @@ int i3_Accel_01(){
 }
 
 int i3_VarEqn_01(){
-    double x = 600;
-    Matrix& iPhi = zeros(42);
-    for(int i=1; i<=42; i++){
-        iPhi(i)=i*100;
-    }
+    double x = 0;
+    Matrix& yPhi = zeros(42);
+    yPhi(1) =       5542555.93722861;
+    yPhi(2) =        3213514.8673492;
+    yPhi(3) =       3990892.97587685;
+    yPhi(4) =       5394.06842166351;
+    yPhi(5) =      -2365.21337882342;
+    yPhi(6) =      -7061.84554200295;
+    yPhi(7) =                      1;
+    yPhi(8) =                      0;
+    yPhi(9) =                      0;
+    yPhi(10) =                      0;
+    yPhi(11) =                      0;
+    yPhi(12) =                      0;
+    yPhi(13) =                      0;
+    yPhi(14) =                      1;
+    yPhi(15) =                      0;
+    yPhi(16) =                      0;
+    yPhi(17) =                      0;
+    yPhi(18) =                      0;
+    yPhi(19) =                      0;
+    yPhi(20) =                      0;
+    yPhi(21) =                      1;
+    yPhi(22) =                      0;
+    yPhi(23) =                      0;
+    yPhi(24) =                      0;
+    yPhi(25) =                      0;
+    yPhi(26) =                      0;
+    yPhi(27) =                      0;
+    yPhi(28) =                      1;
+    yPhi(29) =                      0;
+    yPhi(30) =                      0;
+    yPhi(31) =                      0;
+    yPhi(32) =                      0;
+    yPhi(33) =                      0;
+    yPhi(34) =                      0;
+    yPhi(35) =                      1;
+    yPhi(36) =                      0;
+    yPhi(37) =                      0;
+    yPhi(38) =                      0;
+    yPhi(39) =                      0;
+    yPhi(40) =                      0;
+    yPhi(41) =                      0;
+    yPhi(42) =                      1;
     
-    Matrix& R = VarEqn(x,iPhi);
+    AuxParam.Mjd_TT = 49746.1108586111;
+    Matrix& R = VarEqn(x,yPhi);
 
     Matrix& expected = zeros(42);
-    for(int i=1; i<=42; i++){
-        expected(i)=(i+3)*100;
-    }
-    expected(4)=-9.40137419112746e+87;
-    expected(5)=-1.69970925341368e+88;
-    expected(6)=-4.07121359452892e+88;
+    expected(1) =      5394.06842166351;
+    expected(2) =      -2365.21337882342;
+    expected(3) =      -7061.84554200295;
+    expected(4) =       -5.1348367854085;
+    expected(5) =      -2.97717622353621;
+    expected(6) =      -3.70591776714204;
+    expected(7) =                      0;
+    expected(8) =                      0;
+    expected(9) =                      0;
+    expected(10) =   5.70032035795975e-07;
+    expected(11) =   8.67651593239316e-07;
+    expected(12) =   1.08169354007259e-06;
+    expected(13) =                      0;
+    expected(14) =                      0;
+    expected(15) =                      0;
+    expected(16) =   8.67651590574781e-07;
+    expected(17) =  -4.23359106882515e-07;
+    expected(18) =   6.27183702306411e-07;
+    expected(19) =                      0;
+    expected(20) =                      0;
+    expected(21) =                      0;
+    expected(22) =   1.08169353651988e-06;
+    expected(23) =   6.27183704082768e-07;
+    expected(24) =  -1.46672928913461e-07;
+    expected(25) =                      1;
+    expected(26) =                      0;
+    expected(27) =                      0;
+    expected(28) =                      0;
+    expected(29) =                      0;
+    expected(30) =                      0;
+    expected(31) =                      0;
+    expected(32) =                      1;
+    expected(33) =                      0;
+    expected(34) =                      0;
+    expected(35) =                      0;
+    expected(36) =                      0;
+    expected(37) =                      0;
+    expected(38) =                      0;
+    expected(39) =                      1;
+    expected(40) =                      0;
+    expected(41) =                      0;
+    expected(42) =                      0;
 
-    expected(10)=4.32152044744761e+89;
-    expected(11)=1.11755750010426e+90;
-    expected(12)=3.27758479884772e+90;
+    _assert(m_equals(R, expected, 1e-8));
+    return 0;
+}
 
-    expected(16)=6.57496292407447e+89;
-    expected(17)=1.86113196976734e+90;
-    expected(18)=5.6595407775025e+90;
+int i4_DEInteg_01(){
+    double t = 0.0;
+    double tout = -134.999991953373;
+    double relerr = 1e-13;
+    double abserr = 1e-6;
+    int n_eqn = 6;
+    Matrix& y = zeros(6);
+    y(1) = 6221397.62857869;
+    y(2) = 2867713.77965738;
+    y(3) = 3006155.98509949;
+    y(4) = 4645.04725161806;
+    y(5) = -2752.21591588204;
+    y(6) = -7507.99940987031;
+    
+    Matrix& R = DEInteg(Accel, t, tout, relerr, abserr, n_eqn, y);
 
-    expected(22)=8.82840540070132e+89;
-    expected(23)=2.60470643943043e+90;
-    expected(24)=8.04149675615728e+90;
+    Matrix& expected = zeros(6);
+    expected(1) = 5542555.89427451;
+    expected(2) = 3213514.83814162;
+    expected(3) = 3990892.92789074;
+    expected(4) = 5394.06894044389;
+    expected(5) = -2365.21290574021;
+    expected(6) = -7061.8448137347;
 
-    expected(28)=1.10818478773282e+90;
-    expected(29)=3.34828090909351e+90;
-    expected(30)=1.04234527348121e+91;
+    _assert(m_equals(R, expected, 1e-5));
+    return 0;
+}
 
-    expected(34)=1.3335290353955e+90;
-    expected(35)=4.09185537875659e+90;
-    expected(36)=1.28054087134668e+91;
+int extra_Geodetic_01(){
+    Matrix& r = zeros(3);
+    r(1) = 4510732.0; r(2) = 4510732.0; r(3) = 4510732.0;
+    auto [lon, lat, h] = Geodetic(r);
+    _assert(fabs(lon - 0.785398163397448)<1e-10);
+    _assert(fabs(lat - 0.61806355298986)<1e-10);
+    _assert(fabs(h - 1441826.98849733)<1e-5);
+    return 0;
+}
 
-    expected(40)=1.55887328305819e+90;
-    expected(41)=4.83542984841967e+90;
-    expected(42)=1.51873646921216e+91;
+int extra_angl_01(){
+    Matrix& vec1 = zeros(3);
+    vec1(1) = 1; vec1(2) = 2; vec1(3) = 3;
+    Matrix& vec2 = zeros(3);
+    vec2(1) = 4; vec2(2) = 5; vec2(3) = 6;
+    double theta = angl(vec1,vec2);
+    _assert(fabs(theta - 0.225726128552734)<1e-10);
+    return 0;
+}
 
-    _assert(m_equals(R, expected, 1e83));
+int extra_elements_01(){
+    Matrix& y = zeros(6);
+    y(1) = 1; y(2) = 2; y(3) = 3;
+    y(4) = 4; y(5) = 5; y(6) = 6;
+    auto [p, a, e, i, Omega, omega, M] = elements(y);
+    _assert(fabs(p - 1.35474011564823e-13)<1e-20);
+    _assert(fabs(a - 1.87082869338765)<1e-10);
+    _assert(fabs(e - 0.999999999999964)<1e-10);
+    _assert(fabs(i - 1.99133066207886)<1e-10);
+    _assert(fabs(Omega - 3.6052402625906)<1e-10);
+    _assert(fabs(omega - 5.21086941752228)<1e-10);
+    _assert(fabs(M - 3.14159030993265)<1e-10);
+    return 0;
+}
+
+int extra_unit_01(){
+    Matrix& vec = zeros(3);
+    vec(1) = 3; vec(2) = 4; vec(3) = 0;
+    Matrix& R = unit(vec);
+    Matrix& expected = zeros(3);
+    expected(1) = 0.6; expected(2) = 0.8; expected(3) = 0.0;
+    _assert(m_equals(R,expected,1e-10));
+    return 0;
+}
+
+int extra_hgibbs_01(){
+    Matrix& r1 = zeros(3);
+    r1(1) = 1000000; r1(2) = 2; r1(3) = 3;
+    Matrix& r2 = zeros(3);
+    r2(1) = 4000000; r2(2) = 5; r2(3) = 6;
+    Matrix& r3 = zeros(3);
+    r3(1) = 7000000; r3(2) = 8; r3(3) = 9;
+    double Mjd1 = 10.5;
+    double Mjd2 = 11.5;
+    double Mjd3 = 12.5;
+    auto [v2, theta,theta1,copa, error] = hgibbs (r1,r2,r3,Mjd1,Mjd2,Mjd3);
+    Matrix& expected_v2 = zeros(3);
+    expected_v2(1) = -2811318.55296047; expected_v2(2) = -5.67287456520078; expected_v2(3) = -8.53443057744108;
+    _assert(m_equals(v2,expected_v2,1e-5));
+    _assert(fabs(theta - 1.67709242756207e-06)<1e-15);
+    _assert(fabs(theta1 - 2.39811494043933e-07)<1e-15);
+    _assert(fabs(copa - 2.64697796016969e-22)<1e-20);
+    _assert(error=="          ok");
+    
+    return 0;
+}
+
+int extra_gibbs_01(){
+    Matrix& r1 = zeros(3);
+    r1(1) = 7000000; r1(2) = 2; r1(3) = 3;
+    Matrix& r2 = zeros(3);
+    r2(1) = 7000000; r2(2) = 5; r2(3) = 6;
+    Matrix& r3 = zeros(3);
+    r3(1) = 7000000; r3(2) = 0; r3(3) = 0;
+    auto [v2, theta,theta1,copa, error] = gibbs (r1,r2,r3);
+    Matrix& expected_v2 = zeros(3);
+    expected_v2(1) = 0.0; expected_v2(2) = 0.0167075643908466; expected_v2(3) = 0.0134726032730966;
+    _assert(m_equals(v2,expected_v2,1e-10));
+    _assert(fabs(theta - 6.06021267404052e-07)<1e-15);
+    _assert(fabs(theta1 - 1.11579751739049e-06)<1e-15);
+    _assert(fabs(copa - -5.48729485426625e-08)<1e15);
+    _assert(error=="          ok");
+    
+    return 0;
+}
+
+int extra_anglesg_01(){
+    double azel = 1.0559;
+    double Mjd1 = 49746.1102;
+    double Mjd2 = 49746.1113;
+    double Mjd3 = 49746.1125;
+    Matrix& Rs1 = zeros(3);
+    Rs1(1) = -5512567.84003607; Rs1(2) = -2196994.44666933; Rs1(3) = 2330804.96614689;
+    Matrix& Rs2 = Rs1*1;
+    Matrix& Rs3 = Rs1*1;
+    auto [r2, v2] = anglesg ( azel,azel,azel,azel,azel,azel,Mjd1,Mjd2,Mjd3,Rs1,Rs2,Rs3 );
+    Matrix& expected_r2 = zeros(3);
+    expected_r2(1) = -314535682.805914; expected_r2(2) = -272751628.870517; expected_r2(3) = -272208395.862923;
+    _assert(m_equals(r2,expected_r2,1e-3));
+    Matrix& expected_v2 = zeros(3);
+    expected_v2(1) = 595.700230782035; expected_v2(2) = -95.5846949558552; expected_v2(3) = 252.589789742081;
+    _assert(m_equals(v2,expected_v2,1e-5));
+    
     return 0;
 }
 
@@ -1165,6 +1359,18 @@ int all_tests()
     _verify(i3_MeasUpdate_01);
     _verify(i3_Accel_01);
     _verify(i3_VarEqn_01);
+
+    // Iteration 4
+    _verify(i4_DEInteg_01);
+
+    // Extra
+    _verify(extra_Geodetic_01);
+    _verify(extra_angl_01);
+    _verify(extra_elements_01);
+    _verify(extra_unit_01);
+    _verify(extra_hgibbs_01);
+    _verify(extra_gibbs_01);
+    _verify(extra_anglesg_01);
 
     return 0;
 }

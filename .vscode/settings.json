@@ -4,6 +4,7 @@
         "iostream": "cpp",
         "new": "cpp",
         "initializer_list": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "ostream": "cpp"
     }
 }
