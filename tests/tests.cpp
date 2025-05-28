@@ -996,7 +996,7 @@ int i3_GHAMatrix_01(){
     expected(2,1) = 0.840950475031651; expected(2,2) = -0.541112094250387; expected(2,3) = 0;
     expected(3,1) = 0; expected(3,2) = 0; expected(3,3) = 1;
 
-    _assert(m_equals(R, expected, 1e1));
+    _assert(m_equals(R, expected, 1e-10));
     return 0;
 }
 
@@ -1275,21 +1275,26 @@ int extra_gibbs_01(){
 }
 
 int extra_anglesg_01(){
-    double azel = 1.0559;
-    double Mjd1 = 49746.1102;
-    double Mjd2 = 49746.1113;
-    double Mjd3 = 49746.1125;
+    double az1 = 1.0559084894933;
+    double az2 = 1.36310214580757;
+    double az3 = 1.97615602688759;
+    double el1 = 0.282624656433946;
+    double el2 = 0.453434794338875;
+    double el3 = 0.586427138011591;
+    double Mjd1 = 49746.1101504629;
+    double Mjd2 = 49746.1112847221;
+    double Mjd3 = 49746.1125347223;
     Matrix& Rs1 = zeros(3);
     Rs1(1) = -5512567.84003607; Rs1(2) = -2196994.44666933; Rs1(3) = 2330804.96614689;
     Matrix& Rs2 = Rs1*1;
     Matrix& Rs3 = Rs1*1;
-    auto [r2, v2] = anglesg ( azel,azel,azel,azel,azel,azel,Mjd1,Mjd2,Mjd3,Rs1,Rs2,Rs3 );
+    auto [r2, v2] = anglesg ( az1,az2,az3,el1,el2,el3,Mjd1,Mjd2,Mjd3,Rs1,Rs2,Rs3 );
     Matrix& expected_r2 = zeros(3);
-    expected_r2(1) = -314535682.805914; expected_r2(2) = -272751628.870517; expected_r2(3) = -272208395.862923;
-    _assert(m_equals(r2,expected_r2,1e-3));
+    expected_r2(1) = 6221397.63831071; expected_r2(2) = 2867713.82724908; expected_r2(3) = 3006156.00237787;
+    _assert(m_equals(r2,expected_r2,1e-7));
     Matrix& expected_v2 = zeros(3);
-    expected_v2(1) = 595.700230782035; expected_v2(2) = -95.5846949558552; expected_v2(3) = 252.589789742081;
-    _assert(m_equals(v2,expected_v2,1e-5));
+    expected_v2(1) = 4645.04722163732; expected_v2(2) = -2752.21634315407; expected_v2(3) = -7507.99964528836;
+    _assert(m_equals(v2,expected_v2,1e-7));
     
     return 0;
 }

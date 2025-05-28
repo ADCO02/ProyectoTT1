@@ -61,7 +61,7 @@ double& Matrix::operator()(const int n)
 {
 	if (n <= 0 || n > this->n_row * this->n_column)
 	{
-		cout << "Matrix get: error in row/column\n";
+		cout << "Matrix get: error in vector\n";
 		exit(EXIT_FAILURE);
 	}
 
@@ -419,7 +419,7 @@ ostream& operator<<(ostream& o, Matrix& m)
 	for (int i = 1; i <= m.n_row; i++)
 	{
 		for (int j = 1; j <= m.n_column; j++)
-			printf("%5.20lf ", m(i, j));
+			printf("%5.15lf ", m(i, j));
 		o << "\n";
 	}
 
