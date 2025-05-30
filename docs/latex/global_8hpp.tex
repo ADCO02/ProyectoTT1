@@ -1,0 +1,215 @@
+\doxysection{include/global.hpp File Reference}
+\hypertarget{global_8hpp}{}\label{global_8hpp}\index{include/global.hpp@{include/global.hpp}}
+
+
+Global data structures and functions to load external data files.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+Include dependency graph for global.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{global_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{global_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_param}{Param}}
+\begin{DoxyCompactList}\small\item\em Struct holding auxiliary parameters used across computations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{global_8hpp_af1504e3e975e6f502042c7fa8b7abe60}{eop19620101}} (int c)
+\begin{DoxyCompactList}\small\item\em Loads Earth Orientation Parameters (EOP) from the file "{}eop19620101.\+txt"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{global_8hpp_a1e2e54b5a8bda6f8402f3e8bbe5f3175}{GGM03S}} (int n)
+\begin{DoxyCompactList}\small\item\em Loads gravitational coefficients (GGM03S model) from file "{}\+GGM03\+S.\+txt"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{global_8hpp_af51b221967b797557656923d624cf0db}{DE430\+Coeff}} (int f, int c)
+\begin{DoxyCompactList}\small\item\em Loads planetary ephemeris Chebyshev coefficients from "{}\+DE430\+Coeff.\+txt"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{global_8hpp_a40d37105a964a2cdadeaf0b8879dfa04}{initialize\+Aux\+Param}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the global auxiliary parameters with default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \mbox{\hyperlink{global_8hpp_a16817456f74489dad2c22ee5b145a1c4}{eopdata}}
+\begin{DoxyCompactList}\small\item\em Global matrix holding Earth Orientation Parameters loaded from file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \mbox{\hyperlink{global_8hpp_aae4f5247dbe2733ec80f005dfbb2c3ed}{Cnm}}
+\begin{DoxyCompactList}\small\item\em Global matrices holding normalized spherical harmonic coefficients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \mbox{\hyperlink{global_8hpp_a19b1b61df2d43fbf34bc708611f8d589}{Snm}}
+\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \mbox{\hyperlink{global_8hpp_abdf16b7def3047932352a98d4f907e0a}{PC}}
+\begin{DoxyCompactList}\small\item\em Global matrix holding planetary ephemeris Chebyshev coefficients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_param}{Param}} \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{Aux\+Param}}
+\begin{DoxyCompactList}\small\item\em Global auxiliary parameters variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global data structures and functions to load external data files. 
+
+This header declares global matrices and parameters used throughout the project, and functions to initialize/load Earth Orientation Parameters (EOP), gravitational coefficients (GGM03S), planetary ephemeris coefficients (DE430\+Coeff), and auxiliary parameters.
+
+These functions read data files from the ../data/ directory and fill the global matrices used in orbital computations. 
+
+Definition in file \mbox{\hyperlink{global_8hpp_source}{global.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{global_8hpp_af51b221967b797557656923d624cf0db}\index{global.hpp@{global.hpp}!DE430Coeff@{DE430Coeff}}
+\index{DE430Coeff@{DE430Coeff}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{DE430Coeff()}{DE430Coeff()}}
+{\footnotesize\ttfamily \label{global_8hpp_af51b221967b797557656923d624cf0db} 
+void DE430\+Coeff (\begin{DoxyParamCaption}\item[{int}]{f}{, }\item[{int}]{c}{}\end{DoxyParamCaption})}
+
+
+
+Loads planetary ephemeris Chebyshev coefficients from "{}\+DE430\+Coeff.\+txt"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Number of rows to read. \\
+\hline
+{\em c} & Number of columns to read.\\
+\hline
+\end{DoxyParams}
+Fills the global matrix {\ttfamily PC}. 
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_af1504e3e975e6f502042c7fa8b7abe60}\index{global.hpp@{global.hpp}!eop19620101@{eop19620101}}
+\index{eop19620101@{eop19620101}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{eop19620101()}{eop19620101()}}
+{\footnotesize\ttfamily \label{global_8hpp_af1504e3e975e6f502042c7fa8b7abe60} 
+void eop19620101 (\begin{DoxyParamCaption}\item[{int}]{c}{}\end{DoxyParamCaption})}
+
+
+
+Loads Earth Orientation Parameters (EOP) from the file "{}eop19620101.\+txt"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Number of records (columns) to read.\\
+\hline
+\end{DoxyParams}
+This function reads EOP data and fills the global matrix {\ttfamily eopdata} accordingly. The data is expected to be stored in "{}../data/eop19620101.\+txt"{}. 
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_a1e2e54b5a8bda6f8402f3e8bbe5f3175}\index{global.hpp@{global.hpp}!GGM03S@{GGM03S}}
+\index{GGM03S@{GGM03S}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{GGM03S()}{GGM03S()}}
+{\footnotesize\ttfamily \label{global_8hpp_a1e2e54b5a8bda6f8402f3e8bbe5f3175} 
+void GGM03S (\begin{DoxyParamCaption}\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+
+
+Loads gravitational coefficients (GGM03S model) from file "{}\+GGM03\+S.\+txt"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Degree and order of coefficients to load.\\
+\hline
+\end{DoxyParams}
+The coefficients are loaded into the global matrices {\ttfamily Cnm} and {\ttfamily Snm}. 
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_a40d37105a964a2cdadeaf0b8879dfa04}\index{global.hpp@{global.hpp}!initializeAuxParam@{initializeAuxParam}}
+\index{initializeAuxParam@{initializeAuxParam}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{initializeAuxParam()}{initializeAuxParam()}}
+{\footnotesize\ttfamily \label{global_8hpp_a40d37105a964a2cdadeaf0b8879dfa04} 
+void initialize\+Aux\+Param (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the global auxiliary parameters with default values. 
+
+
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{global_8hpp_a5706b12963234f7382e60cb7324441f9}\index{global.hpp@{global.hpp}!AuxParam@{AuxParam}}
+\index{AuxParam@{AuxParam}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{AuxParam}{AuxParam}}
+{\footnotesize\ttfamily \label{global_8hpp_a5706b12963234f7382e60cb7324441f9} 
+\mbox{\hyperlink{struct_param}{Param}} Aux\+Param\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global auxiliary parameters variable. 
+
+
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_aae4f5247dbe2733ec80f005dfbb2c3ed}\index{global.hpp@{global.hpp}!Cnm@{Cnm}}
+\index{Cnm@{Cnm}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{Cnm}{Cnm}}
+{\footnotesize\ttfamily \label{global_8hpp_aae4f5247dbe2733ec80f005dfbb2c3ed} 
+\mbox{\hyperlink{class_matrix}{Matrix}} Cnm\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global matrices holding normalized spherical harmonic coefficients. 
+
+
+\begin{DoxyItemize}
+\item Cnm\+: cosine coefficients matrix
+\item Snm\+: sine coefficients matrix 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_a16817456f74489dad2c22ee5b145a1c4}\index{global.hpp@{global.hpp}!eopdata@{eopdata}}
+\index{eopdata@{eopdata}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{eopdata}{eopdata}}
+{\footnotesize\ttfamily \label{global_8hpp_a16817456f74489dad2c22ee5b145a1c4} 
+\mbox{\hyperlink{class_matrix}{Matrix}} eopdata\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global matrix holding Earth Orientation Parameters loaded from file. 
+
+Dimensions\+: 13 × number\+\_\+of\+\_\+records. 
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_abdf16b7def3047932352a98d4f907e0a}\index{global.hpp@{global.hpp}!PC@{PC}}
+\index{PC@{PC}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{PC}{PC}}
+{\footnotesize\ttfamily \label{global_8hpp_abdf16b7def3047932352a98d4f907e0a} 
+\mbox{\hyperlink{class_matrix}{Matrix}} PC\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global matrix holding planetary ephemeris Chebyshev coefficients. 
+
+
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+
+\Hypertarget{global_8hpp_a19b1b61df2d43fbf34bc708611f8d589}\index{global.hpp@{global.hpp}!Snm@{Snm}}
+\index{Snm@{Snm}!global.hpp@{global.hpp}}
+\doxysubsubsection{\texorpdfstring{Snm}{Snm}}
+{\footnotesize\ttfamily \label{global_8hpp_a19b1b61df2d43fbf34bc708611f8d589} 
+\mbox{\hyperlink{class_matrix}{Matrix}} Snm\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{global_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{global_8cpp_source}{global.\+cpp}}.
+

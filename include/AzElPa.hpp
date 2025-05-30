@@ -1,3 +1,12 @@
+/**
+ * @file AzElPa.hpp
+ * 
+ * @brief Computes azimuth, elevation and their partial derivatives from local tangent coordinates.
+ * 
+ * Calculates the azimuth and elevation angles, as well as their partial derivatives,
+ * based on a topocentric coordinate input.
+ */
+
 #ifndef _AZELPA_
 #define _AZELPA_
 
@@ -6,7 +15,7 @@
 #include <cmath>
 #include<tuple>
 
-/**
+/** 
  * @brief Computes azimuth, elevation and their partial derivatives from local tangent coordinates.
  * 
  * @param s Topocentric local tangent coordinates vector (East-North-Zenith frame).

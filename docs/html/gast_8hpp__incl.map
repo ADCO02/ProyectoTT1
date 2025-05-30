@@ -1,0 +1,23 @@
+<map id="include/gast.hpp" name="include/gast.hpp">
+<area shape="rect" id="Node000001" title="Computes Greenwich Apparent Sidereal Time (GAST) from UT1." alt="" coords="289,5,405,32"/>
+<area shape="rect" id="Node000002" href="$_s_a_t___const_8hpp.html" title="Definition of astronomical and mathematical constants used in the library." alt="" coords="246,229,360,256"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,30,398,51,420,79,433,106,439,131,437,156,425,183,401,208,371,226,368,221,398,204,421,180,432,154,434,132,428,108,415,81,394,54,368,35"/>
+<area shape="rect" id="Node000003" href="$_eqn_equinox_8hpp.html" title="Computes the equation of the equinoxes from nutation and obliquity values." alt="" coords="289,80,405,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="350,33,350,64,344,64,344,33"/>
+<area shape="rect" id="Node000008" href="$gmst_8hpp.html" title="Computes Greenwich Mean Sidereal Time (GMST) from UT1." alt="" coords="189,80,264,107"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="327,35,262,74,259,69,325,30"/>
+<area shape="rect" id="Node000004" href="$_nut_angles_8hpp.html" title="Computes the nutation angles in longitude and obliquity." alt="" coords="101,155,208,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="314,110,203,151,202,146,312,105"/>
+<area shape="rect" id="Node000007" href="$_mean_obliquity_8hpp.html" title="Computes the mean obliquity of the ecliptic." alt="" coords="283,155,411,181"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="350,107,350,139,344,139,344,107"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="182,179,264,220,262,224,179,184"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="32,229,89,256"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="140,184,90,222,87,218,137,180"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="130,229,180,256"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="158,182,158,214,152,214,152,182"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="341,183,321,217,316,215,337,180"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="235,106,273,180,291,214,287,217,268,183,231,108"/>
+<area shape="rect" id="Node000009" href="$_frac_8hpp.html" title="Returns the fractional part of a number." alt="" coords="5,155,78,181"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="196,110,89,151,87,146,194,105"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="47,181,56,213,51,215,42,183"/>
+</map>

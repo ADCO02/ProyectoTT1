@@ -1,0 +1,36 @@
+<map id="include/gmst.hpp" name="include/gmst.hpp">
+<area shape="rect" id="Node000001" title="Computes Greenwich Mean Sidereal Time (GMST) from UT1." alt="" coords="61,5,181,32"/>
+<area shape="rect" id="Node000002" href="$gast_8hpp.html" title="Computes Greenwich Apparent Sidereal Time (GAST) from UT1." alt="" coords="63,80,179,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,48,123,80,118,80,118,48"/>
+<area shape="rect" id="Node000007" href="$tests_8cpp_source.html" title=" " alt="" coords="291,304,399,331"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="91,43,57,70,26,105,15,123,9,142,9,161,16,180,41,212,72,239,108,260,146,277,223,299,290,310,290,315,222,305,144,282,105,265,69,243,37,216,12,183,4,162,4,142,11,121,22,102,54,67,88,39"/>
+<area shape="rect" id="Node000014" href="$gmst_8cpp_source.html" title=" " alt="" coords="203,80,300,107"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="158,38,230,77,227,82,155,42"/>
+<area shape="rect" id="Node000003" href="$_g_h_a_matrix_8hpp.html" title="Transformation from true equator and equinox to Earth equator and Greenwich meridian system." alt="" coords="339,155,495,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="188,108,365,151,364,157,187,114"/>
+<area shape="poly" id="edge18_Node000002_Node000007" title=" " alt="" coords="131,121,155,196,169,231,184,254,208,273,235,287,291,305,289,310,233,292,205,277,180,258,165,234,150,198,126,123"/>
+<area shape="rect" id="Node000013" href="$gast_8cpp_source.html" title=" " alt="" coords="26,155,119,181"/>
+<area shape="poly" id="edge17_Node000002_Node000013" title=" " alt="" coords="106,121,83,156,79,153,102,118"/>
+<area shape="rect" id="Node000004" href="$_accel_8hpp.html" title="Computes the acceleration of an Earth orbiting satellite." alt="" coords="720,229,844,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="496,182,720,226,719,232,495,187"/>
+<area shape="poly" id="edge16_Node000003_Node000007" title=" " alt="" coords="406,197,353,305,348,302,401,194"/>
+<area shape="rect" id="Node000008" href="$_var_eqn_8hpp.html" title="Computes the variational equations for satellite dynamics." alt="" coords="562,229,695,256"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="469,184,592,226,591,231,467,189"/>
+<area shape="rect" id="Node000010" href="$anglesg_8hpp.html" title="Orbit determination from three optical sightings using the Gauss method." alt="" coords="402,229,538,256"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="437,192,463,227,459,231,433,196"/>
+<area shape="rect" id="Node000012" href="$_g_h_a_matrix_8cpp_source.html" title=" " alt="" coords="194,229,327,256"/>
+<area shape="poly" id="edge15_Node000003_Node000012" title=" " alt="" coords="377,191,289,231,287,226,375,186"/>
+<area shape="rect" id="Node000005" href="$_accel_8cpp_source.html" title=" " alt="" coords="875,304,977,331"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="822,261,902,301,900,306,820,266"/>
+<area shape="rect" id="Node000006" href="$_e_k_f___g_e_o_s3_8cpp_source.html" title=" " alt="" coords="694,304,851,331"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="781,272,777,304,772,303,776,271"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="705,259,412,307,400,309,399,303,411,301,704,254"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="669,261,749,301,746,306,666,266"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="565,263,395,306,394,301,564,258"/>
+<area shape="rect" id="Node000009" href="$_var_eqn_8cpp_source.html" title=" " alt="" coords="560,304,671,331"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="626,272,620,304,615,303,621,271"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="539,258,720,301,719,306,537,263"/>
+<area shape="poly" id="edge14_Node000010_Node000007" title=" " alt="" coords="437,266,368,306,365,301,434,262"/>
+<area shape="rect" id="Node000011" href="$anglesg_8cpp_source.html" title=" " alt="" coords="423,304,536,331"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="476,271,480,303,475,304,471,272"/>
+</map>

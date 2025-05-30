@@ -1,0 +1,67 @@
+\doxysection{include/\+Time\+Update.hpp File Reference}
+\hypertarget{_time_update_8hpp}{}\label{_time_update_8hpp}\index{include/TimeUpdate.hpp@{include/TimeUpdate.hpp}}
+
+
+Updates the covariance matrix over a time step using the state transition matrix.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for Time\+Update.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{_time_update_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_time_update_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{_time_update_8hpp_a5b9051753af04cc9cbddb815f05a9bb2}{Time\+Update}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&P, \mbox{\hyperlink{class_matrix}{Matrix}} \&Phi, double Qdt=0.\+0)
+\begin{DoxyCompactList}\small\item\em Updates the covariance matrix over a time step using the state transition matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Updates the covariance matrix over a time step using the state transition matrix. 
+
+This function performs the time update (also known as the prediction step) of a covariance matrix P based on the state transition matrix Phi and optionally adds process noise scaled by Qdt. 
+
+Definition in file \mbox{\hyperlink{_time_update_8hpp_source}{Time\+Update.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_time_update_8hpp_a5b9051753af04cc9cbddb815f05a9bb2}\index{TimeUpdate.hpp@{TimeUpdate.hpp}!TimeUpdate@{TimeUpdate}}
+\index{TimeUpdate@{TimeUpdate}!TimeUpdate.hpp@{TimeUpdate.hpp}}
+\doxysubsubsection{\texorpdfstring{TimeUpdate()}{TimeUpdate()}}
+{\footnotesize\ttfamily \label{_time_update_8hpp_a5b9051753af04cc9cbddb815f05a9bb2} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& Time\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{P}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{Phi}{, }\item[{double}]{Qdt}{ = {\ttfamily 0.0}}\end{DoxyParamCaption})}
+
+
+
+Updates the covariance matrix over a time step using the state transition matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P} & The covariance matrix prior to the update. \\
+\hline
+{\em Phi} & The state transition matrix for the time interval. \\
+\hline
+{\em Qdt} & Optional scalar value representing process noise contribution over the time interval (default is 0.\+0).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the updated covariance matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_time_update_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_time_update_8cpp_source}{Time\+Update.\+cpp}}.
+

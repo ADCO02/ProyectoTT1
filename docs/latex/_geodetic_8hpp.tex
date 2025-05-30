@@ -1,0 +1,70 @@
+\doxysection{include/\+Geodetic.hpp File Reference}
+\hypertarget{_geodetic_8hpp}{}\label{_geodetic_8hpp}\index{include/Geodetic.hpp@{include/Geodetic.hpp}}
+
+
+Converts Cartesian coordinates to geodetic coordinates.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for Geodetic.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_geodetic_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_geodetic_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ double, double, double $>$ \mbox{\hyperlink{_geodetic_8hpp_aec255f50cde59091b28367216d934f98}{Geodetic}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&r)
+\begin{DoxyCompactList}\small\item\em Computes geodetic coordinates from position vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Converts Cartesian coordinates to geodetic coordinates. 
+
+Computes geodetic longitude, latitude, and altitude from a position vector. 
+
+Definition in file \mbox{\hyperlink{_geodetic_8hpp_source}{Geodetic.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_geodetic_8hpp_aec255f50cde59091b28367216d934f98}\index{Geodetic.hpp@{Geodetic.hpp}!Geodetic@{Geodetic}}
+\index{Geodetic@{Geodetic}!Geodetic.hpp@{Geodetic.hpp}}
+\doxysubsubsection{\texorpdfstring{Geodetic()}{Geodetic()}}
+{\footnotesize\ttfamily \label{_geodetic_8hpp_aec255f50cde59091b28367216d934f98} 
+tuple$<$ double, double, double $>$ Geodetic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r}{}\end{DoxyParamCaption})}
+
+
+
+Computes geodetic coordinates from position vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Position vector in Cartesian coordinates \mbox{[}m\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tuple containing\+:
+\begin{DoxyItemize}
+\item longitude \mbox{[}rad\mbox{]}
+\item latitude \mbox{[}rad\mbox{]}
+\item altitude \mbox{[}m\mbox{]} 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_geodetic_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_geodetic_8cpp_source}{Geodetic.\+cpp}}.
+

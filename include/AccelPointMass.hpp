@@ -1,3 +1,11 @@
+/**
+ * @file AccelPointMass.hpp
+ * @brief Computes the perturbational acceleration due to a point mass.
+ *
+ * Calculates the acceleration experienced by a satellite 
+ * due to the gravitational attraction of a point mass.
+ */
+
 #ifndef _ACCELPOINTMASS_
 #define _ACCELPOINTMASS_
 
@@ -6,9 +14,6 @@
 
 /**
  * @brief Computes the perturbational acceleration due to a point mass.
- *
- * This function calculates the acceleration experienced by a satellite 
- * due to the gravitational attraction of a point mass.
  * 
  * @param r Satellite position vector (relative to an inertial frame).
  * @param s Point mass position vector (relative to the same frame as r).

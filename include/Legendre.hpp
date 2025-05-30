@@ -1,3 +1,13 @@
+/**
+ * @file Legendre.hpp
+ * 
+ * @brief Computes associated Legendre polynomials and their derivatives.
+ *
+ * Given degree n, order m, and angle fi (in radians), this function computes
+ * the normalized associated Legendre functions \( P_{nm}(\phi) \) and their
+ * derivatives with respect to \(\phi\).
+ */
+
 #ifndef _LEGENDRE_
 #define _LEGENDRE_
 
@@ -7,10 +17,6 @@
 
 /**
  * @brief Computes associated Legendre polynomials and their derivatives.
- *
- * Given degree n, order m, and angle fi (in radians), this function computes
- * the normalized associated Legendre functions \( P_{nm}(\phi) \) and their
- * derivatives with respect to \(\phi\).
  *
  * @param n Degree of the Legendre polynomial (non-negative integer).
  * @param m Order of the Legendre polynomial (0 ≤ m ≤ n).

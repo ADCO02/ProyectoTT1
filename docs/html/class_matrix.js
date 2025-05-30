@@ -1,0 +1,28 @@
+var class_matrix =
+[
+    [ "Matrix", "class_matrix.html#a2dba13c45127354c9f75ef576f49269b", null ],
+    [ "Matrix", "class_matrix.html#abe71c89a7bd015e11337cf43a5c36091", null ],
+    [ "Matrix", "class_matrix.html#a025f8b6a2384b2b54d6049e49351770c", null ],
+    [ "assign_column", "class_matrix.html#afd73f40d3e3c1c80695916ac28eff63c", null ],
+    [ "assign_row", "class_matrix.html#a15f898bf590375e5cabc4c55b0c6b968", null ],
+    [ "extract_column", "class_matrix.html#a5cd7437d568a128aa05806210fb46b9c", null ],
+    [ "extract_row", "class_matrix.html#aa277d1e484417f8afca41be8b2213a29", null ],
+    [ "extract_vector", "class_matrix.html#ac6b4e87c2c5a6d53121eafcfbc483917", null ],
+    [ "operator()", "class_matrix.html#a074a3b36a65989b51afbfcb5b0e6f573", null ],
+    [ "operator()", "class_matrix.html#a920e6bd524f318abe55a379190e2a25b", null ],
+    [ "operator*", "class_matrix.html#af50e55a959e2003a761a9a858d498897", null ],
+    [ "operator*", "class_matrix.html#ae1bc7e1fda06dab52353ac01b3196efd", null ],
+    [ "operator+", "class_matrix.html#a18cc79fb8b97c71d06eca40fcdb74c67", null ],
+    [ "operator+", "class_matrix.html#a7cc7127ce96c997c9d14f1f8874ed742", null ],
+    [ "operator-", "class_matrix.html#a3db09e662d199ed9c402243b943bde9d", null ],
+    [ "operator-", "class_matrix.html#ac13e11282bf8fb3e88eb4e743c6dc019", null ],
+    [ "operator/", "class_matrix.html#ac89e8bab3a71a59a43805b69695ce9a2", null ],
+    [ "operator/", "class_matrix.html#afa8805316703c98abf5fefd7788b92ef", null ],
+    [ "operator=", "class_matrix.html#ade03836bffb81664225dc544b5d5e6db", null ],
+    [ "transpose", "class_matrix.html#ad609fedfd61e93679803bb114e544569", null ],
+    [ "union_vector", "class_matrix.html#a88b187da8bc105c4a287a6acc603d85c", null ],
+    [ "operator<<", "class_matrix.html#a6ce0bc529fe2ee6fb2d0eb8acbdc1e92", null ],
+    [ "data", "class_matrix.html#a650e1452576e2c59a410eebd79331560", null ],
+    [ "n_column", "class_matrix.html#a72848e6895f6a6b638410be60b25ed7a", null ],
+    [ "n_row", "class_matrix.html#a25155ffcead67af4aaab4d78256af86f", null ]
+];

@@ -1,0 +1,67 @@
+\doxysection{include/\+Nut\+Matrix.hpp File Reference}
+\hypertarget{_nut_matrix_8hpp}{}\label{_nut_matrix_8hpp}\index{include/NutMatrix.hpp@{include/NutMatrix.hpp}}
+
+
+Computes the nutation matrix from mean to true equator and equinox.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}Nut\+Angles.\+hpp"{}}\newline
+{\ttfamily \#include "{}Mean\+Obliquity.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+x.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+z.\+hpp"{}}\newline
+Include dependency graph for Nut\+Matrix.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_nut_matrix_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_nut_matrix_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{_nut_matrix_8hpp_ac7fb7e48f2d2d4fd63ac42e17e44ff23}{Nut\+Matrix}} (double Mjd\+\_\+\+TT)
+\begin{DoxyCompactList}\small\item\em Computes the nutation matrix from mean to true equator and equinox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the nutation matrix from mean to true equator and equinox. 
+
+Constructs the transformation matrix that accounts for the effects of nutation, converting coordinates from the mean equator and equinox of date to the true equator and equinox. This transformation is essential for high-\/precision astronomical calculations, as it includes periodic variations caused by the gravitational influence of the Moon and Sun on Earth\textquotesingle{}s equatorial bulge. 
+
+Definition in file \mbox{\hyperlink{_nut_matrix_8hpp_source}{Nut\+Matrix.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_nut_matrix_8hpp_ac7fb7e48f2d2d4fd63ac42e17e44ff23}\index{NutMatrix.hpp@{NutMatrix.hpp}!NutMatrix@{NutMatrix}}
+\index{NutMatrix@{NutMatrix}!NutMatrix.hpp@{NutMatrix.hpp}}
+\doxysubsubsection{\texorpdfstring{NutMatrix()}{NutMatrix()}}
+{\footnotesize\ttfamily \label{_nut_matrix_8hpp_ac7fb7e48f2d2d4fd63ac42e17e44ff23} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& Nut\+Matrix (\begin{DoxyParamCaption}\item[{double}]{Mjd\+\_\+\+TT}{}\end{DoxyParamCaption})}
+
+
+
+Computes the nutation matrix from mean to true equator and equinox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mjd\+\_\+\+TT} & Modified Julian Date (Terrestrial Time).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the 3×3 nutation matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_nut_matrix_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_nut_matrix_8cpp_source}{Nut\+Matrix.\+cpp}}.
+

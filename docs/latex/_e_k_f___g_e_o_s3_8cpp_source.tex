@@ -1,0 +1,286 @@
+\doxysection{EKF\+\_\+\+GEOS3.\+cpp}
+\hypertarget{_e_k_f___g_e_o_s3_8cpp_source}{}\label{_e_k_f___g_e_o_s3_8cpp_source}\index{tests/EKF\_GEOS3.cpp@{tests/EKF\_GEOS3.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{matrix_8hpp}{..\(\backslash\)include\(\backslash\)matrix.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{global_8hpp}{..\(\backslash\)include\(\backslash\)global.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_a_t___const_8hpp}{..\(\backslash\)include\(\backslash\)SAT\_Const.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mjday_8hpp}{..\(\backslash\)include\(\backslash\)Mjday.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_position_8hpp}{..\(\backslash\)include\(\backslash\)Position.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}..\(\backslash\)include\(\backslash\)DEInteg.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_accel_8hpp}{..\(\backslash\)include\(\backslash\)Accel.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r__z_8hpp}{..\(\backslash\)include\(\backslash\)R\_z.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_time_update_8hpp}{..\(\backslash\)include\(\backslash\)TimeUpdate.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_var_eqn_8hpp}{..\(\backslash\)include\(\backslash\)VarEqn.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_az_el_pa_8hpp}{..\(\backslash\)include\(\backslash\)AzElPa.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_meas_update_8hpp}{..\(\backslash\)include\(\backslash\)MeasUpdate.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_l_t_c_8hpp}{..\(\backslash\)include\(\backslash\)LTC.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{anglesg_8hpp}{..\(\backslash\)include\(\backslash\)anglesg.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00019}00019\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00041}00041\ \textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ \ Initial\ Orbit\ Determination\ using\ Gauss\ and\ Extended\ Kalman\ Filter\ methods}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ References:}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ \ \ O.\ Montenbruck,\ E.\ Gill,\ "{}Satellite\ Orbits\ -\/\ Models,\ Methods,\ and}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ \ \ Applications"{},\ Springer\ Verlag,\ Heidelberg,\ 2000.}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ \ \ }}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ \ \ D.\ Vallado,\ "{}Fundamentals\ of\ Astrodynamics\ and\ Applications"{},\ }}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ \ \ 4th\ Edition,\ 2013.}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ \ \ G.\ Seeber,\ "{}Satellite\ Geodesy"{},\ 2nd\ Edition,\ 2003.}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Last\ modified:\ \ \ 2020/03/16\ \ \ Meysam\ Mahooti}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00057}00057\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//en\ matlab\ usar\ tik\ tok\ despues\ del\ clean\ para\ medir\ el\ tiempo}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00060}00060\ \ \ \ \ \mbox{\hyperlink{global_8hpp_af51b221967b797557656923d624cf0db}{DE430Coeff}}(2285,\ 1020);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00061}00061\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a1e2e54b5a8bda6f8402f3e8bbe5f3175}{GGM03S}}(181);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ Model\ parameters}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ AuxParam\ =\ struct\ ('Mjd\_UTC',0,'n',0,'m',0);}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ read\ Earth\ orientation\ parameters}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ |\ \ Date\ \ \ \ MJD\ \ \ \ \ \ x\ \ \ \ \ \ \ \ \ y\ \ \ \ \ \ \ UT1-\/UTC\ \ \ \ \ \ LOD\ \ \ \ \ \ \ dPsi\ \ \ \ dEpsilon\ \ \ \ \ dX\ \ \ \ \ \ \ \ dY\ \ \ \ DAT}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{comment}{//\ |(0h\ UTC)\ \ \ \ \ \ \ \ \ \ \ "{}\ \ \ \ \ \ \ \ \ "{}\ \ \ \ \ \ \ \ \ \ s\ \ \ \ \ \ \ \ \ \ s\ \ \ \ \ \ \ \ \ \ "{}\ \ \ \ \ \ \ \ "{}\ \ \ \ \ \ \ \ \ \ "{}\ \ \ \ \ \ \ \ \ "{}\ \ \ \ \ s\ }}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00072}00072\ \ \ \ \ \mbox{\hyperlink{global_8hpp_af1504e3e975e6f502042c7fa8b7abe60}{eop19620101}}(21413);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{int}\ nobs\ =\ 46;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00075}00075\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ obs\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(nobs,4);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{comment}{//\ read\ observations}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00078}00078\ \ \ \ \ FILE\ *fid\ =\ fopen(\textcolor{stringliteral}{"{}../data/GEOS3.txt"{}},\textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{if}(fid\ ==\ NULL)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Fail\ open\ GEOS3.txt\ file\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{char}\ tline[256];}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordtype}{char}\ sub[10];}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordtype}{double}\ YY,M,D,h,m,ss,az,el,Dist;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=1;i<=nobs;i++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ fgets(tline,\ \textcolor{keyword}{sizeof}(tline),\ fid);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strlen(tline)\ <\ 4)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[0],\ 4);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ sub[4]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ YY\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[5],\ 2);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ sub[2]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ M\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[8],\ 2);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ sub[2]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ D\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[12],\ 2);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ sub[2]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ h\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[15],\ 2);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ sub[2]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ m\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[18],\ 6);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ sub[6]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ ss\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[25],\ 8);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ sub[8]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ az\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[35],\ 7);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ sub[7]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ el\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ strncpy(sub,\ \&tline[44],\ 10);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ sub[10]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ Dist\ =\ atof(sub);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ obs(i,1)\ =\ \mbox{\hyperlink{_mjday_8hpp_affd4aa36352a9813693dc0c78af13c60}{Mjday}}(YY,M,D,h,m,ss);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ obs(i,2)\ =\ Rad*az;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ obs(i,3)\ =\ Rad*el;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ obs(i,4)\ =\ 1e3*Dist;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00124}00124\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00126}00126\ \ \ \ \ fclose(fid);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordtype}{double}\ sigma\_range\ =\ 92.5;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [m]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{keywordtype}{double}\ sigma\_az\ =\ 0.0224*Rad;\ \textcolor{comment}{//\ [rad]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{double}\ sigma\_el\ =\ 0.0139*Rad;\ \textcolor{comment}{//\ [rad]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{comment}{//\ Kaena\ Point\ station}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{keywordtype}{double}\ lat\ =\ Rad*21.5748;\ \ \ \ \ \textcolor{comment}{//\ [rad]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{keywordtype}{double}\ lon\ =\ Rad*(-\/158.2706);\ \textcolor{comment}{//\ [rad]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{keywordtype}{double}\ alt\ =\ 300.20;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [m]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00137}00137\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Rs\ =\ \mbox{\hyperlink{_position_8hpp_ad3ff3004edb305ae3aed0230373b848e}{Position}}(lon,\ lat,\ alt).\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}();}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd1\ =\ obs(1,1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd2\ =\ obs(9,1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd3\ =\ obs(18,1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00143}00143\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ r2\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00144}00144\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ v2\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00145}00145\ \ \ \ \ tie(r2,v2)\ =\ \mbox{\hyperlink{anglesg_8hpp_aa28e5c4934a42b8bf68c5e674cf7a7ef}{anglesg}}(obs(1,2),obs(9,2),obs(18,2),obs(1,3),obs(9,3),obs(18,3),}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Mjd1,Mjd2,Mjd3,Rs.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}(),Rs.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}(),Rs.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}());}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{comment}{//\ [r2,v2]\ =\ anglesdr(obs(1,2),obs(9,2),obs(18,2),obs(1,3),obs(9,3),obs(18,3),...}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Mjd1,Mjd2,Mjd3,Rs,Rs,Rs);}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00150}00150\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Y0\_apr\ =\ r2.\mbox{\hyperlink{class_matrix_a88b187da8bc105c4a287a6acc603d85c}{union\_vector}}(v2).\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}();}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd0\ =\ \mbox{\hyperlink{_mjday_8hpp_affd4aa36352a9813693dc0c78af13c60}{Mjday}}(1995,1,29,02,38,0);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd\_UTC\ =\ obs(9,1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC\ =\ Mjd\_UTC;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00157}00157\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.n\ \ \ \ \ \ =\ 20;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00158}00158\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.m\ \ \ \ \ \ =\ 20;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00159}00159\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.sun\ \ \ \ \ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00160}00160\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.moon\ \ \ \ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00161}00161\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.planets\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00163}00163\ \ \ \ \ \textcolor{keywordtype}{int}\ n\_eqn\ \ =\ 6;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00165}00165\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Y\ =\ DEInteg(\mbox{\hyperlink{_accel_8hpp_a28040ec3672b4e1805218ad1cd43bfa0}{Accel}},0,-\/(obs(9,1)-\/Mjd0)*86400.0,1e-\/13,1e-\/6,6,Y0\_apr.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}());}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\ P\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(6,6);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00168}00168\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00169}00169\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=1;\ i<=3;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ P(i,i)=1e8;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00171}00171\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=4;\ i<=6;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ P(i,i)=1e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00174}00174\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00176}00176\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ LT\ =\ \mbox{\hyperlink{_l_t_c_8hpp_a27b89059a0c4bc52a9192df16ead3359}{LTC}}(lon,lat);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00178}00178\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ yPhi\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(42);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00179}00179\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Phi\ \ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(6,6);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{comment}{//\ Measurement\ loop}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00182}00182\ \ \ \ \ \textcolor{keywordtype}{double}\ t\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//Declaración\ de\ variables}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00185}00185\ \ \ \ \ \textcolor{keywordtype}{double}\ t\_old;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00187}00187\ \ \ \ \ \textcolor{keywordtype}{double}\ x\_pole,y\_pole,UT1\_UTC,LOD,dpsi,deps,dx\_pole,dy\_pole,TAI\_UTC,UT1\_TAI,}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ UTC\_GPS,UT1\_GPS,TT\_UTC,GPS\_UTC,Mjd\_TT,Mjd\_UT1,theta,Azim,Elev;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00190}00190\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Y\_old\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00191}00191\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ U\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00192}00192\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ r\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00193}00193\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ s\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00194}00194\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dAds\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00195}00195\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dEds\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00196}00196\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dAdY\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00197}00197\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ K\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00198}00198\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dEdY\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00199}00199\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dDds\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00200}00200\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dDdY\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00201}00201\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00202}00202\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=1;\ i<=nobs;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Previous\ step}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ t\_old\ =\ t;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ Y\_old\ =\ Y;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Time\ increment\ and\ propagation}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ Mjd\_UTC\ =\ obs(i,1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Modified\ Julian\ Date}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ t\ \ \ \ \ \ \ =\ (Mjd\_UTC-\/Mjd0)*86400.0;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Time\ since\ epoch\ [s]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ tie(x\_pole,y\_pole,UT1\_UTC,LOD,dpsi,deps,dx\_pole,dy\_pole,TAI\_UTC)\ =\ \mbox{\hyperlink{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26}{IERS}}(Mjd\_UTC,\textcolor{charliteral}{'l'});}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ tie(UT1\_TAI,UTC\_GPS,UT1\_GPS,TT\_UTC,GPS\_UTC)\ =\ timediff(UT1\_UTC,TAI\_UTC);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ Mjd\_TT\ =\ Mjd\_UTC\ +\ TT\_UTC/86400.0;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ Mjd\_UT1\ =\ Mjd\_TT\ +\ (UT1\_UTC-\/TT\_UTC)/86400.0;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC\ =\ Mjd\_UTC;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_TT\ =\ Mjd\_TT;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ ii=1;\ ii<=6;\ ii++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ yPhi(ii)\ =\ Y\_old(ii);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=1;\ j<=6;\ j++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ii==j)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yPhi(6*j+ii)\ =\ 1.0;\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yPhi(6*j+ii)\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ yPhi\ =\ DEInteg\ (\mbox{\hyperlink{_var_eqn_8hpp_a6e153d0ae05034cb5b346189ebb847d3}{VarEqn}},0,t-\/t\_old,1e-\/13,1e-\/6,42,yPhi);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ state\ transition\ matrices}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=1;\ j<=6;\ j++)\{}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ Phi.\mbox{\hyperlink{class_matrix_afd73f40d3e3c1c80695916ac28eff63c}{assign\_column}}(j,yPhi.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(6*j+1,6*j+6));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ Y\ =\ DEInteg\ (\mbox{\hyperlink{_accel_8hpp_a28040ec3672b4e1805218ad1cd43bfa0}{Accel}},0.0,t-\/t\_old,1e-\/13,1e-\/6,6,Y\_old);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Topocentric\ coordinates}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ theta\ =\ \mbox{\hyperlink{gmst_8hpp_a22a9ee5ea799a7511f4b5b1939c9de76}{gmst}}(Mjd\_UT1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Earth\ rotation}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ U\ =\ \mbox{\hyperlink{_r__z_8hpp_a4f688959a9ab144bf27d272e54bf7258}{R\_z}}(theta);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ r\ =\ Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3).\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}();}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ s\ =\ LT*(U*r-\/Rs);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Topocentric\ position\ [m]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Time\ update}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ P\ =\ \mbox{\hyperlink{_time_update_8hpp_a5b9051753af04cc9cbddb815f05a9bb2}{TimeUpdate}}(P,\ Phi);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Azimuth\ and\ partials}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ tie(Azim,\ Elev,\ dAds,\ dEds)\ =\ \mbox{\hyperlink{_az_el_pa_8hpp_ae89a6c135135b96ec7057c45dced4159}{AzElPa}}(s.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}());\ \ \ \ \ \textcolor{comment}{//\ Azimuth,\ Elevation}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ dAdY\ =\ (dAds*LT*U).union\_vector(\mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(3));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Measurement\ update}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ tie(K,\ Y,\ P)\ =\ \mbox{\hyperlink{_meas_update_8hpp_ae12754392beb1fd53d392978b396266f}{MeasUpdate}}\ (\ Y,\ obs(i,2),\ Azim,\ sigma\_az,\ dAdY,\ P,\ 6\ );}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Elevation\ and\ partials}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ r\ =\ Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3).\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}();}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ s\ =\ LT*(U*r-\/Rs);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Topocentric\ position\ [m]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ tie(Azim,\ Elev,\ dAds,\ dEds)\ =\ \mbox{\hyperlink{_az_el_pa_8hpp_ae89a6c135135b96ec7057c45dced4159}{AzElPa}}(s.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}());\ \ \ \ \ \textcolor{comment}{//\ Azimuth,\ Elevation}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ dEdY\ =\ (dEds*LT*U).union\_vector(\mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(3));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Measurement\ update}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ tie(K,\ Y,\ P)\ =\ \mbox{\hyperlink{_meas_update_8hpp_ae12754392beb1fd53d392978b396266f}{MeasUpdate}}\ (\ Y,\ obs(i,3),\ Elev,\ sigma\_el,\ dEdY,\ P,\ 6\ );}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Range\ and\ partials}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ r\ =\ Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3).\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}();}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ s\ =\ LT*(U*r-\/Rs);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Topocentric\ position\ [m]}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ Dist\ =\ \mbox{\hyperlink{matrix_8hpp_a4171206f7b54c775745f80c5fb77b2c0}{norm}}(s.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}());\ dDds\ =\ (s/Dist).transpose();\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Range}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ dDdY=(dDds*LT*U).union\_vector(\mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(3));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Measurement\ update}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ tie(K,\ Y,\ P)\ =\ \mbox{\hyperlink{_meas_update_8hpp_ae12754392beb1fd53d392978b396266f}{MeasUpdate}}\ (\ Y,\ obs(i,4),\ Dist,\ sigma\_range,\ dDdY,\ P,\ 6\ );}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00272}00272\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00274}00274\ \ \ \ \ tie(x\_pole,y\_pole,UT1\_UTC,LOD,dpsi,deps,dx\_pole,dy\_pole,TAI\_UTC)\ =\ \mbox{\hyperlink{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26}{IERS}}(obs(46,1),\textcolor{charliteral}{'l'});}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00275}00275\ \ \ \ \ tie(UT1\_TAI,UTC\_GPS,UT1\_GPS,TT\_UTC,GPS\_UTC)\ =\ timediff(UT1\_UTC,TAI\_UTC);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00276}00276\ \ \ \ \ Mjd\_TT\ =\ Mjd\_UTC\ +\ TT\_UTC/86400;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00277}00277\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC\ =\ Mjd\_UTC;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00278}00278\ \ \ \ \ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_TT\ =\ Mjd\_TT;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00280}00280\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Y0\ =\ DEInteg\ (\mbox{\hyperlink{_accel_8hpp_a28040ec3672b4e1805218ad1cd43bfa0}{Accel}},0,-\/(obs(46,1)-\/obs(1,1))*86400.0,1e-\/13,1e-\/6,6,Y);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00282}00282\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Y\_true\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(6,1);}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00283}00283\ \ \ \ \ Y\_true(1)\ =\ 5753.173e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00284}00284\ \ \ \ \ Y\_true(2)\ =\ 2673.361e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00285}00285\ \ \ \ \ Y\_true(3)\ =\ 3440.304e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00286}00286\ \ \ \ \ Y\_true(4)\ =\ 4.324207e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00287}00287\ \ \ \ \ Y\_true(5)\ =\ -\/1.924299e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00288}00288\ \ \ \ \ Y\_true(6)\ =\ -\/5.728216e3;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00290}00290\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nError\ of\ Position\ Estimation\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00291}00291\ \ \ \ \ printf(\textcolor{stringliteral}{"{}dX\%10.1f\ [m]\(\backslash\)n"{}},Y0(1)-\/Y\_true(1));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00292}00292\ \ \ \ \ printf(\textcolor{stringliteral}{"{}dY\%10.1f\ [m]\(\backslash\)n"{}},Y0(2)-\/Y\_true(2));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00293}00293\ \ \ \ \ printf(\textcolor{stringliteral}{"{}dZ\%10.1f\ [m]\(\backslash\)n"{}},Y0(3)-\/Y\_true(3));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00294}00294\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nError\ of\ Velocity\ Estimation\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00295}00295\ \ \ \ \ printf(\textcolor{stringliteral}{"{}dVx\%8.1f\ [m/s]\(\backslash\)n"{}},Y0(4)-\/Y\_true(4));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00296}00296\ \ \ \ \ printf(\textcolor{stringliteral}{"{}dVy\%8.1f\ [m/s]\(\backslash\)n"{}},Y0(5)-\/Y\_true(5));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00297}00297\ \ \ \ \ printf(\textcolor{stringliteral}{"{}dVz\%8.1f\ [m/s]\(\backslash\)n"{}},Y0(6)-\/Y\_true(6));}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00299}00299\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_e_k_f___g_e_o_s3_8cpp_source_l00300}00300\ \}}
+
+\end{DoxyCode}

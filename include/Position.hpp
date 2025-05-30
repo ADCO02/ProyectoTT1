@@ -1,3 +1,12 @@
+/**
+ * @file Position.hpp
+ * 
+ * @brief Computes the position vector from geodetic coordinates.
+ *
+ * Converts geodetic coordinates (longitude, latitude, altitude) to a 
+ * position vector in an Earth-centered Earth-fixed (ECEF) Cartesian frame.
+ */
+
 #ifndef _POSITION_
 #define _POSITION_
 
@@ -7,9 +16,6 @@
 
 /**
  * @brief Computes the position vector from geodetic coordinates.
- *
- * Converts geodetic coordinates (longitude, latitude, altitude) to a 
- * position vector in an Earth-centered Earth-fixed (ECEF) Cartesian frame.
  *
  * @param lon Geodetic longitude in radians.
  * @param lat Geodetic latitude in radians.

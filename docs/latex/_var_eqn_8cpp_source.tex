@@ -1,0 +1,66 @@
+\doxysection{Var\+Eqn.\+cpp}
+\hypertarget{_var_eqn_8cpp_source}{}\label{_var_eqn_8cpp_source}\index{src/VarEqn.cpp@{src/VarEqn.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_var_eqn_8hpp}{..\(\backslash\)include\(\backslash\)VarEqn.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00003}\mbox{\hyperlink{_var_eqn_8hpp_a6e153d0ae05034cb5b346189ebb847d3}{00003}}\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ \mbox{\hyperlink{_var_eqn_8hpp_a6e153d0ae05034cb5b346189ebb847d3}{VarEqn}}(\textcolor{keywordtype}{double}\ x,\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ yPhi)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00004}00004\ \ \ \ \ \textcolor{keyword}{auto}\ [x\_pole,y\_pole,UT1\_UTC,LOD,dpsi,deps,dx\_pole,dy\_pole,TAI\_UTC]\ =\ \mbox{\hyperlink{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26}{IERS}}(\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC,\textcolor{charliteral}{'l'});}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{auto}\ [UT1\_TAI,UTC\_GPS,UT1\_GPS,TT\_UTC,GPS\_UTC]\ =\ timediff(UT1\_UTC,TAI\_UTC);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd\_UT1\ =\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_TT\ +\ (UT1\_UTC-\/TT\_UTC)/86400;}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{comment}{//\ Transformation\ matrix}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ P\ =\ \mbox{\hyperlink{_prec_matrix_8hpp_a95bbb47a6bcd9ecaf7b5bc46f88dc7d1}{PrecMatrix}}(MJD\_J2000,\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_TT\ +\ x/86400.0);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ N\ =\ \mbox{\hyperlink{_nut_matrix_8hpp_ac7fb7e48f2d2d4fd63ac42e17e44ff23}{NutMatrix}}(\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_TT\ +\ x/86400.0);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ T\ =\ N\ *\ P;}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ E\ =\ \mbox{\hyperlink{_pole_matrix_8hpp_aa20f72601d5ff91f277b999d15b7d6c9}{PoleMatrix}}(x\_pole,y\_pole)\ *\ \mbox{\hyperlink{_g_h_a_matrix_8hpp_a49218ae38846c1175342d13a65d41f4d}{GHAMatrix}}(Mjd\_UT1)\ *\ T;}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//\ State\ vector\ components}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00015}00015\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ r\ =\ yPhi.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ v\ =\ yPhi.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(4,6);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Phi\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(6,6);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ State\ transition\ matrix}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=1;\ j<=6;\ j++)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ Phi.\mbox{\hyperlink{class_matrix_afd73f40d3e3c1c80695916ac28eff63c}{assign\_column}}(j,\ yPhi.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(6*j+1,6*j+6));}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ Acceleration\ and\ gradient}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00025}00025\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ a\ =\ \mbox{\hyperlink{_accel_harmonic_8hpp_a97ea72b6a1426f18c34d295e50b8fc4b}{AccelHarmonic}}\ (\ r,\ E,\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.n,\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.m\ );}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ G\ =\ \mbox{\hyperlink{_g___accel_harmonic_8hpp_a8c1900d3aa2aceb61387b84a92e17818}{G\_AccelHarmonic}}\ (\ r,\ E,\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.n,\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.m\ );}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{comment}{//\ Time\ derivative\ of\ state\ transition\ matrix}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ yPhip\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(42);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dfdy\ =\ \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}}(6,6);}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=1;\ i<=3;i++)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=1;\ j<=3;\ j++)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ dfdy(i,j)\ =\ 0.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dv/dr(i,j)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ dfdy(i+3,j)\ =\ G(i,j);\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ da/dr(i,j)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ i==j\ )\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dfdy(i,j+3)\ =\ 1.0;}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dfdy(i,j+3)\ =\ 0.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dv/dv(i,j)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ dfdy(i+3,j+3)\ =\ 0.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ da/dv(i,j)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Phip\ =\ dfdy*Phi;}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ Derivative\ of\ combined\ state\ vector\ and\ state\ transition\ matrix}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=1;\ i<=3;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ yPhip(i)\ \ \ =\ v(i);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dr/dt(i)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ yPhip(i+3)\ =\ a(i);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dv/dt(i)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=1;\ i<=6;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=1;\ j<=6;\ j++)\{}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ yPhip(6*j+i)\ =\ Phip(i,j);\ \ \ \ \ \textcolor{comment}{//\ dPhi/dt(i,j)}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{return}\ yPhip;}
+\DoxyCodeLine{\Hypertarget{_var_eqn_8cpp_source_l00060}00060\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,68 @@
+\doxysection{include/\+LTC.hpp File Reference}
+\hypertarget{_l_t_c_8hpp}{}\label{_l_t_c_8hpp}\index{include/LTC.hpp@{include/LTC.hpp}}
+
+
+Computes the rotation matrix from ECEF to local tangent coordinates.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+x.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+y.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+z.\+hpp"{}}\newline
+Include dependency graph for LTC.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_l_t_c_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_l_t_c_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{_l_t_c_8hpp_a27b89059a0c4bc52a9192df16ead3359}{LTC}} (double lon, double lat)
+\begin{DoxyCompactList}\small\item\em Computes the rotation matrix from ECEF to local tangent coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the rotation matrix from ECEF to local tangent coordinates. 
+
+Defines the transformation from the Earth-\/centered, Earth-\/fixed (ECEF) reference frame aligned with the Greenwich meridian, to a local East-\/\+North-\/\+Up coordinate system centered at a given geodetic longitude and latitude. This rotation is essential for converting global positions into local horizon-\/based observations, typically used in ground-\/based tracking and geolocation. 
+
+Definition in file \mbox{\hyperlink{_l_t_c_8hpp_source}{LTC.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_l_t_c_8hpp_a27b89059a0c4bc52a9192df16ead3359}\index{LTC.hpp@{LTC.hpp}!LTC@{LTC}}
+\index{LTC@{LTC}!LTC.hpp@{LTC.hpp}}
+\doxysubsubsection{\texorpdfstring{LTC()}{LTC()}}
+{\footnotesize\ttfamily \label{_l_t_c_8hpp_a27b89059a0c4bc52a9192df16ead3359} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& LTC (\begin{DoxyParamCaption}\item[{double}]{lon}{, }\item[{double}]{lat}{}\end{DoxyParamCaption})}
+
+
+
+Computes the rotation matrix from ECEF to local tangent coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lon} & Geodetic East longitude in radians. \\
+\hline
+{\em lat} & Geodetic latitude in radians.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to a 3×3 rotation matrix that transforms vectors from the Earth equator and Greenwich meridian system to the local East-\/\+North-\/\+Zenith (tangent) coordinate frame. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_l_t_c_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_l_t_c_8cpp_source}{LTC.\+cpp}}.
+

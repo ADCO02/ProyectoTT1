@@ -1,3 +1,12 @@
+/**
+ * @file timediff.hpp
+ * 
+ * @brief Computes several time differences between different time scales.
+ * 
+ * Calculates the differences between Universal Time, International Atomic Time,
+ * Coordinated Universal Time, GPS Time, and Terrestrial Time, returning them as a tuple.
+ */
+
 #ifndef _TIMEDIFF_
 #define _TIMEDIFF_
 
@@ -6,6 +15,8 @@
 using namespace std;
 
 /**
+ * @file timediff.hpp
+ * 
  * @brief Computes several time differences between different time scales.
  * 
  * @param UT1_UTC Difference between UT1 and UTC in seconds.

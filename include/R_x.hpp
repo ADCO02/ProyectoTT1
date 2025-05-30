@@ -1,3 +1,12 @@
+/**
+ * @file R_x.hpp
+ * 
+ * @brief Computes the rotation matrix for a rotation about the x-axis.
+ *
+ * Generates a 3×3 rotation matrix representing a right-handed rotation 
+ * around the x-axis by the specified angle.
+ */
+
 #ifndef _R_X_
 #define _R_X_
 
@@ -6,9 +15,6 @@
 
 /**
  * @brief Computes the rotation matrix for a rotation about the x-axis.
- *
- * Generates a 3×3 rotation matrix representing a right-handed rotation 
- * around the x-axis by the specified angle.
  *
  * @param angle Rotation angle in radians.
  * 

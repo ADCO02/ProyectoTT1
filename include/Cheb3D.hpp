@@ -1,13 +1,19 @@
+/**
+ * @file Cheb3D.hpp
+ * 
+ * @brief Evaluates a Chebyshev approximation for a 3D vector at a given time.
+ *
+ * Uses the Clenshaw algorithm to compute the value of a 
+ * 3D vector function approximated by Chebyshev polynomials.
+ */
+
 #ifndef _CHEB3D_
 #define _CHEB3D_
 
 #include "matrix.hpp"
 
-/**
+/** 
  * @brief Evaluates a Chebyshev approximation for a 3D vector at a given time.
- *
- * This function uses the Clenshaw algorithm to compute the value of a 
- * 3D vector function approximated by Chebyshev polynomials.
  *
  * @param t  Evaluation time (must be in the interval [Ta, Tb]).
  * @param N  Number of Chebyshev coefficients.

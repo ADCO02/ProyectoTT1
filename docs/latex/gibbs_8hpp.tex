@@ -1,0 +1,78 @@
+\doxysection{include/gibbs.hpp File Reference}
+\hypertarget{gibbs_8hpp}{}\label{gibbs_8hpp}\index{include/gibbs.hpp@{include/gibbs.hpp}}
+
+
+Performs the Gibbs method of orbit determination to compute velocity.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}angl.\+hpp"{}}\newline
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include "{}unit.\+hpp"{}}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for gibbs.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gibbs_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gibbs_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, double, double, double, string $>$ \mbox{\hyperlink{gibbs_8hpp_aad5cdb6b10f9baf6ef1f3c36185da8e0}{gibbs}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&r1, \mbox{\hyperlink{class_matrix}{Matrix}} \&r2, \mbox{\hyperlink{class_matrix}{Matrix}} \&r3)
+\begin{DoxyCompactList}\small\item\em Performs the Gibbs method of orbit determination to compute velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Performs the Gibbs method of orbit determination to compute velocity. 
+
+This function implements the Gibbs method to determine the velocity vector at the middle of three given position vectors in space. It uses vector operations to check coplanarity and consistency of the orbit and returns the computed velocity along with angles between vectors and an error status. 
+
+Definition in file \mbox{\hyperlink{gibbs_8hpp_source}{gibbs.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{gibbs_8hpp_aad5cdb6b10f9baf6ef1f3c36185da8e0}\index{gibbs.hpp@{gibbs.hpp}!gibbs@{gibbs}}
+\index{gibbs@{gibbs}!gibbs.hpp@{gibbs.hpp}}
+\doxysubsubsection{\texorpdfstring{gibbs()}{gibbs()}}
+{\footnotesize\ttfamily \label{gibbs_8hpp_aad5cdb6b10f9baf6ef1f3c36185da8e0} 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, double, double, double, string $>$ gibbs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r1}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r2}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r3}{}\end{DoxyParamCaption})}
+
+
+
+Performs the Gibbs method of orbit determination to compute velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r1} & Position vector \#1 (meters). \\
+\hline
+{\em r2} & Position vector \#2 (meters). \\
+\hline
+{\em r3} & Position vector \#3 (meters).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tuple containing\+:
+\begin{DoxyItemize}
+\item Velocity vector at r2 (3×1 \doxylink{class_matrix}{Matrix}) \mbox{[}m/s\mbox{]}
+\item Angle between r1 and r2 vectors (radians)
+\item Angle between r2 and r3 vectors (radians)
+\item Coplanarity angle (radians)
+\item Error status string ("{}ok"{}, "{}not coplanar"{}, "{}impossible"{}) 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{gibbs_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{gibbs_8cpp_source}{gibbs.\+cpp}}.
+

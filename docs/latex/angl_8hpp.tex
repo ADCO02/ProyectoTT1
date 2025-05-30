@@ -1,0 +1,65 @@
+\doxysection{include/angl.hpp File Reference}
+\hypertarget{angl_8hpp}{}\label{angl_8hpp}\index{include/angl.hpp@{include/angl.hpp}}
+
+
+Computes the angle between two vectors.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+Include dependency graph for angl.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{angl_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{angl_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{angl_8hpp_af206beb61be4f584306f6fefed44eb90}{angl}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&vec1, \mbox{\hyperlink{class_matrix}{Matrix}} \&vec2)
+\begin{DoxyCompactList}\small\item\em Calculates the angle between two vectors in radians. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the angle between two vectors. 
+
+
+
+Definition in file \mbox{\hyperlink{angl_8hpp_source}{angl.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{angl_8hpp_af206beb61be4f584306f6fefed44eb90}\index{angl.hpp@{angl.hpp}!angl@{angl}}
+\index{angl@{angl}!angl.hpp@{angl.hpp}}
+\doxysubsubsection{\texorpdfstring{angl()}{angl()}}
+{\footnotesize\ttfamily \label{angl_8hpp_af206beb61be4f584306f6fefed44eb90} 
+double angl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{vec1}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{vec2}{}\end{DoxyParamCaption})}
+
+
+
+Calculates the angle between two vectors in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec1} & First vector. \\
+\hline
+{\em vec2} & Second vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle between vec1 and vec2 in radians, from 0 to pi. Returns a large undefined value if any vector is near zero length. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{angl_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{angl_8cpp_source}{angl.\+cpp}}.
+

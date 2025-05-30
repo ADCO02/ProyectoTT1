@@ -1,0 +1,107 @@
+\doxysection{include/anglesg.hpp File Reference}
+\hypertarget{anglesg_8hpp}{}\label{anglesg_8hpp}\index{include/anglesg.hpp@{include/anglesg.hpp}}
+
+
+Orbit determination from three optical sightings using the Gauss method.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include "{}LTC.\+hpp"{}}\newline
+{\ttfamily \#include "{}IERS.\+hpp"{}}\newline
+{\ttfamily \#include "{}timediff.\+hpp"{}}\newline
+{\ttfamily \#include "{}Prec\+Matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}Nut\+Matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}Pole\+Matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}GHAMatrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}Geodetic.\+hpp"{}}\newline
+{\ttfamily \#include "{}gibbs.\+hpp"{}}\newline
+{\ttfamily \#include "{}hgibbs.\+hpp"{}}\newline
+{\ttfamily \#include "{}elements.\+hpp"{}}\newline
+{\ttfamily \#include "{}rpoly.\+hpp"{}}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for anglesg.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{anglesg_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{anglesg_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, \mbox{\hyperlink{class_matrix}{Matrix}} \& $>$ \mbox{\hyperlink{anglesg_8hpp_aa28e5c4934a42b8bf68c5e674cf7a7ef}{anglesg}} (double az1, double az2, double az3, double el1, double el2, double el3, double Mjd1, double Mjd2, double Mjd3, \mbox{\hyperlink{class_matrix}{Matrix}} \&Rs1, \mbox{\hyperlink{class_matrix}{Matrix}} \&Rs2, \mbox{\hyperlink{class_matrix}{Matrix}} \&Rs3)
+\begin{DoxyCompactList}\small\item\em Solves the orbit determination problem using three optical sightings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Orbit determination from three optical sightings using the Gauss method. 
+
+This module implements the solution of the classical orbit determination problem from three optical observations (azimuth and elevation angles) at three different times. It returns the position and velocity vectors in the inertial reference frame at the second observation time.
+
+The implementation is based on the classical angles-\/only Gaussian method, enhanced with Earth rotation and observational site position corrections.
+
+The function depends on several auxiliary modules for Earth rotation parameters, coordinate transformations, and orbit mechanics. 
+
+Definition in file \mbox{\hyperlink{anglesg_8hpp_source}{anglesg.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{anglesg_8hpp_aa28e5c4934a42b8bf68c5e674cf7a7ef}\index{anglesg.hpp@{anglesg.hpp}!anglesg@{anglesg}}
+\index{anglesg@{anglesg}!anglesg.hpp@{anglesg.hpp}}
+\doxysubsubsection{\texorpdfstring{anglesg()}{anglesg()}}
+{\footnotesize\ttfamily \label{anglesg_8hpp_aa28e5c4934a42b8bf68c5e674cf7a7ef} 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, \mbox{\hyperlink{class_matrix}{Matrix}} \& $>$ anglesg (\begin{DoxyParamCaption}\item[{double}]{az1}{, }\item[{double}]{az2}{, }\item[{double}]{az3}{, }\item[{double}]{el1}{, }\item[{double}]{el2}{, }\item[{double}]{el3}{, }\item[{double}]{Mjd1}{, }\item[{double}]{Mjd2}{, }\item[{double}]{Mjd3}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{Rs1}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{Rs2}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{Rs3}{}\end{DoxyParamCaption})}
+
+
+
+Solves the orbit determination problem using three optical sightings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em az1} & Azimuth angle at time t1 \mbox{[}rad\mbox{]} \\
+\hline
+{\em az2} & Azimuth angle at time t2 \mbox{[}rad\mbox{]} \\
+\hline
+{\em az3} & Azimuth angle at time t3 \mbox{[}rad\mbox{]} \\
+\hline
+{\em el1} & Elevation angle at time t1 \mbox{[}rad\mbox{]} \\
+\hline
+{\em el2} & Elevation angle at time t2 \mbox{[}rad\mbox{]} \\
+\hline
+{\em el3} & Elevation angle at time t3 \mbox{[}rad\mbox{]} \\
+\hline
+{\em Mjd1} & Modified Julian Date of the first observation \\
+\hline
+{\em Mjd2} & Modified Julian Date of the second observation \\
+\hline
+{\em Mjd3} & Modified Julian Date of the third observation \\
+\hline
+{\em Rs1} & Position vector of site 1 in IJk frame \mbox{[}m\mbox{]} \\
+\hline
+{\em Rs2} & Position vector of site 2 in IJk frame \mbox{[}m\mbox{]} \\
+\hline
+{\em Rs3} & Position vector of site 3 in IJk frame \mbox{[}m\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple containing\+:
+\begin{DoxyItemize}
+\item r\+: Position vector at time t2 in IJk frame \mbox{[}m\mbox{]}
+\item v\+: Velocity vector at time t2 in IJk frame \mbox{[}m/s\mbox{]} 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{anglesg_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{anglesg_8cpp_source}{anglesg.\+cpp}}.
+

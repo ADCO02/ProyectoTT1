@@ -1,0 +1,50 @@
+\doxysection{Accel.\+cpp}
+\hypertarget{_accel_8cpp_source}{}\label{_accel_8cpp_source}\index{src/Accel.cpp@{src/Accel.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_accel_8hpp}{..\(\backslash\)include\(\backslash\)Accel.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00003}\mbox{\hyperlink{_accel_8hpp_a28040ec3672b4e1805218ad1cd43bfa0}{00003}}\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ \mbox{\hyperlink{_accel_8hpp_a28040ec3672b4e1805218ad1cd43bfa0}{Accel}}(\textcolor{keywordtype}{double}\ x,\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ Y)\{\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00004}00004\ \ \ \ \ \textcolor{keyword}{auto}\ [x\_pole,y\_pole,UT1\_UTC,LOD,dpsi,deps,dx\_pole,dy\_pole,TAI\_UTC]\ =\ \mbox{\hyperlink{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26}{IERS}}(\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC\ +\ x/86400,\textcolor{charliteral}{'l'});}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{auto}\ [UT1\_TAI,UTC\_GPS,UT1\_GPS,TT\_UTC,GPS\_UTC]\ =\ timediff(UT1\_UTC,TAI\_UTC);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd\_UT1\ =\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC\ +\ x/86400.0\ +\ UT1\_UTC/86400.0;}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{double}\ Mjd\_TT\ =\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.Mjd\_UTC\ +\ x/86400.0\ +\ TT\_UTC/86400.0;}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00008}00008\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ P\ =\ \mbox{\hyperlink{_prec_matrix_8hpp_a95bbb47a6bcd9ecaf7b5bc46f88dc7d1}{PrecMatrix}}(MJD\_J2000,Mjd\_TT);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ N\ =\ \mbox{\hyperlink{_nut_matrix_8hpp_ac7fb7e48f2d2d4fd63ac42e17e44ff23}{NutMatrix}}(Mjd\_TT);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ T\ =\ N\ *\ P;}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ E\ =\ \mbox{\hyperlink{_pole_matrix_8hpp_aa20f72601d5ff91f277b999d15b7d6c9}{PoleMatrix}}(x\_pole,y\_pole)\ *\ \mbox{\hyperlink{_g_h_a_matrix_8hpp_a49218ae38846c1175342d13a65d41f4d}{GHAMatrix}}(Mjd\_UT1)\ *\ T;}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{double}\ MJD\_TDB\ =\ \mbox{\hyperlink{_mjday___t_d_b_8hpp_a2512825285329f54df7d9f0be4966336}{Mjday\_TDB}}(Mjd\_TT);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{auto}\ [r\_Mercury,r\_Venus,r\_Earth,r\_Mars,r\_Jupiter,r\_Saturn,r\_Uranus,\ r\_Neptune,r\_Pluto,r\_Moon,r\_Sun]\ =\ JPL\_Eph\_DE430(MJD\_TDB);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{comment}{//\ Acceleration\ due\ to\ harmonic\ gravity\ field}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ a\ =\ \mbox{\hyperlink{_accel_harmonic_8hpp_a97ea72b6a1426f18c34d295e50b8fc4b}{AccelHarmonic}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),\ E,\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.n,\ \mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.m);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{comment}{//\ Luni-\/solar\ perturbations}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.sun)\{}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Sun,GM\_Sun);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.moon)\{}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Moon,GM\_Moon);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Planetary\ perturbations}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{global_8hpp_a5706b12963234f7382e60cb7324441f9}{AuxParam}}.planets)\{}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Mercury,GM\_Mercury);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Venus,GM\_Venus);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Mars,GM\_Mars);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Jupiter,GM\_Jupiter);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Saturn,GM\_Saturn);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Uranus,GM\_Uranus);\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Neptune,GM\_Neptune);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ a\ =\ a\ +\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(1,3),r\_Pluto,GM\_Pluto);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ dY\ =\ Y.\mbox{\hyperlink{class_matrix_ac6b4e87c2c5a6d53121eafcfbc483917}{extract\_vector}}(4,6).\mbox{\hyperlink{class_matrix_a88b187da8bc105c4a287a6acc603d85c}{union\_vector}}(a);}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{return}\ dY;}
+\DoxyCodeLine{\Hypertarget{_accel_8cpp_source_l00044}00044\ \}}
+
+\end{DoxyCode}

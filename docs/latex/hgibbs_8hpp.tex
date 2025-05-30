@@ -1,0 +1,84 @@
+\doxysection{include/hgibbs.hpp File Reference}
+\hypertarget{hgibbs_8hpp}{}\label{hgibbs_8hpp}\index{include/hgibbs.hpp@{include/hgibbs.hpp}}
+
+
+Implements the Herrick-\/\+Gibbs approximation for orbit determination.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}angl.\+hpp"{}}\newline
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include "{}unit.\+hpp"{}}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for hgibbs.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hgibbs_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hgibbs_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, double, double, double, string $>$ \mbox{\hyperlink{hgibbs_8hpp_abfce174ff6885367e3aca655642c2dd7}{hgibbs}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&r1, \mbox{\hyperlink{class_matrix}{Matrix}} \&r2, \mbox{\hyperlink{class_matrix}{Matrix}} \&r3, double Mjd1, double Mjd2, double Mjd3)
+\begin{DoxyCompactList}\small\item\em Implements the Herrick-\/\+Gibbs approximation for orbit determination. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements the Herrick-\/\+Gibbs approximation for orbit determination. 
+
+This function computes the velocity vector at the middle position vector using the Herrick-\/\+Gibbs method, based on three position vectors and their corresponding Julian dates. It checks for coplanarity and angle tolerances to ensure the validity of the orbit determination. 
+
+Definition in file \mbox{\hyperlink{hgibbs_8hpp_source}{hgibbs.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{hgibbs_8hpp_abfce174ff6885367e3aca655642c2dd7}\index{hgibbs.hpp@{hgibbs.hpp}!hgibbs@{hgibbs}}
+\index{hgibbs@{hgibbs}!hgibbs.hpp@{hgibbs.hpp}}
+\doxysubsubsection{\texorpdfstring{hgibbs()}{hgibbs()}}
+{\footnotesize\ttfamily \label{hgibbs_8hpp_abfce174ff6885367e3aca655642c2dd7} 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, double, double, double, string $>$ hgibbs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r1}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r2}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{r3}{, }\item[{double}]{Mjd1}{, }\item[{double}]{Mjd2}{, }\item[{double}]{Mjd3}{}\end{DoxyParamCaption})}
+
+
+
+Implements the Herrick-\/\+Gibbs approximation for orbit determination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r1} & First position vector (meters). \\
+\hline
+{\em r2} & Second position vector (meters). \\
+\hline
+{\em r3} & Third position vector (meters). \\
+\hline
+{\em Mjd1} & Julian date corresponding to r1 (days). \\
+\hline
+{\em Mjd2} & Julian date corresponding to r2 (days). \\
+\hline
+{\em Mjd3} & Julian date corresponding to r3 (days).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tuple containing\+:
+\begin{DoxyItemize}
+\item Velocity vector at r2 (3×1 \doxylink{class_matrix}{Matrix}) \mbox{[}m/s\mbox{]}
+\item Angle between r1 and r2 vectors (radians)
+\item Angle between r2 and r3 vectors (radians)
+\item Coplanarity angle (radians)
+\item Error status string ("{}ok"{}, "{}not coplanar"{}, "{}angl $>$ 1ø"{}) 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{hgibbs_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{hgibbs_8cpp_source}{hgibbs.\+cpp}}.
+

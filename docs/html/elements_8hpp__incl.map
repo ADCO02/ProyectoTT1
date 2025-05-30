@@ -1,0 +1,19 @@
+<map id="include/elements.hpp" name="include/elements.hpp">
+<area shape="rect" id="Node000001" title="Computes the osculating Keplerian elements from a satellite state vector." alt="" coords="264,5,408,32"/>
+<area shape="rect" id="Node000002" href="$matrix_8hpp.html" title="Declaration of the Matrix class and related functions for basic matrix operations." alt="" coords="118,80,200,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,35,205,76,203,71,304,30"/>
+<area shape="rect" id="Node000007" href="$_s_a_t___const_8hpp.html" title="Definition of astronomical and mathematical constants used in the library." alt="" coords="224,80,337,107"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="329,34,301,69,297,66,324,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="362,80,423,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="348,31,375,66,371,69,344,34"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="448,80,497,107"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="361,30,436,70,434,75,359,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,62,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,110,70,149,67,144,136,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="85,155,144,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="153,109,133,143,128,140,149,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="168,155,240,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="169,106,190,140,186,143,164,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="264,155,321,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="183,105,257,145,255,149,181,110"/>
+</map>

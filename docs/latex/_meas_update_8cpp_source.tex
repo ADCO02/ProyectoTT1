@@ -1,0 +1,23 @@
+\doxysection{Meas\+Update.\+cpp}
+\hypertarget{_meas_update_8cpp_source}{}\label{_meas_update_8cpp_source}\index{src/MeasUpdate.cpp@{src/MeasUpdate.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_meas_update_8hpp}{..\(\backslash\)include\(\backslash\)MeasUpdate.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00003}\mbox{\hyperlink{_meas_update_8hpp_ae12754392beb1fd53d392978b396266f}{00003}}\ tuple<Matrix\&,\ Matrix\&,\ Matrix\&>\ \mbox{\hyperlink{_meas_update_8hpp_ae12754392beb1fd53d392978b396266f}{MeasUpdate}}(\mbox{\hyperlink{class_matrix}{Matrix}}\&\ x,\ \textcolor{keywordtype}{double}\ z,\ \textcolor{keywordtype}{double}\ g,\ \textcolor{keywordtype}{double}\ s,\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ G,\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ P,\ \textcolor{keywordtype}{int}\ n)\{}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00004}00004\ \ \ \ \ \textcolor{keywordtype}{int}\ m\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{double}\ Inv\_W\ =\ s*s;\ \ \ \ \textcolor{comment}{//\ Inverse\ weight\ (measurement\ covariance)}}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//\ Kalman\ gain}}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ K\ =\ (P*(G.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}())*\mbox{\hyperlink{matrix_8hpp_ad8d8519e7f94df41a4c5b535b4899222}{inv}}(G*P*(G.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}())+Inv\_W)).\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}();}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{comment}{//\ State\ update}}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00011}00011\ \ \ \ \ x\ =\ x\ +\ (K*(z-\/g));}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{comment}{//\ Covariance\ update}}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00014}00014\ \ \ \ \ P\ =\ (\mbox{\hyperlink{matrix_8hpp_a6d5ff1bcc8ce1f0309a47210e1231c6c}{eye}}(n)-\/K.\mbox{\hyperlink{class_matrix_ad609fedfd61e93679803bb114e544569}{transpose}}()*G)*P;}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{return}\ tie(K,x,P);}
+\DoxyCodeLine{\Hypertarget{_meas_update_8cpp_source_l00017}00017\ \}}
+
+\end{DoxyCode}

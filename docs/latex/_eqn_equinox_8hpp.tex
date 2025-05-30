@@ -1,0 +1,64 @@
+\doxysection{include/\+Eqn\+Equinox.hpp File Reference}
+\hypertarget{_eqn_equinox_8hpp}{}\label{_eqn_equinox_8hpp}\index{include/EqnEquinox.hpp@{include/EqnEquinox.hpp}}
+
+
+Computes the equation of the equinoxes from nutation and obliquity values.  
+
+
+{\ttfamily \#include "{}Nut\+Angles.\+hpp"{}}\newline
+{\ttfamily \#include "{}Mean\+Obliquity.\+hpp"{}}\newline
+Include dependency graph for Eqn\+Equinox.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{_eqn_equinox_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_eqn_equinox_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{_eqn_equinox_8hpp_a1178917cf376ea4f15cea33c59028635}{Eqn\+Equinox}} (double Mjd\+\_\+\+TT)
+\begin{DoxyCompactList}\small\item\em Computes the equation of the equinoxes from nutation and obliquity values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the equation of the equinoxes from nutation and obliquity values. 
+
+This function calculates the equation of the equinoxes, defined as the product of the nutation in longitude and the cosine of the mean obliquity. It represents the difference between apparent and mean sidereal time, or equivalently, the right ascension of the mean equinox referred to the true equator and equinox. 
+
+Definition in file \mbox{\hyperlink{_eqn_equinox_8hpp_source}{Eqn\+Equinox.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_eqn_equinox_8hpp_a1178917cf376ea4f15cea33c59028635}\index{EqnEquinox.hpp@{EqnEquinox.hpp}!EqnEquinox@{EqnEquinox}}
+\index{EqnEquinox@{EqnEquinox}!EqnEquinox.hpp@{EqnEquinox.hpp}}
+\doxysubsubsection{\texorpdfstring{EqnEquinox()}{EqnEquinox()}}
+{\footnotesize\ttfamily \label{_eqn_equinox_8hpp_a1178917cf376ea4f15cea33c59028635} 
+double Eqn\+Equinox (\begin{DoxyParamCaption}\item[{double}]{Mjd\+\_\+\+TT}{}\end{DoxyParamCaption})}
+
+
+
+Computes the equation of the equinoxes from nutation and obliquity values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mjd\+\_\+\+TT} & Modified Julian Date (Terrestrial Time).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The equation of the equinoxes \mbox{[}rad\mbox{]}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_eqn_equinox_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_eqn_equinox_8cpp_source}{Eqn\+Equinox.\+cpp}}.
+

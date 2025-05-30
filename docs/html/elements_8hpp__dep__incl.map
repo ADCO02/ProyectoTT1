@@ -1,0 +1,14 @@
+<map id="include/elements.hpp" name="include/elements.hpp">
+<area shape="rect" id="Node000001" title="Computes the osculating Keplerian elements from a satellite state vector." alt="" coords="294,5,438,32"/>
+<area shape="rect" id="Node000002" href="$anglesg_8hpp.html" title="Orbit determination from three optical sightings using the Gauss method." alt="" coords="179,80,316,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,43,270,82,267,77,331,38"/>
+<area shape="rect" id="Node000005" href="$tests_8cpp_source.html" title=" " alt="" coords="325,155,434,181"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="371,47,381,154,376,154,366,48"/>
+<area shape="rect" id="Node000006" href="$elements_8cpp_source.html" title=" " alt="" coords="404,80,525,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="397,39,449,77,446,82,394,44"/>
+<area shape="rect" id="Node000003" href="$anglesg_8cpp_source.html" title=" " alt="" coords="5,155,119,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,115,96,157,94,152,200,110"/>
+<area shape="rect" id="Node000004" href="$_e_k_f___g_e_o_s3_8cpp_source.html" title=" " alt="" coords="143,155,301,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="240,122,229,155,224,153,235,120"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="284,112,357,152,355,156,282,117"/>
+</map>

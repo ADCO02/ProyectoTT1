@@ -1,0 +1,9 @@
+<map id="include/NutAngles.hpp" name="include/NutAngles.hpp">
+<area shape="rect" id="Node000001" title="Computes the nutation angles in longitude and obliquity." alt="" coords="95,5,248,32"/>
+<area shape="rect" id="Node000002" href="$_s_a_t___const_8hpp.html" title="Definition of astronomical and mathematical constants used in the library." alt="" coords="5,80,119,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,35,95,74,92,69,151,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="143,80,200,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,33,174,64,169,64,169,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="224,80,273,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="187,31,226,67,222,71,183,34"/>
+</map>

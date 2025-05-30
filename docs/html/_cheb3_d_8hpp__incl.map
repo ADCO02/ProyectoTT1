@@ -1,0 +1,13 @@
+<map id="include/Cheb3D.hpp" name="include/Cheb3D.hpp">
+<area shape="rect" id="Node000001" title="Evaluates a Chebyshev approximation for a 3D vector at a given time." alt="" coords="89,5,228,32"/>
+<area shape="rect" id="Node000002" href="$matrix_8hpp.html" title="Declaration of the Matrix class and related functions for basic matrix operations." alt="" coords="118,80,200,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,33,162,64,156,64,156,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,62,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,110,70,149,67,144,136,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="85,155,144,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="153,109,133,143,128,140,149,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="168,155,240,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="169,106,190,140,186,143,164,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="264,155,321,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="183,105,257,145,255,149,181,110"/>
+</map>

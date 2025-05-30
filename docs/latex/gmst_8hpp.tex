@@ -1,0 +1,64 @@
+\doxysection{include/gmst.hpp File Reference}
+\hypertarget{gmst_8hpp}{}\label{gmst_8hpp}\index{include/gmst.hpp@{include/gmst.hpp}}
+
+
+Computes Greenwich Mean Sidereal Time (GMST) from UT1.  
+
+
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include "{}Frac.\+hpp"{}}\newline
+Include dependency graph for gmst.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{gmst_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gmst_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{gmst_8hpp_a22a9ee5ea799a7511f4b5b1939c9de76}{gmst}} (double Mjd\+\_\+\+UT1)
+\begin{DoxyCompactList}\small\item\em Computes Greenwich Mean Sidereal Time (GMST) from UT1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes Greenwich Mean Sidereal Time (GMST) from UT1. 
+
+Returns the Greenwich Mean Sidereal Time (GMST) in radians, based on the input Modified Julian Date in UT1 time scale. GMST is essential for transforming between inertial and Earth-\/fixed coordinate systems, as it reflects the rotation of the Earth relative to the fixed stars. 
+
+Definition in file \mbox{\hyperlink{gmst_8hpp_source}{gmst.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{gmst_8hpp_a22a9ee5ea799a7511f4b5b1939c9de76}\index{gmst.hpp@{gmst.hpp}!gmst@{gmst}}
+\index{gmst@{gmst}!gmst.hpp@{gmst.hpp}}
+\doxysubsubsection{\texorpdfstring{gmst()}{gmst()}}
+{\footnotesize\ttfamily \label{gmst_8hpp_a22a9ee5ea799a7511f4b5b1939c9de76} 
+double gmst (\begin{DoxyParamCaption}\item[{double}]{Mjd\+\_\+\+UT1}{}\end{DoxyParamCaption})}
+
+
+
+Computes Greenwich Mean Sidereal Time (GMST) from UT1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mjd\+\_\+\+UT1} & Modified Julian Date (UT1 time scale).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+GMST in radians within the range \mbox{[}0, 2π). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{gmst_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{gmst_8cpp_source}{gmst.\+cpp}}.
+

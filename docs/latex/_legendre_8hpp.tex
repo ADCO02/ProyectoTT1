@@ -1,0 +1,73 @@
+\doxysection{include/\+Legendre.hpp File Reference}
+\hypertarget{_legendre_8hpp}{}\label{_legendre_8hpp}\index{include/Legendre.hpp@{include/Legendre.hpp}}
+
+
+Computes associated Legendre polynomials and their derivatives.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for Legendre.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_legendre_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_legendre_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, \mbox{\hyperlink{class_matrix}{Matrix}} \& $>$ \mbox{\hyperlink{_legendre_8hpp_a55ce532de3c95506384990ae714dd99d}{Legendre}} (int n, int m, double fi)
+\begin{DoxyCompactList}\small\item\em Computes associated Legendre polynomials and their derivatives. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes associated Legendre polynomials and their derivatives. 
+
+Given degree n, order m, and angle fi (in radians), this function computes the normalized associated Legendre functions ( P\+\_\+\{nm\}(\textbackslash{}phi) ) and their derivatives with respect to (\textbackslash{}phi). 
+
+Definition in file \mbox{\hyperlink{_legendre_8hpp_source}{Legendre.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_legendre_8hpp_a55ce532de3c95506384990ae714dd99d}\index{Legendre.hpp@{Legendre.hpp}!Legendre@{Legendre}}
+\index{Legendre@{Legendre}!Legendre.hpp@{Legendre.hpp}}
+\doxysubsubsection{\texorpdfstring{Legendre()}{Legendre()}}
+{\footnotesize\ttfamily \label{_legendre_8hpp_a55ce532de3c95506384990ae714dd99d} 
+tuple$<$ \mbox{\hyperlink{class_matrix}{Matrix}} \&, \mbox{\hyperlink{class_matrix}{Matrix}} \& $>$ Legendre (\begin{DoxyParamCaption}\item[{int}]{n}{, }\item[{int}]{m}{, }\item[{double}]{fi}{}\end{DoxyParamCaption})}
+
+
+
+Computes associated Legendre polynomials and their derivatives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Degree of the Legendre polynomial (non-\/negative integer). \\
+\hline
+{\em m} & Order of the Legendre polynomial (0 ≤ m ≤ n). \\
+\hline
+{\em fi} & Angle in radians (colatitude or similar).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::tuple containing references to two matrices (n+1)×(m+1)\+:
+\begin{DoxyItemize}
+\item pnm\+: matrix of normalized associated Legendre polynomials ( P\+\_\+\{nm\}(\textbackslash{}phi) )
+\item dpnm\+: matrix of their derivatives with respect to (\textbackslash{}phi). 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_legendre_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_legendre_8cpp_source}{Legendre.\+cpp}}.
+

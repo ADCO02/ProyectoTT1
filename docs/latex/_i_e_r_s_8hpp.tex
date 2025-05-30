@@ -1,0 +1,87 @@
+\doxysection{include/\+IERS.hpp File Reference}
+\hypertarget{_i_e_r_s_8hpp}{}\label{_i_e_r_s_8hpp}\index{include/IERS.hpp@{include/IERS.hpp}}
+
+
+Retrieves Earth orientation parameters (EOP) from IERS data.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include "{}global.\+hpp"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for IERS.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_e_r_s_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_e_r_s_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ double, double, double, double, double, double, double, double, double $>$ \mbox{\hyperlink{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26}{IERS}} (double Mjd\+\_\+\+UTC, char interp=\textquotesingle{}n\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Retrieves Earth orientation parameters (EOP) from IERS data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Retrieves Earth orientation parameters (EOP) from IERS data. 
+
+Returns polar motion coordinates, UT1-\/\+UTC, length of day, nutation corrections, and time offsets for a given Modified Julian Date (UTC). It can perform linear interpolation between data points or return exact values. 
+
+Definition in file \mbox{\hyperlink{_i_e_r_s_8hpp_source}{IERS.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26}\index{IERS.hpp@{IERS.hpp}!IERS@{IERS}}
+\index{IERS@{IERS}!IERS.hpp@{IERS.hpp}}
+\doxysubsubsection{\texorpdfstring{IERS()}{IERS()}}
+{\footnotesize\ttfamily \label{_i_e_r_s_8hpp_a604da782a6f9aa24d26bc5c50fcdbd26} 
+tuple$<$ double, double, double, double, double, double, double, double, double $>$ IERS (\begin{DoxyParamCaption}\item[{double}]{Mjd\+\_\+\+UTC}{, }\item[{char}]{interp}{ = {\ttfamily \textquotesingle{}n\textquotesingle{}}}\end{DoxyParamCaption})}
+
+
+
+Retrieves Earth orientation parameters (EOP) from IERS data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mjd\+\_\+\+UTC} & Modified Julian Date (UTC) for which EOP values are requested. \\
+\hline
+{\em interp} & Interpolation flag\+:
+\begin{DoxyItemize}
+\item \textquotesingle{}n\textquotesingle{} \+: no interpolation (default),
+\item \textquotesingle{}l\textquotesingle{} \+: linear interpolation between nearest entries.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::tuple containing\+:
+\begin{DoxyItemize}
+\item x\+\_\+pole (rad) \+: x coordinate of pole position,
+\item y\+\_\+pole (rad) \+: y coordinate of pole position,
+\item UT1\+\_\+\+UTC (s) \+: difference between UT1 and UTC,
+\item LOD (s) \+: length of day,
+\item dpsi (rad) \+: nutation in longitude,
+\item deps (rad) \+: nutation in obliquity,
+\item dx\+\_\+pole (rad) \+: correction to x pole coordinate,
+\item dy\+\_\+pole (rad) \+: correction to y pole coordinate,
+\item TAI\+\_\+\+UTC (s) \+: difference between TAI and UTC.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function uses the global {\ttfamily eopdata} matrix for Earth orientation parameters. Exits the program if the MJD is not found in the data. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{_i_e_r_s_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_i_e_r_s_8cpp_source}{IERS.\+cpp}}.
+

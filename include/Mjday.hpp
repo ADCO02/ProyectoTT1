@@ -1,3 +1,11 @@
+/**
+ * @file Mjday.hpp
+ * 
+ * @brief Computes the Modified Julian Date from calendar date and time.
+ *
+ * Converts a calendar date and time (UTC) into the Modified Julian Date (MJD).
+ */
+
 #ifndef _MJDAY_
 #define _MJDAY_
 
@@ -5,8 +13,6 @@
 
 /**
  * @brief Computes the Modified Julian Date from calendar date and time.
- *
- * Converts a calendar date and time (UTC) into the Modified Julian Date (MJD).
  *
  * @param yr  Year.
  * @param mon Month.

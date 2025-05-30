@@ -1,0 +1,17 @@
+\doxysection{LTC.\+cpp}
+\hypertarget{_l_t_c_8cpp_source}{}\label{_l_t_c_8cpp_source}\index{src/LTC.cpp@{src/LTC.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_l_t_c_8hpp}{..\(\backslash\)include\(\backslash\)LTC.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00003}\mbox{\hyperlink{_l_t_c_8hpp_a27b89059a0c4bc52a9192df16ead3359}{00003}}\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ \mbox{\hyperlink{_l_t_c_8hpp_a27b89059a0c4bc52a9192df16ead3359}{LTC}}(\textcolor{keywordtype}{double}\ lon,\ \textcolor{keywordtype}{double}\ lat)\{}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00004}00004\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ M\ =\ (\mbox{\hyperlink{_r__y_8hpp_a25114557991f92fd6b027118c591a98f}{R\_y}}(lat*(-\/1.0)))*(\mbox{\hyperlink{_r__z_8hpp_a4f688959a9ab144bf27d272e54bf7258}{R\_z}}(lon));}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=1;\ j<=3;\ j++)\{}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Aux=M(1,j);\ M(1,j)=M(2,j);\ M(2,j)=M(3,j);\ M(3,j)=\ Aux;}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00008}00008\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{return}\ M;}
+\DoxyCodeLine{\Hypertarget{_l_t_c_8cpp_source_l00011}00011\ \}}
+
+\end{DoxyCode}

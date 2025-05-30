@@ -1,3 +1,13 @@
+/**
+ * @file TimeUpdate.hpp
+ * 
+ * @brief Updates the covariance matrix over a time step using the state transition matrix.
+ * 
+ * This function performs the time update (also known as the prediction step) 
+ * of a covariance matrix P based on the state transition matrix Phi and optionally adds 
+ * process noise scaled by Qdt.
+ */
+
 #ifndef _TIMEUPDATE_
 #define _TIMEUPDATE_
 
@@ -6,10 +16,6 @@
 
 /**
  * @brief Updates the covariance matrix over a time step using the state transition matrix.
- * 
- * This function performs the time update (also known as the prediction step) 
- * of a covariance matrix P based on the state transition matrix Phi and optionally adds 
- * process noise scaled by Qdt.
  * 
  * @param P The covariance matrix prior to the update.
  * @param Phi The state transition matrix for the time interval.

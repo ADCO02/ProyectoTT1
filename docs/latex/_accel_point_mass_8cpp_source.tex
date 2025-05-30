@@ -1,0 +1,18 @@
+\doxysection{Accel\+Point\+Mass.\+cpp}
+\hypertarget{_accel_point_mass_8cpp_source}{}\label{_accel_point_mass_8cpp_source}\index{src/AccelPointMass.cpp@{src/AccelPointMass.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_accel_point_mass_8hpp}{..\(\backslash\)include\(\backslash\)AccelPointMass.hpp}}"{}}}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00003}\mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{00003}}\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ \mbox{\hyperlink{_accel_point_mass_8hpp_a72b636f377c135454d41655c935c0eb3}{AccelPointMass}}(\mbox{\hyperlink{class_matrix}{Matrix}}\&\ r,\ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ s,\ \textcolor{keywordtype}{double}\ GM)\{}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00004}00004\ \ \ \ \ \textcolor{comment}{//\ Relative\ position\ vector\ of\ satellite\ w.r.t.\ point\ mass\ }}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00005}00005\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ d\ =\ r\ -\/\ s;}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//\ Acceleration}}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00008}00008\ \ \ \ \ \mbox{\hyperlink{class_matrix}{Matrix}}\&\ a\ =\ (\ d/pow(\mbox{\hyperlink{matrix_8hpp_a4171206f7b54c775745f80c5fb77b2c0}{norm}}(d),3)\ +\ s/pow(\mbox{\hyperlink{matrix_8hpp_a4171206f7b54c775745f80c5fb77b2c0}{norm}}(s),3)\ )\ *\ -\/GM;}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{return}\ a;}
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_accel_point_mass_8cpp_source_l00012}00012\ \}}
+
+\end{DoxyCode}

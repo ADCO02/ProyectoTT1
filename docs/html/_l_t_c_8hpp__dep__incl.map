@@ -1,0 +1,15 @@
+<map id="include/LTC.hpp" name="include/LTC.hpp">
+<area shape="rect" id="Node000001" title="Computes the rotation matrix from ECEF to local tangent coordinates." alt="" coords="238,5,354,32"/>
+<area shape="rect" id="Node000002" href="$anglesg_8hpp.html" title="Orbit determination from three optical sightings using the Gauss method." alt="" coords="176,80,312,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="280,46,255,81,251,78,276,43"/>
+<area shape="rect" id="Node000004" href="$_e_k_f___g_e_o_s3_8cpp_source.html" title=" " alt="" coords="5,155,163,181"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="245,41,205,59,166,82,124,121,95,156,91,153,120,117,162,78,202,54,243,36"/>
+<area shape="rect" id="Node000005" href="$tests_8cpp_source.html" title=" " alt="" coords="324,155,433,181"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="313,45,374,153,369,156,308,47"/>
+<area shape="rect" id="Node000006" href="$_l_t_c_8cpp_source.html" title=" " alt="" coords="387,80,480,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="335,37,410,77,408,82,332,42"/>
+<area shape="rect" id="Node000003" href="$anglesg_8cpp_source.html" title=" " alt="" coords="187,155,301,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="247,122,247,154,241,154,241,122"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="203,116,113,156,111,152,201,111"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="282,112,356,152,354,156,279,117"/>
+</map>

@@ -1,0 +1,68 @@
+\doxysection{include/\+Nut\+Angles.hpp File Reference}
+\hypertarget{_nut_angles_8hpp}{}\label{_nut_angles_8hpp}\index{include/NutAngles.hpp@{include/NutAngles.hpp}}
+
+
+Computes the nutation angles in longitude and obliquity.  
+
+
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for Nut\+Angles.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{_nut_angles_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_nut_angles_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ double, double $>$ \mbox{\hyperlink{_nut_angles_8hpp_a8028f5f2ac1a0a2126d8edf6a5ed80c6}{Nut\+Angles}} (double Mjd\+\_\+\+TT)
+\begin{DoxyCompactList}\small\item\em Computes the nutation angles in longitude and obliquity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the nutation angles in longitude and obliquity. 
+
+This function calculates the nutation angles (Δψ and Δε) in radians for a given Terrestrial Time (TT) expressed in Modified Julian Date (MJD). 
+
+Definition in file \mbox{\hyperlink{_nut_angles_8hpp_source}{Nut\+Angles.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_nut_angles_8hpp_a8028f5f2ac1a0a2126d8edf6a5ed80c6}\index{NutAngles.hpp@{NutAngles.hpp}!NutAngles@{NutAngles}}
+\index{NutAngles@{NutAngles}!NutAngles.hpp@{NutAngles.hpp}}
+\doxysubsubsection{\texorpdfstring{NutAngles()}{NutAngles()}}
+{\footnotesize\ttfamily \label{_nut_angles_8hpp_a8028f5f2ac1a0a2126d8edf6a5ed80c6} 
+tuple$<$ double, double $>$ Nut\+Angles (\begin{DoxyParamCaption}\item[{double}]{Mjd\+\_\+\+TT}{}\end{DoxyParamCaption})}
+
+
+
+Computes the nutation angles in longitude and obliquity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mjd\+\_\+\+TT} & Terrestrial Time expressed in Modified Julian Date.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A std\+::tuple containing\+:
+\begin{DoxyItemize}
+\item nutation in longitude (Δψ) in radians,
+\item nutation in obliquity (Δε) in radians. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_nut_angles_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_nut_angles_8cpp_source}{Nut\+Angles.\+cpp}}.
+

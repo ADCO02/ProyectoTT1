@@ -1,3 +1,13 @@
+/**
+ * @file IERS.hpp
+ * 
+ * @brief Retrieves Earth orientation parameters (EOP) from IERS data.
+ * 
+ * Returns polar motion coordinates, UT1-UTC, length of day,
+ * nutation corrections, and time offsets for a given Modified Julian Date (UTC).
+ * It can perform linear interpolation between data points or return exact values.
+ */
+
 #ifndef _IERS_
 #define _IERS_
 
@@ -9,10 +19,6 @@
 
 /**
  * @brief Retrieves Earth orientation parameters (EOP) from IERS data.
- * 
- * This function returns polar motion coordinates, UT1-UTC, length of day,
- * nutation corrections, and time offsets for a given Modified Julian Date (UTC).
- * It can perform linear interpolation between data points or return exact values.
  * 
  * @param Mjd_UTC Modified Julian Date (UTC) for which EOP values are requested.
  * @param interp  Interpolation flag:

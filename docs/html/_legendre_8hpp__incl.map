@@ -1,0 +1,16 @@
+<map id="include/Legendre.hpp" name="include/Legendre.hpp">
+<area shape="rect" id="Node000001" title="Computes associated Legendre polynomials and their derivatives." alt="" coords="215,5,359,32"/>
+<area shape="rect" id="Node000002" href="$matrix_8hpp.html" title="Declaration of the Matrix class and related functions for basic matrix operations." alt="" coords="163,80,245,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,35,232,72,228,68,271,31"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="264,155,321,181"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="290,32,294,139,289,139,285,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="325,80,374,107"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="300,31,331,66,327,70,296,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,62,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,110,77,151,75,146,173,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="85,155,144,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="190,109,144,147,140,143,187,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="168,155,240,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="207,107,207,139,202,139,202,107"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="221,105,267,143,264,147,218,109"/>
+</map>

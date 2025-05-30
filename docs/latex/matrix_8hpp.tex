@@ -1,0 +1,247 @@
+\doxysection{include/matrix.hpp File Reference}
+\hypertarget{matrix_8hpp}{}\label{matrix_8hpp}\index{include/matrix.hpp@{include/matrix.hpp}}
+
+
+Declaration of the \doxylink{class_matrix}{Matrix} class and related functions for basic matrix operations.  
+
+
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for matrix.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{matrix_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{matrix_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_matrix}{Matrix}}
+\begin{DoxyCompactList}\small\item\em Class for basic matrix operations and storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \mbox{\hyperlink{matrix_8hpp_a6ce0bc529fe2ee6fb2d0eb8acbdc1e92}{operator$<$$<$}} (ostream \&o, \mbox{\hyperlink{class_matrix}{Matrix}} \&m)
+\begin{DoxyCompactList}\small\item\em Outputs the matrix to an output stream. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}{zeros}} (const int n\+\_\+row, const int n\+\_\+column)
+\begin{DoxyCompactList}\small\item\em Creates a zero matrix with specified rows and columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{matrix_8hpp_a3f83e7a3e8e4eea823815efa936cb93d}{zeros}} (const int v\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Creates a zero vector of specified size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{matrix_8hpp_a6d5ff1bcc8ce1f0309a47210e1231c6c}{eye}} (const int n)
+\begin{DoxyCompactList}\small\item\em Creates an identity matrix of size n x n. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{matrix_8hpp_a4171206f7b54c775745f80c5fb77b2c0}{norm}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&v)
+\begin{DoxyCompactList}\small\item\em Computes the Euclidean norm of a vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{matrix_8hpp_a8d69098a17359927ba56f235d1012f8d}{dot}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&v1, \mbox{\hyperlink{class_matrix}{Matrix}} \&v2)
+\begin{DoxyCompactList}\small\item\em Computes the dot product of two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{matrix_8hpp_a08b20c4fe4332345ef52eaa22cbf181a}{cross}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&v1, \mbox{\hyperlink{class_matrix}{Matrix}} \&v2)
+\begin{DoxyCompactList}\small\item\em Computes the cross product of two 3D vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{matrix_8hpp_ad8d8519e7f94df41a4c5b535b4899222}{inv}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&m)
+\begin{DoxyCompactList}\small\item\em Computes the inverse of a matrix (if square and invertible). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the \doxylink{class_matrix}{Matrix} class and related functions for basic matrix operations. 
+
+This file contains the definition of the \doxylink{class_matrix}{Matrix} class, which supports dynamic allocation of 2D matrices, arithmetic operators, and linear algebra methods. 
+
+Definition in file \mbox{\hyperlink{matrix_8hpp_source}{matrix.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{matrix_8hpp_a08b20c4fe4332345ef52eaa22cbf181a}\index{matrix.hpp@{matrix.hpp}!cross@{cross}}
+\index{cross@{cross}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{cross()}{cross()}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a08b20c4fe4332345ef52eaa22cbf181a} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& cross (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{v1}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{v2}{}\end{DoxyParamCaption})}
+
+
+
+Computes the cross product of two 3D vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & First vector (length 3). \\
+\hline
+{\em v2} & Second vector (length 3). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the cross product vector. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00508}{508}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_a8d69098a17359927ba56f235d1012f8d}\index{matrix.hpp@{matrix.hpp}!dot@{dot}}
+\index{dot@{dot}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a8d69098a17359927ba56f235d1012f8d} 
+double dot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{v1}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{v2}{}\end{DoxyParamCaption})}
+
+
+
+Computes the dot product of two vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & First vector. \\
+\hline
+{\em v2} & Second vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dot product result. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00488}{488}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_a6d5ff1bcc8ce1f0309a47210e1231c6c}\index{matrix.hpp@{matrix.hpp}!eye@{eye}}
+\index{eye@{eye}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{eye()}{eye()}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a6d5ff1bcc8ce1f0309a47210e1231c6c} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& eye (\begin{DoxyParamCaption}\item[{const int}]{n}{}\end{DoxyParamCaption})}
+
+
+
+Creates an identity matrix of size n x n. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Size of the identity matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the identity matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00456}{456}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_ad8d8519e7f94df41a4c5b535b4899222}\index{matrix.hpp@{matrix.hpp}!inv@{inv}}
+\index{inv@{inv}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{inv()}{inv()}}
+{\footnotesize\ttfamily \label{matrix_8hpp_ad8d8519e7f94df41a4c5b535b4899222} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{m}{}\end{DoxyParamCaption})}
+
+
+
+Computes the inverse of a matrix (if square and invertible). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \doxylink{class_matrix}{Matrix} to invert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the inverse matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00525}{525}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_a4171206f7b54c775745f80c5fb77b2c0}\index{matrix.hpp@{matrix.hpp}!norm@{norm}}
+\index{norm@{norm}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a4171206f7b54c775745f80c5fb77b2c0} 
+double norm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{v}{}\end{DoxyParamCaption})}
+
+
+
+Computes the Euclidean norm of a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Vector whose norm is computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Euclidean norm of the vector. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00471}{471}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_a6ce0bc529fe2ee6fb2d0eb8acbdc1e92}\index{matrix.hpp@{matrix.hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a6ce0bc529fe2ee6fb2d0eb8acbdc1e92} 
+ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{o}{, }\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{m}{}\end{DoxyParamCaption})}
+
+
+
+Outputs the matrix to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & Output stream. \\
+\hline
+{\em m} & \doxylink{class_matrix}{Matrix} to output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the output stream. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00417}{417}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618}\index{matrix.hpp@{matrix.hpp}!zeros@{zeros}}
+\index{zeros@{zeros}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{zeros()}{zeros()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a56d60ea1f08402246a7cfd477d69a618} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& zeros (\begin{DoxyParamCaption}\item[{const int}]{n\+\_\+row}{, }\item[{const int}]{n\+\_\+column}{}\end{DoxyParamCaption})}
+
+
+
+Creates a zero matrix with specified rows and columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+row} & Number of rows. \\
+\hline
+{\em n\+\_\+column} & Number of columns. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the zero matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00429}{429}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+
+\Hypertarget{matrix_8hpp_a3f83e7a3e8e4eea823815efa936cb93d}\index{matrix.hpp@{matrix.hpp}!zeros@{zeros}}
+\index{zeros@{zeros}!matrix.hpp@{matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{zeros()}{zeros()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{matrix_8hpp_a3f83e7a3e8e4eea823815efa936cb93d} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& zeros (\begin{DoxyParamCaption}\item[{const int}]{v\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Creates a zero vector of specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+\_\+size} & Size of the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the zero vector. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8cpp_source_l00444}{444}} of file \mbox{\hyperlink{matrix_8cpp_source}{matrix.\+cpp}}.
+

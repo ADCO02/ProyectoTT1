@@ -1,0 +1,14 @@
+<map id="include/EqnEquinox.hpp" name="include/EqnEquinox.hpp">
+<area shape="rect" id="Node000001" title="Computes the equation of the equinoxes from nutation and obliquity values." alt="" coords="60,5,221,32"/>
+<area shape="rect" id="Node000002" href="$_nut_angles_8hpp.html" title="Computes the nutation angles in longitude and obliquity." alt="" coords="157,80,264,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,31,190,67,186,71,151,34"/>
+<area shape="rect" id="Node000006" href="$_mean_obliquity_8hpp.html" title="Computes the mean obliquity of the ecliptic." alt="" coords="5,80,134,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="130,34,94,71,90,67,126,31"/>
+<area shape="rect" id="Node000003" href="$_s_a_t___const_8hpp.html" title="Definition of astronomical and mathematical constants used in the library." alt="" coords="29,155,142,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,110,122,149,119,144,188,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="174,155,232,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="212,108,209,139,203,139,207,107"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="256,155,305,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="225,105,260,141,256,145,221,109"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="75,107,82,139,77,140,70,108"/>
+</map>

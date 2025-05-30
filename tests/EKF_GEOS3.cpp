@@ -18,6 +18,26 @@
 
 using namespace std;
 
+/**
+ * @brief Main function for Initial Orbit Determination using Gauss and Extended Kalman Filter methods.
+ *
+ * This program performs satellite orbit determination by processing observational data
+ * and applying orbital mechanics and filtering algorithms.
+ * 
+ * The workflow includes:
+ * - Reading Earth orientation parameters and observation data.
+ * - Computing initial position and velocity vectors using the Gauss method.
+ * - Propagating satellite state with numerical integration.
+ * - Applying Extended Kalman Filter (EKF) updates using azimuth, elevation, and range measurements.
+ * - Computing and displaying estimation errors compared to true state values.
+ * 
+ * References:
+ * - O. Montenbruck, E. Gill, "Satellite Orbits - Models, Methods, and Applications", Springer Verlag, 2000.
+ * - D. Vallado, "Fundamentals of Astrodynamics and Applications", 4th Edition, 2013.
+ * - G. Seeber, "Satellite Geodesy", 2nd Edition, 2003.
+ * 
+ * @return int Returns 0 on successful execution.
+ */
 int main() {
     //--------------------------------------------------------------------------
     //

@@ -1,3 +1,12 @@
+/**
+ * @file NutAngles.hpp
+ * 
+ * @brief Computes the nutation angles in longitude and obliquity.
+ *
+ * This function calculates the nutation angles (Δψ and Δε) in radians
+ * for a given Terrestrial Time (TT) expressed in Modified Julian Date (MJD).
+ */
+
 #ifndef _NUTANGLES_
 #define _NUTANGLES_
 
@@ -9,9 +18,6 @@ using namespace std;
 
 /**
  * @brief Computes the nutation angles in longitude and obliquity.
- *
- * This function calculates the nutation angles (Δψ and Δε) in radians
- * for a given Terrestrial Time (TT) expressed in Modified Julian Date (MJD).
  * 
  * @param Mjd_TT Terrestrial Time expressed in Modified Julian Date.
  * 

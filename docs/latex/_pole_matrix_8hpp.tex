@@ -1,0 +1,67 @@
+\doxysection{include/\+Pole\+Matrix.hpp File Reference}
+\hypertarget{_pole_matrix_8hpp}{}\label{_pole_matrix_8hpp}\index{include/PoleMatrix.hpp@{include/PoleMatrix.hpp}}
+
+
+Computes the pole matrix for transforming pseudo Earth-\/fixed to true Earth-\/fixed coordinates.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+x.\+hpp"{}}\newline
+{\ttfamily \#include "{}R\+\_\+y.\+hpp"{}}\newline
+Include dependency graph for Pole\+Matrix.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{_pole_matrix_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_pole_matrix_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& \mbox{\hyperlink{_pole_matrix_8hpp_aa20f72601d5ff91f277b999d15b7d6c9}{Pole\+Matrix}} (double xp, double yp)
+\begin{DoxyCompactList}\small\item\em Computes the pole matrix for transforming pseudo Earth-\/fixed to true Earth-\/fixed coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes the pole matrix for transforming pseudo Earth-\/fixed to true Earth-\/fixed coordinates. 
+
+Generates the rotation matrix that corrects for polar motion, converting coordinates from the pseudo Earth-\/fixed frame (which assumes a fixed pole) to the actual Earth-\/fixed frame accounting for the small variations in Earth\textquotesingle{}s rotation axis due to polar motion. This correction is essential in precise geodetic and astronomical calculations. 
+
+Definition in file \mbox{\hyperlink{_pole_matrix_8hpp_source}{Pole\+Matrix.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_pole_matrix_8hpp_aa20f72601d5ff91f277b999d15b7d6c9}\index{PoleMatrix.hpp@{PoleMatrix.hpp}!PoleMatrix@{PoleMatrix}}
+\index{PoleMatrix@{PoleMatrix}!PoleMatrix.hpp@{PoleMatrix.hpp}}
+\doxysubsubsection{\texorpdfstring{PoleMatrix()}{PoleMatrix()}}
+{\footnotesize\ttfamily \label{_pole_matrix_8hpp_aa20f72601d5ff91f277b999d15b7d6c9} 
+\mbox{\hyperlink{class_matrix}{Matrix}} \& Pole\+Matrix (\begin{DoxyParamCaption}\item[{double}]{xp}{, }\item[{double}]{yp}{}\end{DoxyParamCaption})}
+
+
+
+Computes the pole matrix for transforming pseudo Earth-\/fixed to true Earth-\/fixed coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xp} & Polar motion coordinate in radians (rotation about the y-\/axis). \\
+\hline
+{\em yp} & Polar motion coordinate in radians (rotation about the x-\/axis).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the 3×3 pole matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_pole_matrix_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_pole_matrix_8cpp_source}{Pole\+Matrix.\+cpp}}.
+

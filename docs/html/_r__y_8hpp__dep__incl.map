@@ -1,0 +1,44 @@
+<map id="include/R_y.hpp" name="include/R_y.hpp">
+<area shape="rect" id="Node000001" title="Computes the rotation matrix for a rotation about the y&#45;axis." alt="" coords="562,5,677,32"/>
+<area shape="rect" id="Node000002" href="$_l_t_c_8hpp.html" title="Computes the rotation matrix from ECEF to local tangent coordinates." alt="" coords="128,80,244,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="548,35,245,85,244,80,547,29"/>
+<area shape="rect" id="Node000006" href="$tests_8cpp_source.html" title=" " alt="" coords="648,229,756,256"/>
+<area shape="poly" id="edge27_Node000001_Node000006" title=" " alt="" coords="693,27,799,45,919,72,975,89,1025,108,1065,129,1091,153,1113,176,1133,187,1144,193,1133,195,1099,194,1032,198,925,209,769,232,757,234,756,229,768,227,924,204,1032,192,1099,189,1133,189,1139,192,1131,191,1110,180,1087,157,1062,134,1023,113,974,94,917,77,798,51,692,33"/>
+<area shape="rect" id="Node000008" href="$_pole_matrix_8hpp.html" title="Computes the pole matrix for transforming pseudo Earth&#45;fixed to true Earth&#45;fixed coordinates." alt="" coords="455,80,608,107"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="594,44,548,82,545,78,591,40"/>
+<area shape="rect" id="Node000014" href="$_prec_matrix_8hpp.html" title="Computes the precession matrix between two epochs in Terrestrial Time (TT)." alt="" coords="696,80,850,107"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="661,37,747,77,745,82,659,41"/>
+<area shape="rect" id="Node000003" href="$anglesg_8hpp.html" title="Orbit determination from three optical sightings using the Gauss method." alt="" coords="223,155,360,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,113,275,152,272,156,215,118"/>
+<area shape="rect" id="Node000005" href="$_e_k_f___g_e_o_s3_8cpp_source.html" title=" " alt="" coords="341,229,498,256"/>
+<area shape="poly" id="edge7_Node000002_Node000005" title=" " alt="" coords="173,122,163,152,164,167,169,179,191,190,235,203,347,226,346,231,234,208,189,195,166,183,158,168,158,151,168,120"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="189,122,196,153,203,167,213,179,248,198,296,210,353,217,416,220,540,222,636,227,648,229,647,234,635,232,540,227,415,226,353,222,295,215,246,203,210,183,198,170,191,155,184,123"/>
+<area shape="rect" id="Node000007" href="$_l_t_c_8cpp_source.html" title=" " alt="" coords="5,155,98,181"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="151,117,76,156,74,152,148,112"/>
+<area shape="rect" id="Node000004" href="$anglesg_8cpp_source.html" title=" " alt="" coords="203,229,316,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="282,197,267,230,263,228,277,195"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="328,187,398,226,396,231,326,192"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="375,181,636,227,648,229,647,234,635,232,374,186"/>
+<area shape="poly" id="edge18_Node000008_Node000003" title=" " alt="" coords="476,114,334,157,333,151,474,109"/>
+<area shape="poly" id="edge20_Node000008_Node000006" title=" " alt="" coords="479,115,451,129,429,144,419,162,419,170,424,179,450,188,509,202,648,229,647,234,507,207,449,193,420,183,414,172,413,160,425,141,449,124,477,110"/>
+<area shape="rect" id="Node000009" href="$_accel_8hpp.html" title="Computes the acceleration of an Earth orbiting satellite." alt="" coords="589,155,714,181"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="567,113,632,152,629,156,564,117"/>
+<area shape="rect" id="Node000011" href="$_var_eqn_8hpp.html" title="Computes the variational equations for satellite dynamics." alt="" coords="738,155,872,181"/>
+<area shape="poly" id="edge14_Node000008_Node000011" title=" " alt="" coords="595,109,758,151,756,157,593,114"/>
+<area shape="rect" id="Node000013" href="$_pole_matrix_8cpp_source.html" title=" " alt="" coords="434,155,565,181"/>
+<area shape="poly" id="edge19_Node000008_Node000013" title=" " alt="" coords="522,122,507,155,503,153,517,120"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="598,189,461,231,459,226,596,184"/>
+<area shape="poly" id="edge13_Node000009_Node000006" title=" " alt="" coords="671,193,696,227,691,230,667,196"/>
+<area shape="rect" id="Node000010" href="$_accel_8cpp_source.html" title=" " alt="" coords="522,229,624,256"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="628,194,588,231,585,227,625,190"/>
+<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="723,187,488,231,487,226,722,182"/>
+<area shape="poly" id="edge17_Node000011_Node000006" title=" " alt="" coords="776,193,722,231,719,227,773,188"/>
+<area shape="rect" id="Node000012" href="$_var_eqn_8cpp_source.html" title=" " alt="" coords="780,229,891,256"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="819,195,833,228,828,230,814,197"/>
+<area shape="poly" id="edge24_Node000014_Node000003" title=" " alt="" coords="681,111,360,159,360,154,680,106"/>
+<area shape="poly" id="edge26_Node000014_Node000006" title=" " alt="" coords="829,110,856,124,879,140,891,160,891,171,886,183,865,199,833,212,757,233,756,228,831,207,863,194,881,180,886,170,886,161,875,144,854,128,826,115"/>
+<area shape="poly" id="edge22_Node000014_Node000009" title=" " alt="" coords="740,117,674,156,671,152,737,113"/>
+<area shape="poly" id="edge23_Node000014_Node000011" title=" " alt="" coords="787,120,802,153,797,155,782,122"/>
+<area shape="rect" id="Node000015" href="$_prec_matrix_8cpp_source.html" title=" " alt="" coords="946,155,1077,181"/>
+<area shape="poly" id="edge25_Node000014_Node000015" title=" " alt="" coords="830,109,970,151,969,157,828,114"/>
+</map>

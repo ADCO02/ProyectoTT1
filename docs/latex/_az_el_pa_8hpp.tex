@@ -1,0 +1,71 @@
+\doxysection{include/\+Az\+El\+Pa.hpp File Reference}
+\hypertarget{_az_el_pa_8hpp}{}\label{_az_el_pa_8hpp}\index{include/AzElPa.hpp@{include/AzElPa.hpp}}
+
+
+Computes azimuth, elevation and their partial derivatives from local tangent coordinates.  
+
+
+{\ttfamily \#include "{}matrix.\+hpp"{}}\newline
+{\ttfamily \#include "{}SAT\+\_\+\+Const.\+hpp"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for Az\+El\+Pa.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_az_el_pa_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_az_el_pa_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+tuple$<$ double, double, \mbox{\hyperlink{class_matrix}{Matrix}} \&, \mbox{\hyperlink{class_matrix}{Matrix}} \& $>$ \mbox{\hyperlink{_az_el_pa_8hpp_ae89a6c135135b96ec7057c45dced4159}{Az\+El\+Pa}} (\mbox{\hyperlink{class_matrix}{Matrix}} \&s)
+\begin{DoxyCompactList}\small\item\em Computes azimuth, elevation and their partial derivatives from local tangent coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Computes azimuth, elevation and their partial derivatives from local tangent coordinates. 
+
+Calculates the azimuth and elevation angles, as well as their partial derivatives, based on a topocentric coordinate input. 
+
+Definition in file \mbox{\hyperlink{_az_el_pa_8hpp_source}{Az\+El\+Pa.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_az_el_pa_8hpp_ae89a6c135135b96ec7057c45dced4159}\index{AzElPa.hpp@{AzElPa.hpp}!AzElPa@{AzElPa}}
+\index{AzElPa@{AzElPa}!AzElPa.hpp@{AzElPa.hpp}}
+\doxysubsubsection{\texorpdfstring{AzElPa()}{AzElPa()}}
+{\footnotesize\ttfamily \label{_az_el_pa_8hpp_ae89a6c135135b96ec7057c45dced4159} 
+tuple$<$ double, double, \mbox{\hyperlink{class_matrix}{Matrix}} \&, \mbox{\hyperlink{class_matrix}{Matrix}} \& $>$ Az\+El\+Pa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_matrix}{Matrix}} \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Computes azimuth, elevation and their partial derivatives from local tangent coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Topocentric local tangent coordinates vector (East-\/\+North-\/\+Zenith frame).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple containing\+:
+\begin{DoxyItemize}
+\item Azimuth angle \mbox{[}rad\mbox{]}
+\item Elevation angle \mbox{[}rad\mbox{]}
+\item Partial derivatives of azimuth w.\+r.\+t s (\doxylink{class_matrix}{Matrix}\&)
+\item Partial derivatives of elevation w.\+r.\+t s (\doxylink{class_matrix}{Matrix}\&) 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_az_el_pa_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_az_el_pa_8cpp_source}{Az\+El\+Pa.\+cpp}}.
+
