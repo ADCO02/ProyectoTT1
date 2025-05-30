@@ -4,6 +4,16 @@
 #include "matrix.hpp"
 #include <cmath>
 
+/**
+ * @brief Computes the rotation matrix for a rotation about the x-axis.
+ *
+ * Generates a 3×3 rotation matrix representing a right-handed rotation 
+ * around the x-axis by the specified angle.
+ *
+ * @param angle Rotation angle in radians.
+ * 
+ * @return Reference to a 3×3 rotation matrix.
+ */
 Matrix& R_x(double angle);
 
 #endif

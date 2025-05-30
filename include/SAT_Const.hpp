@@ -1,3 +1,14 @@
+/**
+ * @file SAT_Const.hpp
+ * @brief Definition of astronomical and mathematical constants used in the library.
+ *
+ * This header defines key physical constants such as
+ * the speed of light, planetary gravitational parameters,
+ * Earth parameters, and unit conversion constants.
+ *
+ * @note Constants are based on DE430 ephemeris and WGS-84.
+ */
+
 #ifndef _SAT_CONST_
 #define _SAT_CONST_
 

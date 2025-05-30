@@ -6,6 +6,7 @@
         "initializer_list": "cpp",
         "tuple": "cpp",
         "ostream": "cpp",
-        "atomic": "cpp"
+        "atomic": "cpp",
+        "random": "cpp"
     }
 }
