@@ -1,4 +1,4 @@
-#include "..\include\LTC.hpp"
+#include "../include/LTC.hpp"
 
 Matrix& LTC(double lon, double lat){
     Matrix& M = (R_y(lat*(-1.0)))*(R_z(lon));

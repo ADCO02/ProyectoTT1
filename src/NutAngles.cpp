@@ -1,4 +1,4 @@
-#include "..\include\NutAngles.hpp"
+#include "../include/NutAngles.hpp"
 
 tuple<double,double> NutAngles(double Mjd_TT){
     double T  = (Mjd_TT-MJD_J2000)/36525;

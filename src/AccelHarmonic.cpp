@@ -1,4 +1,4 @@
-#include "..\include\AccelHarmonic.hpp"
+#include "../include/AccelHarmonic.hpp"
 
 Matrix& AccelHarmonic(Matrix& r, Matrix& E, int n_max, int m_max){
 

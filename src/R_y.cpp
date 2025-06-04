@@ -1,4 +1,4 @@
-#include "..\include\R_x.hpp"
+#include "../include/R_x.hpp"
 
 Matrix& R_y(double angle){
     double C = cos(angle);

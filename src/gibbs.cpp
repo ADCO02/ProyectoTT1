@@ -1,4 +1,4 @@
-#include "..\include\gibbs.hpp"
+#include "../include/gibbs.hpp"
 
 tuple<Matrix&, double, double, double, string> gibbs(Matrix& r1, Matrix& r2, Matrix& r3){
     double small= 0.00000001;

@@ -1,4 +1,4 @@
-#include "..\include\gast.hpp"
+#include "../include/gast.hpp"
 
 double gast(double Mjd_UT1){
     double fmod_gstime = fmod ( gmst(Mjd_UT1) + EqnEquinox(Mjd_UT1), 2*M_PI );

@@ -1,4 +1,4 @@
-#include "..\include\NutMatrix.hpp"
+#include "../include/NutMatrix.hpp"
 
 Matrix& NutMatrix(double Mjd_TT){
     // Mean obliquity of the ecliptic

@@ -1,4 +1,4 @@
-#include "..\include\hgibbs.hpp"
+#include "../include/hgibbs.hpp"
 
 tuple<Matrix&, double, double, double, string> hgibbs(Matrix& r1, Matrix& r2, Matrix& r3,
     double Mjd1, double Mjd2, double Mjd3){

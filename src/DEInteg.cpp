@@ -1,4 +1,4 @@
-#include "..\include\DEInteg.hpp"
+#include "../include/DEInteg.hpp"
 
 Matrix& DEInteg(Matrix& func(double, Matrix&), double t, double tout, double relerr, double abserr, int n_eqn, Matrix& y){
     y = y.transpose();

@@ -1,4 +1,4 @@
-#include "..\include\rpoly.hpp"
+#include "../include/rpoly.hpp"
 
 // Adapted in 2013 by Ethan Eade from NETLIB program 493:
 //    rpoly.f, Jenkins and Traub, 1972

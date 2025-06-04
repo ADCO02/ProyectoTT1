@@ -1,4 +1,4 @@
-#include "..\include\gmst.hpp"
+#include "../include/gmst.hpp"
 
 double gmst(double Mjd_UT1){
     double Secs = 86400.0;                       // Seconds per day

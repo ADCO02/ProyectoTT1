@@ -1,4 +1,4 @@
-#include "..\include\unit.hpp"
+#include "../include/unit.hpp"
 
 Matrix& unit(Matrix& vec){
     double small = 0.000001;

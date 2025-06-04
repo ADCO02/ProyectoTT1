@@ -1,4 +1,4 @@
-#include "..\include\PrecMatrix.hpp"
+#include "../include/PrecMatrix.hpp"
 
 Matrix& PrecMatrix(double Mjd_1, double Mjd_2){
     double T  = (Mjd_1-MJD_J2000)/36525;

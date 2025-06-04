@@ -1,4 +1,4 @@
-#include "..\include\EccAnom.hpp"
+#include "../include/EccAnom.hpp"
 
 double EccAnom(double M, double e){
     int maxit = 15;

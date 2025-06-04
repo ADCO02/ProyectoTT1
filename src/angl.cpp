@@ -1,4 +1,4 @@
-#include "..\include\angl.hpp"
+#include "../include/angl.hpp"
 
 double angl(Matrix& vec1, Matrix& vec2){
     double small     = 0.00000001;

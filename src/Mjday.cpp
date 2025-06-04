@@ -1,4 +1,4 @@
-#include "..\include\Mjday.hpp"
+#include "../include/Mjday.hpp"
 
 double Mjday(int yr, int mon, int day, int hr, int min, double sec) {
     double jd = 367.0 * (double)yr

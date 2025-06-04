@@ -1,4 +1,4 @@
-#include "..\include\Position.hpp"
+#include "../include/Position.hpp"
 
 Matrix& Position(double lon, double lat, double h){
     double R_equ = R_Earth;

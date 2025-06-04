@@ -1,4 +1,4 @@
-#include "..\include\EqnEquinox.hpp"
+#include "../include/EqnEquinox.hpp"
 
 double EqnEquinox(double Mjd_TT){
     // Nutation in longitude and obliquity

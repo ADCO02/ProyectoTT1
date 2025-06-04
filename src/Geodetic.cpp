@@ -1,4 +1,4 @@
-#include "..\include\Geodetic.hpp"
+#include "../include/Geodetic.hpp"
 
 tuple<double, double, double> Geodetic(Matrix& r){
     double R_equ = R_Earth;
@@ -14,7 +14,7 @@ tuple<double, double, double> Geodetic(Matrix& r){
 
     // Check validity of input data
     if (norm(r)==0.0){
-        cout << "ERROR: invalid input in Geodetic constructor\n";
+        cout << "ERROR: invalid input in Geodetic constructor/n";
         double lon = 0.0;
         double lat = 0.0;
         double h   = -R_Earth;

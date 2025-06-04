@@ -1,9 +1,0 @@
-<map id="include/gmst.hpp" name="include/gmst.hpp">
-<area shape="rect" id="Node000001" title="Computes Greenwich Mean Sidereal Time (GMST) from UT1." alt="" coords="60,5,181,32"/>
-<area shape="rect" id="Node000002" href="$_s_a_t___const_8hpp.html" title="Definition of astronomical and mathematical constants used in the library." alt="" coords="5,80,119,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,34,84,69,80,66,108,31"/>
-<area shape="rect" id="Node000003" href="$_frac_8hpp.html" title="Returns the fractional part of a number." alt="" coords="143,80,216,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,31,162,66,158,69,129,34"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="151,155,208,181"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,107,182,139,177,139,177,107"/>
-</map>

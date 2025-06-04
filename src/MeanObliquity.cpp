@@ -1,4 +1,4 @@
-#include "..\include\MeanObliquity.hpp"
+#include "../include/MeanObliquity.hpp"
 
 double MeanObliquity(double Mjd_TT) {
     

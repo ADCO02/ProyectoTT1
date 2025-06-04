@@ -1,4 +1,4 @@
-#include "..\include\Mjday_TDB.hpp"
+#include "../include/Mjday_TDB.hpp"
 
 double Mjday_TDB(double Mjd_TT) {
     // Compute Julian Centureis of TT

@@ -1,4 +1,4 @@
-#include "..\include\global.hpp"
+#include "../include/global.hpp"
 
 Matrix eopdata;
 

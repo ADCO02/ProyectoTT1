@@ -1,4 +1,4 @@
-#include "..\include\timediff.hpp"
+#include "../include/timediff.hpp"
 
 tuple<double,double,double,double,double> timediff(double UT1_UTC, double TAI_UTC){
 
