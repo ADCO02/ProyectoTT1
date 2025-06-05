@@ -1,3 +1,8 @@
+/**
+ * @file gmst.cpp
+ * @brief Implementation of the gmst function.
+ */
+
 #include "../include/gmst.hpp"
 
 double gmst(double Mjd_UT1){

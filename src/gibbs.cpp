@@ -1,3 +1,8 @@
+/**
+ * @file gibbs.cpp
+ * @brief Implementation of the gibbs function.
+ */
+
 #include "../include/gibbs.hpp"
 
 tuple<Matrix&, double, double, double, string> gibbs(Matrix& r1, Matrix& r2, Matrix& r3){

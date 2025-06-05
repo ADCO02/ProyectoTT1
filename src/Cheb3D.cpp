@@ -1,3 +1,8 @@
+/**
+ * @file Cheb3D.cpp
+ * @brief Implementation of the Cheb3D function.
+ */
+
 #include "../include/Cheb3D.hpp"
 
 Matrix& Cheb3D(double t, int N, double Ta, double Tb, Matrix& Cx, Matrix& Cy, Matrix& Cz){

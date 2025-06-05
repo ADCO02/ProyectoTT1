@@ -1,3 +1,8 @@
+/**
+ * @file angl.cpp
+ * @brief Implementation of the angl function.
+ */
+
 #include "../include/angl.hpp"
 
 double angl(Matrix& vec1, Matrix& vec2){

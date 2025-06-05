@@ -1,3 +1,8 @@
+/**
+ * @file G_AccelHarmonic.cpp
+ * @brief Implementation of the G_AccelHarmonic function.
+ */
+
 #include "../include/G_AccelHarmonic.hpp"
 
 Matrix& G_AccelHarmonic( Matrix& r, Matrix& U, int n_max, int m_max ){

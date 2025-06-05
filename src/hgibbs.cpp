@@ -1,3 +1,8 @@
+/**
+ * @file hgibbs.cpp
+ * @brief Implementation of the hgibbs function.
+ */
+
 #include "../include/hgibbs.hpp"
 
 tuple<Matrix&, double, double, double, string> hgibbs(Matrix& r1, Matrix& r2, Matrix& r3,

@@ -1,3 +1,8 @@
+/**
+ * @file Legendre.cpp
+ * @brief Implementation of the Legendre function.
+ */
+
 #include "../include/Legendre.hpp"
 
 tuple<Matrix&, Matrix&> Legendre(int n, int m, double fi){

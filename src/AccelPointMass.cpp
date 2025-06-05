@@ -1,3 +1,8 @@
+/**
+ * @file AccelPointMass.cpp
+ * @brief Implementation of the AccelPointMass function.
+ */
+
 #include "../include/AccelPointMass.hpp"
 
 Matrix& AccelPointMass(Matrix& r, Matrix& s, double GM){

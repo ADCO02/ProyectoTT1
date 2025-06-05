@@ -1,3 +1,8 @@
+/**
+ * @file LTC.cpp
+ * @brief Implementation of the LTC function.
+ */
+
 #include "../include/LTC.hpp"
 
 Matrix& LTC(double lon, double lat){

@@ -1,3 +1,8 @@
+/**
+ * @file NutMatrix.cpp
+ * @brief Implementation of the NutMatrix function.
+ */
+
 #include "../include/NutMatrix.hpp"
 
 Matrix& NutMatrix(double Mjd_TT){

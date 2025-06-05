@@ -1,3 +1,8 @@
+/**
+ * @file elements.cpp
+ * @brief Implementation of the elements function.
+ */
+
 #include "../include/elements.hpp"
 
 tuple<double, double, double, double, double, double, double> elements(Matrix& y){ 

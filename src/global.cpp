@@ -1,3 +1,19 @@
+/**
+ * @file global.cpp
+ * @brief Implementation of global variables and functions to load external data files.
+ *
+ * This file defines global matrices and functions declared in global.hpp, which are
+ * used throughout the project to load essential parameters for orbital computations.
+ *
+ * It implements reading from external data files located in "../data/", including:
+ *  - Earth Orientation Parameters (EOP).
+ *  - Normalized spherical harmonic gravitational coefficients (GGM03S model).
+ *  - Planetary ephemeris Chebyshev coefficients (DE430Coeff).
+ *  - Initialization of global auxiliary parameters.
+ *
+ * The global matrices eopdata, Cnm, Snm, and PC are defined and populated here.
+ */
+
 #include "../include/global.hpp"
 
 Matrix eopdata;

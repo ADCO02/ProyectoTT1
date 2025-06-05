@@ -1,3 +1,8 @@
+/**
+ * @file AzElPa.cpp
+ * @brief Implementation of the AzElPa function.
+ */
+
 #include "../include/AzElPa.hpp"
 
 tuple<double, double, Matrix&, Matrix&> AzElPa(Matrix& s){ 

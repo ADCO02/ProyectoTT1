@@ -1,3 +1,8 @@
+/**
+ * @file VarEqn.cpp
+ * @brief Implementation of the VarEqn function.
+ */
+
 #include "../include/VarEqn.hpp"
 
 Matrix& VarEqn(double x, Matrix& yPhi){

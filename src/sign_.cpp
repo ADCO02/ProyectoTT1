@@ -1,3 +1,8 @@
+/**
+ * @file sign_.cpp
+ * @brief Implementation of the sign_ function.
+ */
+
 #include "../include/sign_.hpp"
 
 double sign_(double a, double b){

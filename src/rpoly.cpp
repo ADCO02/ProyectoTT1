@@ -1,3 +1,17 @@
+/**
+ * @file rpoly.cpp
+ * @brief Implementation of functions for finding roots of real-coefficient polynomials.
+ *
+ * This file implements the allocation, release, and computation functions
+ * declared in rpoly.h, using internal algorithms and state management.
+ *
+ * The polynomial root finding uses a stateful approach to optimize performance
+ * for repeated calls with polynomials of bounded maximum degree.
+ *
+ * Implementation details include management of the opaque RPoly_State
+ * and numerical methods for root finding.
+ */
+
 #include "../include/rpoly.hpp"
 
 // Adapted in 2013 by Ethan Eade from NETLIB program 493:

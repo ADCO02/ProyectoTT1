@@ -1,3 +1,8 @@
+/**
+ * @file EqnEquinox.cpp
+ * @brief Implementation of the EqnEquinox function.
+ */
+
 #include "../include/EqnEquinox.hpp"
 
 double EqnEquinox(double Mjd_TT){

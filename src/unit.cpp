@@ -1,3 +1,8 @@
+/**
+ * @file unit.cpp
+ * @brief Implementation of the unit function.
+ */
+
 #include "../include/unit.hpp"
 
 Matrix& unit(Matrix& vec){

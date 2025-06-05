@@ -1,3 +1,8 @@
+/**
+ * @file EccAnom.cpp
+ * @brief Implementation of the EccAnom function.
+ */
+
 #include "../include/EccAnom.hpp"
 
 double EccAnom(double M, double e){

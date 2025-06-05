@@ -1,3 +1,8 @@
+/**
+ * @file AccelHarmonic.cpp
+ * @brief Implementation of the AccelHarmonic function.
+ */
+
 #include "../include/AccelHarmonic.hpp"
 
 Matrix& AccelHarmonic(Matrix& r, Matrix& E, int n_max, int m_max){

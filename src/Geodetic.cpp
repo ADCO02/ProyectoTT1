@@ -1,3 +1,8 @@
+/**
+ * @file Geodetic.cpp
+ * @brief Implementation of the Geodetic function.
+ */
+
 #include "../include/Geodetic.hpp"
 
 tuple<double, double, double> Geodetic(Matrix& r){

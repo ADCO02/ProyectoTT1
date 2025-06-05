@@ -1,3 +1,8 @@
+/**
+ * @file NutAngles.cpp
+ * @brief Implementation of the NutAngles function.
+ */
+
 #include "../include/NutAngles.hpp"
 
 tuple<double,double> NutAngles(double Mjd_TT){

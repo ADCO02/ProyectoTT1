@@ -1,3 +1,8 @@
+/**
+ * @file Accel.cpp
+ * @brief Implementation of the Accel function.
+ */
+
 #include "../include/Accel.hpp"
 
 Matrix& Accel(double x, Matrix& Y){    

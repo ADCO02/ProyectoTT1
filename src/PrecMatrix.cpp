@@ -1,3 +1,8 @@
+/**
+ * @file PrecMatrix.cpp
+ * @brief Implementation of the PrecMatrix function.
+ */
+
 #include "../include/PrecMatrix.hpp"
 
 Matrix& PrecMatrix(double Mjd_1, double Mjd_2){

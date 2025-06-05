@@ -1,3 +1,8 @@
+/**
+ * @file MeasUpdate.cpp
+ * @brief Implementation of the MeasUpdate function.
+ */
+
 #include "../include/MeasUpdate.hpp"
 
 tuple<Matrix&, Matrix&, Matrix&> MeasUpdate(Matrix& x, double z, double g, double s, Matrix& G, Matrix& P, int n){

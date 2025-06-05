@@ -1,3 +1,29 @@
+/**
+ * @file EKF_GEOS3.cpp
+ * 
+ * @brief Main program for Initial Orbit Determination (IOD) using Gauss method and Extended Kalman Filter (EKF).
+ * 
+ * This program performs satellite orbit determination by:
+ * - Reading Earth Orientation Parameters (EOP) and observational data.
+ * - Computing initial position and velocity estimates with the Gauss angles method.
+ * - Propagating the satellite state using numerical integration of equations of motion.
+ * - Applying EKF measurement updates using azimuth, elevation, and range observations.
+ * - Estimating and printing position and velocity errors compared to known true values.
+ * 
+ * The implementation uses:
+ * - Earth gravitational model coefficients (GGM03S).
+ * - Planetary ephemeris Chebyshev coefficients (DE430).
+ * - IERS Earth orientation parameters for time and coordinate transformations.
+ * 
+ * References:
+ * - Montenbruck & Gill, "Satellite Orbits - Models, Methods, and Applications", 2000.
+ * - Vallado, "Fundamentals of Astrodynamics and Applications", 4th Ed., 2013.
+ * - Seeber, "Satellite Geodesy", 2nd Ed., 2003.
+ * 
+ * @return int 0 on successful execution.
+ */
+
+
 #include "../include/matrix.hpp"
 #include "../include/global.hpp"
 #include "../include/SAT_Const.hpp"
@@ -15,6 +41,7 @@
 #include <iostream>
 #include <tuple>
 #include <string.h>
+#include <time.h>
 
 using namespace std;
 
@@ -56,6 +83,11 @@ int main() {
     //--------------------------------------------------------------------------
     
     //en matlab usar tik tok despues del clean para medir el tiempo
+
+    clock_t start, end;
+    double cpu_time_used;
+
+    start = clock();
 
     DE430Coeff(2285, 1020);
     
@@ -295,6 +327,12 @@ int main() {
     printf("dVx%8.1f [m/s]\n",Y0(4)-Y_true(4));
     printf("dVy%8.1f [m/s]\n",Y0(5)-Y_true(5));
     printf("dVz%8.1f [m/s]\n",Y0(6)-Y_true(6));
+
+    end = clock();          // Tiempo final
+
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;  // Tiempo en segundos
+
+    printf("Tiempo de ejecucion en C++: %f segundos\n", cpu_time_used);
 
     return 0;
 }

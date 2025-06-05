@@ -1,3 +1,8 @@
+/**
+ * @file MeanObliquity.cpp
+ * @brief Implementation of the MeanObliquity function.
+ */
+
 #include "../include/MeanObliquity.hpp"
 
 double MeanObliquity(double Mjd_TT) {

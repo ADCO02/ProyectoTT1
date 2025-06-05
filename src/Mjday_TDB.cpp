@@ -1,3 +1,8 @@
+/**
+ * @file Mjday_TDB.cpp
+ * @brief Implementation of the Mjday_TDB function.
+ */
+
 #include "../include/Mjday_TDB.hpp"
 
 double Mjday_TDB(double Mjd_TT) {

@@ -1,3 +1,8 @@
+/**
+ * @file R_y.cpp
+ * @brief Implementation of the R_y function.
+ */
+
 #include "../include/R_x.hpp"
 
 Matrix& R_y(double angle){

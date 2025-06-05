@@ -1,3 +1,8 @@
+/**
+ * @file Mjday.cpp
+ * @brief Implementation of the Mjday function.
+ */
+
 #include "../include/Mjday.hpp"
 
 double Mjday(int yr, int mon, int day, int hr, int min, double sec) {

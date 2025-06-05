@@ -1,3 +1,8 @@
+/**
+ * @file PoleMatrix.cpp
+ * @brief Implementation of the PoleMatrix function.
+ */
+
 #include "../include/PoleMatrix.hpp"
 
 Matrix& PoleMatrix(double xp, double yp){

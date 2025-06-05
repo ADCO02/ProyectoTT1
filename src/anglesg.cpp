@@ -1,3 +1,8 @@
+/**
+ * @file anglesg.cpp
+ * @brief Implementation of the anglesg function.
+ */
+
 #include "../include/anglesg.hpp"
 
 tuple<Matrix&, Matrix&> anglesg(double az1, double az2, double az3, double el1, double el2, double el3,

@@ -1,3 +1,8 @@
+/**
+ * @file R_z.cpp
+ * @brief Implementation of the R_z function.
+ */
+
 #include "../include/R_z.hpp"
 
 Matrix& R_z(double angle){

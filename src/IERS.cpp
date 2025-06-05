@@ -1,3 +1,8 @@
+/**
+ * @file IERS.cpp
+ * @brief Implementation of the IERS function.
+ */
+
 #include "../include/IERS.hpp"
 
 tuple<double,double,double,double,double,double,double,double,double> IERS(double Mjd_UTC, char interp){

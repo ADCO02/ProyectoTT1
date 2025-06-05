@@ -1,3 +1,8 @@
+/**
+ * @file gast.cpp
+ * @brief Implementation of the gast function.
+ */
+
 #include "../include/gast.hpp"
 
 double gast(double Mjd_UT1){

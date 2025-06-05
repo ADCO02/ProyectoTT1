@@ -1,3 +1,8 @@
+/**
+ * @file matrix.cpp
+ * @brief Implementation of the matrix class.
+ */
+
 #include "../include/matrix.hpp"
 
 // constructores

@@ -1,3 +1,8 @@
+/**
+ * @file DEInteg.cpp
+ * @brief Implementation of the DEInteg function.
+ */
+
 #include "../include/DEInteg.hpp"
 
 Matrix& DEInteg(Matrix& func(double, Matrix&), double t, double tout, double relerr, double abserr, int n_eqn, Matrix& y){

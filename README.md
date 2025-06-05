@@ -1,7 +1,7 @@
 # ProyectoTT1
 
 Este proyecto corresponde a la asignatura de  Taller Transversal 1 de la carrera de Ingeniería Informática.
-Se trata de la traducción a **C++** del código para la determinación de órbita de MatLab.
+Se trata de la traducción a **C++** del código para la determinación de órbita desde **MatLab**.
 
 ---
 
