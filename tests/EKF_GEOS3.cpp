@@ -40,7 +40,7 @@
 #include "../include/anglesg.hpp"
 #include <iostream>
 #include <tuple>
-#include <string.h>
+#include <cstring>
 #include <time.h>
 
 using namespace std;
@@ -83,11 +83,6 @@ int main() {
     //--------------------------------------------------------------------------
     
     //en matlab usar tik tok despues del clean para medir el tiempo
-
-    clock_t start, end;
-    double cpu_time_used;
-
-    start = clock();
 
     DE430Coeff(2285, 1020);
     
@@ -327,12 +322,6 @@ int main() {
     printf("dVx%8.1f [m/s]\n",Y0(4)-Y_true(4));
     printf("dVy%8.1f [m/s]\n",Y0(5)-Y_true(5));
     printf("dVz%8.1f [m/s]\n",Y0(6)-Y_true(6));
-
-    end = clock();          // Tiempo final
-
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;  // Tiempo en segundos
-
-    printf("Tiempo de ejecucion en C++: %f segundos\n", cpu_time_used);
 
     return 0;
 }

@@ -15,7 +15,7 @@
 
 #include "matrix.hpp"
 #include "SAT_Const.hpp"
-#include <math.h>
+#include <cmath>
 #include <tuple>
 
 /**

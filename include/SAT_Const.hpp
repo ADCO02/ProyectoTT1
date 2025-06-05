@@ -13,7 +13,10 @@
 #ifndef _SAT_CONST_
 #define _SAT_CONST_
 
-const double M_PI = 3.14159265358979;
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 const double pi2 = 2*M_PI;
 const double Rad       = M_PI/180;              // Radians per degree
 const double Deg       = 180/M_PI;              // Degrees per radian

@@ -19,9 +19,9 @@
 // Original comments preserved (with small modifications) below.
 // All computation happens in double precision.
 
-#include <math.h>
-#include <stdlib.h>
-#include <float.h>
+#include <cmath>
+#include <cstdlib>
+#include <cfloat>
 
 #ifndef RPOLY_DEBUG
 #define RPOLY_DEBUG 0
